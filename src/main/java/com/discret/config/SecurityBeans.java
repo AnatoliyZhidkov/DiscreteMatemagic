@@ -24,9 +24,11 @@ class SecurityBeans {
     SecurityFilterChain securityFilterChain (final HttpSecurity http) throws Exception{
         return http.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         //.requestMatchers("/admin/**").hasRole("ROLE_ADMIN")
+                        .requestMatchers("/css/**","/images/**", "/utilities/**").permitAll()
                         .anyRequest().authenticated()
                 ).formLogin(form -> form
                         .loginPage("/login").usernameParameter("login")
+                        .defaultSuccessUrl("/main")
                         .permitAll())
                 .build();
     }

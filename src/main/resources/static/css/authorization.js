@@ -48,11 +48,3 @@ passwordInput.addEventListener('input', function() {
 });
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     var loginButton = document.getElementById("loginButton");
-//
-//     loginButton.addEventListener("click", function() {
-//         // Переход на страницу main.html
-//         window.location.href = "main.html";
-//     });
-// });
