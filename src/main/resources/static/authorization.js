@@ -1,4 +1,4 @@
-const loginInput = document.getElementById('loginInput');
+const loginInput = document.getElementById('login');
 const lengthError = document.getElementById('lengthError');
 const formatError = document.getElementById('formatError');
 
@@ -22,7 +22,7 @@ loginInput.addEventListener('input', function() {
     }
 });
 
-const passwordInput = document.getElementById('passwordInput');
+const passwordInput = document.getElementById('password');
 const lengthErrorMessage = document.getElementById('lengthErrorMessage');
 const formatErrorMessage = document.getElementById('formatErrorMessage');
 
@@ -48,11 +48,11 @@ passwordInput.addEventListener('input', function() {
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    var loginButton = document.getElementById("loginButton");
-
-    loginButton.addEventListener("click", function() {
-        // Переход на страницу main.html
-        window.location.href = "main.html";
-    });
-});
+// document.addEventListener("DOMContentLoaded", function() {
+//     var loginButton = document.getElementById("loginButton");
+//
+//     loginButton.addEventListener("click", function() {
+//         // Переход на страницу main.html
+//         window.location.href = "main.html";
+//     });
+// });

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
         </div>
         <ul class="menu">
             <li>
-                <a href="main.html">
+                <a th:href="@{/main}">
                     <div class="item-list">
                         <img class="first-item-img" src="images\learning.svg" alt="">
                         <h1>ОБУЧЕНИЕ</h1>

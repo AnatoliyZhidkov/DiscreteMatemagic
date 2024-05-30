@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="https://www.thymeleaf.org" lang="ru" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="profile.html">
+                <a th:href="@{/profile}">
                     <div class="item-list" id="item3">
                         <img class="four-item-img" src="images\profile.svg" alt="">
                         <h1>ПРОФИЛЬ</h1>

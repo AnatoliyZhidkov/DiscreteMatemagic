@@ -14,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 class SecurityBeans {
 
-    @Autowired
-    StudentService studentService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
@@ -25,9 +23,11 @@ class SecurityBeans {
     @Bean
     SecurityFilterChain securityFilterChain (final HttpSecurity http) throws Exception{
         return http.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("/admin/**").hasRole("ROLE_ADMIN")
-                        .requestMatchers("/main").authenticated()
-                )
+                        //.requestMatchers("/admin/**").hasRole("ROLE_ADMIN")
+                        .anyRequest().authenticated()
+                ).formLogin(form -> form
+                        .loginPage("/login").usernameParameter("login")
+                        .permitAll())
                 .build();
     }
 

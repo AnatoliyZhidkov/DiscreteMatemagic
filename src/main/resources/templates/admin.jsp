@@ -1,12 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <title>Log in with your account</title>
-  <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/style.css">
+  <link rel="stylesheet" th:href="@{authorization.css}" type="text/css" />
 </head>
 
 <body>
@@ -18,17 +16,17 @@
     <th>Password</th>
     <th>Roles</th>
     </thead>
-    <c:forEach items="${allUsers}" var="user">
+    <c:forEach items="${allStudens}" var="student">
       <tr>
-        <td>${user.id}</td>
-        <td>${user.username}</td>
-        <td>${user.password}</td>
+        <td>${student.id}</td>
+        <td>${student.username}</td>
+        <td>${student.password}</td>
         <td>
-          <c:forEach items="${user.roles}" var="role">${role.name}; </c:forEach>
+          <c:forEach items="${student.roles}" var="role">${role.name}; </c:forEach>
         </td>
         <td>
           <form action="${pageContext.request.contextPath}/admin" method="post">
-            <input type="hidden" name="userId" value="${user.id}"/>
+            <input type="hidden" name="studentId" value="${student.id}"/>
             <input type="hidden" name="action" value="delete"/>
             <button type="submit">Delete</button>
           </form>

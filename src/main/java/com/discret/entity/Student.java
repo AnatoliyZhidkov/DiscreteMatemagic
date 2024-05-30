@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity(name = "student")
-public class Students implements UserDetails {
+public class Student implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +34,7 @@ public class Students implements UserDetails {
     @JoinColumn(name = "group_id")
     private Student_Groups student_groups;
 
-    public Students() {
+    public Student() {
     }
 
     public Long getId() {

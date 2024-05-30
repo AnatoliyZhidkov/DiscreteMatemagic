@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StuduntService implements UserDetailsService {
+public class StudentService implements UserDetailsService {
 
     @PersistenceContext
     private EntityManager em;
