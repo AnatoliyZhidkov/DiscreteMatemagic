@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utilities/fonts.css" />
+    <link rel="stylesheet" href="utilities/navigation.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <title>DiscreteMathemagic</title>
+    <script src="utilities/navigation.js" defer></script>
+    <script src="profile.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="sidebar">
+        <div class="block-for-logo">
+            <img class="img-logo" src="images\login.png" alt="">
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="main.html">
+                    <div class="item-list">
+                        <img class="first-item-img" src="images\learning.svg" alt="">
+                        <h1>ОБУЧЕНИЕ</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div class="item-list">
+                        <img class="second-item-img" src="images\progress.svg" alt="">
+                        <h1>СТАТИСТИКА</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <div class="item-list">
+                        <img class="four-item-img" src="images\profile.svg" alt="">
+                        <h1>ПРОФИЛЬ</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="authorization.html">
+                    <div class="item-list">
+                        <img class="five-item-img" src="images\settings.svg" alt="">
+                        <h1>ВЫХОД</h1>
+                    </div>
+                </a>
+            </li>           
+        </ul>     
+    </div>  
+</header>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-profile">
+            <div class="block-profile-in">
+                <div class="block-info-profile">
+                    <div class="left-block-info-profile">
+                        <h1>Андрей Мельниченко</h1>
+                        <div class="data-left-block-info-profile">
+                            <div class="info">
+                                <h3>Группа</h3>
+                                <p></p>
+                                <h3>Логин</h3>
+                            </div>
+                            <div class="info-from-db">
+                                <h4 id="info-group">подгрузка_из_бд</h4>
+                                <p></p>
+                                <h4 id="info-login">подгрузка_из_бд</h4>
+                            </div>
+                        </div>
+                        <div class="change-password">
+                            <input type="password" id="passwordInput" placeholder="Введите старый пароль">
+                            <div class="ErrorMessage" id="lengthErrorMessage">Пароль не может содержать более 30 символов</div>
+                            <div class="ErrorMessage" id="formatErrorMessage">Пароль может содержать только символы латинского алфавита, цифры и спецсимволы</div>
+                            <input type="password" id="passwordInput1" placeholder="Введите новый пароль">
+                            <div class="ErrorMessage" id="lengthErrorMessage1">Пароль должен содержать минимум 8 символов</div>
+                            <div class="ErrorMessage" id="formatErrorMessage1">Пароль должен содержать символы латинского алфавита, цифры и спецсимволы !@#%^&*-+</div>
+                            <input type="password" id="passwordInput2" placeholder="Повторите пароль">
+                            <div class="ErrorMessage" id="lengthErrorMessage2">Пароль должен содержать минимум 8 символов</div>
+                            <div class="ErrorMessage" id="formatErrorMessage2">Пароль может содержать символы латинского алфавита, цифры и спецсимволы !@#%^&*-+</div>
+                        </div>
+                    </div>
+                    <div class="right-block-info-profile">
+                        <button id="cancel-password-btn"><h3>отменить</h3></button>
+                        <button id="safe-password-btn"><h3>сохранить</h3></button>
+                        <button id="change-password-btn"><h3>изменить пароль</h3></button>
+                    </div>
+                </div>
+                <div class="block-img-profile">
+                    <img src="images\profile-info.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="block-achieve">
+            <div class="block-achieve-in">
+                <div class="top-block-achieve">
+                    <h1>Достижения</h1>
+                </div>
+                <div class="block-for-items-acheive">
+                    <div class="item-achieve">
+                        <img src="images\achieve1.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Один маленький шаг</h3>
+                            <h4>За успешное решение первого теста</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve2.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Мастер комбинаторики</h3>
+                            <h4>За успешное завершение всех тестов модуля 1</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve3.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Биномиальный виртуоз</h3>
+                            <h4>За успешное завершение всех тестов модуля 2</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve4.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Мастер графов</h3>
+                            <h4>За успешное завершение всех тестов модуля 3</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve5.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Познаватель</h3>
+                            <h4>За прохождение всех тестов и просмотр всех материалов на сайте</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve6.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Мудрец</h3>
+                            <h4>За прохождение всех тестов с высоким процентом правильных ответов: 85% и выше</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve7.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Звездное восхождение</h3>
+                            <h4>За попадание в рейтинг и стремление к выдающимся результатам</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

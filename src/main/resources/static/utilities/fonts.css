@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "mt-bold";
+  src: url(fonts/Montserrat-Bold.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mt-bolditalic";
+  src: url(fonts/Montserrat-Bold.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mt-semibold";
+  src: url(fonts/Montserrat-SemiBold.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mt-regular";
+  src: url(fonts/Montserrat-Regular.ttf);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mt-extrabold";
+  src: url(fonts/Montserrat-ExtraBold.ttf);
+  font-style: normal;
+}

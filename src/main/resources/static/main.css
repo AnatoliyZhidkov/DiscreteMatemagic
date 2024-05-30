@@ -1,0 +1,237 @@
+body {
+  background-color: #1e2634;
+  font-family: "mt-bold";
+  margin: 0;
+}
+section{
+  display: flex;
+  justify-content: end;
+}
+.content{
+  background-image: url('images/back.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-height: 100vh;
+  align-items: center;
+}
+#text-lessons-for-phone{display: none;}
+.lesson{
+  width: 80%;
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+}
+.block-mod{
+  background-color: #77CCDD;
+  border-radius: 20px;
+  padding: 0 20px 0 40px;
+  display: flex;
+}
+.text-in-mod h1{
+  font-size: 25px;
+  margin: 20px 0 10px 0;
+}
+.lesson h2{
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  font-family: 'mt-regular';
+}
+.image-in-mod{
+  border-left: solid 2px #54919D;;
+  width: 10%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-left: 20px;
+}
+.image-in-mod img{
+  width: 30px;
+}
+.block-lessons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  
+}
+.item-lesson {
+  display: inline-block;
+  width: 20vw;
+  height: 20vw; 
+}
+.item-lesson:hover .overlay, .item-lesson:hover .overlay button { opacity: 1;}
+.overlay{
+  background-color: #9657EE;
+  position: relative;
+  width: 20vw;
+  top: -20vw;
+  height: 20vw;
+  border-radius: 1.4vw;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.images-item-lesson{
+  width: 20vw;
+  height: 20vw;
+  border-radius: 1.4vw;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.overlay div{
+  padding: 2vw;
+}
+
+.overlay button{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+  background-color: #67409F;
+  border-radius: 9px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 0.4vw 0;
+  cursor: pointer;
+	outline: inherit;
+  opacity: 0;
+}
+.overlay button:hover{
+  background-color: #00DAA1;
+}
+.overlay button:hover h2{
+  color: #1e2634;
+}
+#startButton:active {
+  background-color: #00FFB2; /* Цвет фона при нажатии */
+}
+.overlay h3{
+  color:white;
+  font-size: 18px;
+  font-family: 'mt-regular';
+  margin: 0;
+}
+
+.overlay h2{
+  color:white;
+  font-family: 'mt-bold';
+  margin: 0;
+}
+#plug{
+  opacity: 0;
+}
+.overlay div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 16vw;
+}
+#item1-1{background-image: url('images/mod1.les1.svg');}
+#item1-2{background-image: url('images/mod1.les2.svg');}
+#item1-3{background-image: url('images/mod1.les3.svg');}
+#item3-1{background-image: url('images/mod3.les1.svg');}
+#item3-2{background-image: url('images/mod3.les2.svg');}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0); /* Завершим анимацию смещением вниз */
+  }
+}
+
+.text-in-mod, .image-in-mod img, .images-item-lesson{
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@media screen and (max-width: 1100px) {
+  .overlay h3, .overlay h2{
+    font-size:calc(4px + 1vw);
+  }
+}
+@media screen and (max-width: 900px){
+  .text-in-mod h1{
+    font-size:calc(9px + 1vw);
+    margin-top: 0;
+  }
+  .lesson h2 {
+    font-size:calc(7px + 1vw);
+    margin-bottom: 0;
+  }
+  .image-in-mod{
+    display: none;
+  }
+  .block-mod{
+    padding: 2vw 3vw;
+  }
+}
+@media screen and (max-width: 560px) {
+  .overlay{
+    border-radius: 2.4vw;
+    width: 35vw;
+    height: 35vw;
+    top: -35vw;
+  }
+  .images-item-lesson, .item-lesson{
+    width: 35vw;
+    height: 35vw;
+  }
+  .overlay div{
+    justify-content: space-around ;
+    height: 31vw;
+  }
+  .block-lessons{
+    gap: 3vw;
+    flex-direction: column;
+    align-items: center;
+  }
+  #plug{
+    display: none;
+  }
+  .lesson{
+    margin: 10px 0;
+  }
+  .text-in-mod h1{
+    font-size:calc(6px + 1vw);
+    margin-bottom: 5px;
+  }
+  .lesson h2 {
+    font-size:calc(5px + 1vw);
+    margin-bottom: 0;
+  }
+  .content{
+    width: 100%;
+    margin-top: 10%;
+  }
+  .lesson{
+    width: 90%;
+    height: auto;
+  }
+  .block-mod{
+    border-radius: 9px;
+  }
+  #startButton{
+    display: none;
+  }
+  #text-lessons-for-phone{display:block }
+  .overlay:active{
+    background-color:#67409F;
+  }
+}
+@media screen and (max-width: 500px){
+  .overlay h3, .overlay h2{
+    font-size:calc(4px + 1vw);
+  }
+}
+

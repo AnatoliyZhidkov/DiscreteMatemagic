@@ -1,0 +1,107 @@
+a{
+  text-decoration: none;
+}
+.sidebar {
+  width: 20%;
+  background-color: #1e2634;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;  
+  height: 100%;
+  border-right: solid 3px #41516C;
+}
+.sidebar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none; 
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.img-logo{ width: 15.86vw; }
+.block-for-logo{
+  width: 101%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-bottom: 30px;
+  background: rgb(102, 40, 187);
+  background: linear-gradient(36deg, rgba(102, 40, 187, 1) 0%, rgba(81, 197, 169, 1) 100%); 
+}
+.item-list{
+  display: flex;
+  text-decoration: none;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 35px;
+  border-radius: 19px;
+  border: solid 1.2px #1e2634;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.menu .active .item-list {
+  background-color: rgba(119, 204, 221, 0.1); 
+  border: solid 1.2px #77ccdd; 
+}
+.item-list:hover{ 
+  transition: 0.2s linear;
+  background-color: #333f54; 
+}
+.first-item-img,  .five-item-img{ margin-left: 4px; }
+.item-list h1{
+  font-size: 15px;
+  color: white;
+}
+
+@media screen and (max-width: 1100px) {
+  .item-list{
+    padding: 5px 2vw;
+    border: solid 1.2px #1e2634;
+  }
+  .item-list h1{ font-size: 1.4vw; }
+}
+@media screen and (max-width: 700px) {
+  .first-item-img, .five-item-img{
+    width: 16.8px;
+    margin-left: 2px;
+  }
+  .second-item-img,  .four-item-img{ width: 20.3px; }
+}
+@media screen and (max-width: 560px) {
+  .sidebar{
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    border-bottom: solid 3px #41516C;
+    height: auto;
+    padding-right: 10px;
+    z-index: 1;
+  }
+  .block-for-logo{
+    margin: 0px 10px 0 0;
+    padding: 2vw 3vw;
+    border-bottom-left-radius: 0%;
+    width: 20%;
+  }
+  .sidebar ul{
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-around;
+  }
+  .item-list h1{ display: none; }
+  .item-list{ height: 70%;}
+}
+@media screen and (max-width: 370px){
+  .first-item-img, .five-item-img{
+    width: 11.76px;
+    margin-left: 1px;
+  }
+  .second-item-img, .third-item-img,  .four-item-img{ width: 14.21px; }
+  .item-list{ height: 50%; } 
+}

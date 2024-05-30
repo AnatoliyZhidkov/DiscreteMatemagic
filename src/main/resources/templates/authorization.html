@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utilities/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="authorization.css" type="text/css" />
+    <title>DiscreteMathemagic</title>
+    <script src="authorization.js" defer></script>
+</head>
+<body>
+    <div class="box-form">
+        <div class="left">
+          <div class="overlay">
+          <img class="img" src="images\login.png">
+          <p>Этот курс позволит вам овладеть базовыми понятиями и принципами дискретной математики и некоторых ее смежных глав. Вы познакомитесь с базовыми математическими объектами, без которых знание математики тяжело себе представить</p>
+          </div>
+        </div>
+        <div class="right">
+          <h5>Добро пожаловать</h5>
+          <h6>Пожалуйста, введите свой логин и пароль, который вы получили ранее</h6>
+          <div class="inputs">
+            <input type="text" id="loginInput" placeholder="логин">
+            <div id="lengthError">Превышено максимальное количество символов</div>
+            <div id="formatError">Можно вводить только символы латинского алфавита и цифры</div>
+            <br>
+            <input type="password" id="passwordInput" placeholder="пароль">
+            <div id="lengthErrorMessage">Пароль не может содержать более 30 символов</div>
+            <div id="formatErrorMessage">Пароль может содержать только символы латинского алфавита, цифры и спецсимволы</div>
+          </div>
+            <br><br>
+          <div class="remember-me--forget-password">
+            <button id="loginButton">Войти</button>
+            <p>Забыли пароль?</p>
+          </div>         
+        </div>        
+      </div>
+</body>
+</html>

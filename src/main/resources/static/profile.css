@@ -1,0 +1,264 @@
+body {
+  background-color: #1e2634;
+  font-family: "mt-bold";
+  margin: 0;
+}
+section{
+  display: flex;
+  justify-content: end;
+}
+.content{
+  background-image: url('images/back.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  min-height: 100vh;
+  align-items: center;
+}
+.block-profile{
+  width: 80%;
+  margin: 50px 0;
+  background-color: #77CCDD;
+  border-radius: 20px;
+}
+.block-profile-in{
+ padding-left: 40px;
+ display: flex;
+ justify-content: space-between;
+}
+.block-info-profile{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 40px 0;
+}
+.left-block-info-profile h1{
+    font-size: 26px;
+}
+.data-left-block-info-profile{
+    display: flex;
+    gap: 10%;
+}
+.info h3{
+    font-size: 20px;
+    font-family: 'mt-regular';
+    margin: 0;
+}
+.info-from-db h4{
+    margin: 0;
+    font-size: 20px;
+}
+.block-img-profile{
+    border-left: solid 2px #54919D;;
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    margin-left: 20px;
+  }
+.right-block-info-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+}
+.right-block-info-profile button h3{
+    font-size: 18px;
+    font-family: 'mt-regular';
+    margin: 0;
+    color: white;
+}
+.right-block-info-profile button{
+    background-color: #5F3B91;
+    border-radius: 11px;
+    padding: calc(2px + 0.5vw) calc(4px + 1vw);
+    color: inherit;
+	border: none;
+    cursor: pointer;
+	outline: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+.right-block-info-profile button:hover{
+    background-color: #9657EE;
+    transition: 0.2s ease;
+}
+.right-block-info-profile button:active{
+    background-color: #5F3B91;
+}
+#cancel-password-btn{background-color: #FF5252; display: none; padding: calc(2px + 0.5vw) calc(25px + 1vw);}
+#cancel-password-btn:hover{background-color: #E74949; transition: 0.2s ease;}
+#cancel-password-btn:active{background-color: #FF5252;}
+#safe-password-btn{background-color: #59C547; display: none; padding: calc(2px + 0.5vw) calc(25px + 1vw);}
+#safe-password-btn:hover{background-color: #4EB23E; transition: 0.2s ease;}
+#safe-password-btn:active{background-color: #59C547;}
+.change-password{
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+.change-password input{
+    background-color: #77CCDD;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+}
+.change-password input::-webkit-input-placeholder { 
+    color: #1E1E1E;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Завершим анимацию смещением вниз */
+    }
+}
+/* Применим анимацию к блокам, которые будут появляться */
+.block-info-profile, .change-password, #cancel-password-btn, #safe-password-btn, #change-password-btn, .data-left-block-info-profile, .top-block-achieve, .item-achieve, .block-img-profile img {
+    animation: fadeIn 0.5s ease forwards; /* Применим анимацию появления с продолжительностью 0.5 секунды */
+}
+
+.block-achieve{
+    width: 80%;
+    background: rgba(119, 204, 221, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.4px);
+    -webkit-backdrop-filter: blur(3.4px); 
+    margin-bottom: 20px; 
+}
+.block-achieve-in{
+    padding: 1.43vw 3.57vw;
+}
+.top-block-achieve{
+    border-bottom: 2px solid white;
+    margin-bottom: 4.29vw;
+}
+.top-block-achieve h1{
+    font-size: 24px;
+    color: white;
+    margin-bottom: 13px;
+}
+.item-achieve{
+    width: 48%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.description-item-achieve h3{
+    font-size: 16px;
+    color: white;
+}
+.description-item-achieve h4{
+    font-family: 'mt-regular';
+    font-size: 12px;
+    color: white;
+}
+.block-for-items-acheive{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.43vw;
+}
+
+.item-achieve img {
+    filter: grayscale(100%);
+}
+.ErrorMessage{
+    color: red; 
+    display: none;
+    font-family: 'mt-regular';
+    font-size: calc(4px + 0.5vw);
+    padding-left: 10px;
+  }
+.change-password input, .ErrorMessage{
+    width: 350px;
+}
+@media screen and (max-width: 1185px){
+    .change-password input, .ErrorMessage{
+        width: 200px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .info-from-db h4, .info h3, .right-block-info-profile button h3 {
+        font-size:calc(4px + 1.3vw);
+    }
+    .left-block-info-profile h1, .top-block-achieve h1{
+        font-size:calc(5px + 2vw);
+    }
+}
+@media screen and (max-width: 950px) {
+    
+    .description-item-achieve h3{font-size: calc(6px + 0.8vw);}
+    .description-item-achieve h4{font-size: calc(5px + 0.8vw);}
+}
+@media screen and (max-width: 860px) {
+    .ErrorMessage{
+        font-size: calc(4px + 0.8vw);
+    }
+    .change-password input{
+        font-size: 12px;
+        padding: 7px;
+    }
+    .block-img-profile{
+        display: none;
+    }
+    .block-profile-in{
+        padding: 0 40px;
+    }
+    .block-info-profile{
+        width: 100%;
+    }
+    .block-for-items-acheive{
+        flex-direction: column;
+    }
+    .item-achieve{
+        width: 100%;
+    }
+    .block-info-profile{
+        padding: 10px 0 20px 0;
+    }
+    .block-profile-in{
+        padding: 0 3.57vw;
+    }
+}
+@media screen and (max-width: 660px){
+    .change-password input {
+        width: 130px;
+        font-size: 9px;
+        padding: 6px;
+    }
+    .ErrorMessage{width: 130px;}
+}
+@media screen and (max-width: 560px) {
+    .right-block-info-profile button:hover{
+        transition: 0s ease;
+    }
+    .block-profile, .block-achieve{
+        border-radius: 11px;
+    }
+    .right-block-info-profile button{
+        border-radius: 6px;
+    }
+    .content{
+        width: 100%;
+        margin-top: 10%;
+    }
+    .item-achieve img{
+        width: 70px;
+    }
+    .data-left-block-info-profile p{
+        display: none;
+    }
+    .block-achieve, .block-profile{
+        width: 90%;
+    }
+    
+}
