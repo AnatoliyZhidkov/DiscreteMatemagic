@@ -8,42 +8,44 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Create New Student</h2>
+    <h2>Добавление нового студента</h2>
     <form th:action="@{/admin/create}" method="post">
         <div class="form-group">
             <label for="login">Login</label>
             <input type="text" class="form-control" id="login" name="login" required>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Пароль</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <div class="form-group">
-            <label for="passwordConfirm">Confirm Password</label>
+            <label for="passwordConfirm">Подтвердите пароль</label>
             <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
         </div>
         <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" required>
-        </div>
-        <div class="form-group">
-            <label for="middleName">Middle Name</label>
-            <input type="text" class="form-control" id="middleName" name="middleName">
-        </div>
-        <div class="form-group">
-            <label for="lastName">Last Name</label>
+            <label for="lastName">Фамилия</label>
             <input type="text" class="form-control" id="lastName" name="lastName" required>
         </div>
         <div class="form-group">
-            <label for="role">Role</label>
+            <label for="firstName">Имя</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="middleName">Отчество</label>
+            <input type="text" class="form-control" id="middleName" name="middleName">
+        </div>
+        <div class="form-group">
+            <label for="role">Роль</label>
             <select class="form-control" id="role" name="role" required>
                 <option value="ROLE_STUDENT">Student</option>
                 <option value="ROLE_ADMIN">Admin</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="groupId">Group ID</label>
-            <input type="number" class="form-control" id="groupId" name="groupId" required>
+            <label for="groupId">Группа</label>
+            <select class="form-control" id="groupId" name="group" required>
+                <option  th:each="groups : ${groups}" th:value="${groups.groupname}" th:text="${groups.groupname + '-' + groups.groupNumber}" > </option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Create Student</button>
     </form>

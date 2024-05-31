@@ -40,7 +40,9 @@ public class AdminController {
         return "redirect:/admin";
     }
     @GetMapping("/admin/create")
-    public String getNewStudentPage(){return "new_student";}
+    public String getNewStudentPage(Model model){
+        model.addAttribute("groups", studentsGroupsRepository.findAll());
+        return "new_student";}
     @PostMapping("/admin/create")
     public String createStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
 
@@ -48,9 +50,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/get/{studentId}")
-    public String getStudent(@PathVariable("studentId") Long studentId, Model model){
-        model.addAttribute("allStudents", studentService.studentGetList(studentId));
+    @GetMapping("/admin/get/{groupId}")
+    public String getStudent(@PathVariable("groupId") Long groupId, Model model){
+        List<Student> students = studentService.studentGetListByGroup(groupId);
+        model.addAttribute("student", studentService.studentGetListByGroup(groupId));
         return "admin";
     }
 

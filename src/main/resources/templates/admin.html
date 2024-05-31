@@ -19,6 +19,7 @@
             <th>Фамилия</th>
             <th>Отчество</th>
             <th>Группа</th>
+            <th>Курс</th>
             <th>Удалить</th>
         </tr>
         </thead>
@@ -30,6 +31,7 @@
             <td th:text="${student.middleName}"></td>
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.getStudent_groups().getGroupname()}"></td>
+            <td th:text="${student.getStudent_groups().getGroupNumber()}"></td>
             <td>
                 <form method="post" th:action="@{/admin/delete}">
                     <input type="hidden" name="studentId" data-th-value="${student.id}"/>

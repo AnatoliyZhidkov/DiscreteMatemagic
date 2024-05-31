@@ -61,20 +61,7 @@ public class StudentService implements UserDetailsService {
         return studentsRepository.findAll();
     }
 
-    public boolean saveStudent(Student student){
 
-        Student studentFromDb = studentsRepository.findByLogin(student.getLogin());
-
-        if (studentFromDb != null){
-            return false;
-        }
-
-        student.setRoles(Collections.singleton(new Role(1L,"ROLE_STUDENT")));
-        student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
-        studentsRepository.save(student);
-        return true;
-
-    }
     @Transactional
     public boolean createStudent(String login, String password, String lastName, String firstName, String middleName,String roleName ,Long groupId){
 
@@ -96,16 +83,11 @@ public class StudentService implements UserDetailsService {
         student.setLastName(lastName);
         student.setStudent_groups(studentGroup);
         student.setPassword(bCryptPasswordEncoder.encode(password));
-
         studentsRepository.save(student);
-
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         student.setRoles(roles);
-
         studentsRepository.save(student);
-
-
         return true;
 
     }
@@ -118,9 +100,9 @@ public class StudentService implements UserDetailsService {
         }
         return false;
     }
-    public List<Student> studentGetList(Long idMin){
-        return em.createQuery("SELECT s FROM student s WHERE s.id > :paramId", Student.class)
-                .setParameter("paramId", idMin).getResultList();
+    public List<Student> studentGetListByGroup(Long grId){
+        return em.createQuery("SELECT s FROM student s WHERE s.student_groups.id = :paramId", Student.class)
+                .setParameter("paramId", grId).getResultList();
     }
 
 }
