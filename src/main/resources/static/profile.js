@@ -118,7 +118,7 @@ document.getElementById('safe-password-btn').addEventListener('click', function(
     // Проверка совпадения нового пароля и подтвержденного пароля
     if (newPassword !== confirmPassword) {
         alert('Пароли не совпадают');
-        isValid = false;
+        return;
     }
 
     // Если валидация не пройдена, выводим alert и прекращаем выполнение функции
