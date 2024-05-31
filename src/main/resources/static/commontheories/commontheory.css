@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    font-family: 'mt-regular';
+}
+a{
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+}
+header{
+    display:block;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: #1e2634;
+}
+.clone{
+    position: static;
+    height: 60px;
+}
+.conteiner-header{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 60px;
+    border-bottom: solid 3px #41516C;
+    align-items: center;
+}
+.right-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 40px;
+    border-bottom-right-radius: 16px;
+    background: linear-gradient(36deg, rgba(102, 40, 187, 1) 0%, rgba(81, 197, 169, 1) 100%);
+}
+.right-header img{
+    height: 40px;
+    width: auto;
+}
+.sec-content{
+    background-image: url('../images/back.png');;
+    background-size: cover;
+    font-family: "mt-bold";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.middle-header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.conteiner-header h1{
+    font-size: 1.4vw;
+    color: white;
+    cursor: pointer;
+}
+.content h1{
+    font-family: 'mt-bold';
+    color: #FF6666;
+    text-decoration: underline;
+    margin-left: 8vw;
+    margin-top: 1.3vw;
+    font-size: 1.6vw;
+}
+.conteiner-header h1:hover{
+    color: #FF6666;
+    transition: 0.3s ease;
+}
+.conteiner-header h1:active{
+    color: #ffffff;
+}
+.left-header{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-right: 50px;
+    cursor: pointer;
+    height: fit-content;
+}
+.content{
+    width: 70%;
+    background-color: white;
+}
+.content img{
+    width: 100%;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Завершим анимацию смещением вниз */
+    }
+}
+.conteiner-header h1, .left-header, .right-header{
+    animation: fadeIn 0.5s ease forwards;
+}
+
+
+@media screen and (max-width: 750px){
+    .content{
+        width: 100%;
+    }
+    .sec-content{
+        background-color: white;
+    }
+    .conteiner-header h1{
+        font-size: 1.9vw;
+    }
+    .content h1{
+        font-size: 2.2vw;
+        margin-left: 11.2vw;
+    }
+    .right-header{
+        padding: 12px 18px;
+    }
+    .left-header{
+        margin-right: 33px;
+    }
+    .left-header img{
+        width: 20px;
+        height: auto;
+    }
+}
+@media screen and (max-width: 560px){
+    .conteiner-header{
+        height: 50px;
+    }
+    .right-header img{
+        width: 90px;
+        height: auto;
+    }
+    .right-header{
+        padding: 11px 10px;
+    }
+}
+@media screen and (max-width: 500px){
+    .conteiner-header{
+        height: 45px;
+    }
+    .right-header img{
+        width: 80px;
+    }
+    .right-header{
+        padding: 10px 10px;
+    }
+    .content{
+        width: 110%;
+    }
+    .conteiner-header h1{
+        font-size: 2.1vw;
+    }
+    .content h1{
+        font-size: 2.5vw;
+        margin-left: 12.2vw;
+    }
+    .left-header{
+        margin-right: 26px;
+    }
+}

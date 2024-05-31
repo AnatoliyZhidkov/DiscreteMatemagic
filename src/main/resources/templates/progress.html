@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="ru" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}"  />
+    <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
+    <link rel="stylesheet" th:href="@{progress.css}"/>
+    <title>DiscreteMathemagic</title>
+    <script th:src="@{/utilities/navigation.js}" defer></script>
+    <script th:src="@{progress.js}" defer></script>
 </head>
 <body>
-
+<header>
+    <div class="sidebar">
+        <div class="block-for-logo">
+            <img class="img-logo" src="images\login.png" alt="">
+        </div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/main}">
+                    <div class="item-list">
+                        <img class="first-item-img" src="images\learning.svg" alt="">
+                        <h1>ОБУЧЕНИЕ</h1>
+                    </div>
+                </a>
+            </li>
+            <li class="active">
+                <a>
+                    <div class="item-list">
+                        <img class="second-item-img" src="images\progress.svg" alt="">
+                        <h1>СТАТИСТИКА</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/profile}">
+                    <div class="item-list">
+                        <img class="four-item-img" src="images\profile.svg" alt="">
+                        <h1>ПРОФИЛЬ</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/authorization}">
+                    <div class="item-list">
+                        <img class="five-item-img" src="images\settings.svg" alt="">
+                        <h1>ВЫХОД</h1>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-progress">
+            <div class="block-progress-in">
+                <div class="block-info-progress">
+                    <h2>На этой вкладке вы можете отслеживать свой прогресс в изучении различных модулей курса</h2>
+                    <h2>Каждый пройденный модуль приносит вам заслуженную награду, которая свидетельствует о вашем усердии и достижениях. Продолжайте обучение и зарабатывайте новые звания, покоряя вершины дискретной математики!</h2>
+                </div>
+                <div class="block-img-progress">
+                    <img src="images\progress-info.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <div class="top-block-statistics">
+                    <h1>Модуль 1 <span>— Элементарная комбинаторика</span></h1>
+                </div>
+                <div class="block-for-items-acheive">
+                    <canvas id="mod1"></canvas>
+                </div>
+                <div class="top-block-statistics">
+                    <h1>Модуль 2 <span>— Углубленные комбинаторные методы</span></h1>
+                </div>
+                <div class="block-for-items-acheive">
+                    <canvas id="mod2"></canvas>
+                </div>
+                <div class="top-block-statistics">
+                    <h1>Модуль 3 <span>— Основы теории графов</span></h1>
+                </div>
+                <div class="block-for-items-acheive">
+                    <canvas id="mod3"></canvas>
+                </div>
+                <div class="top-block-statistics">
+                    <h1>Модуль 4 <span>— Углубленные исследования теории графов</span></h1>
+                </div>
+                <div class="block-for-items-acheive">
+                    <canvas id="mod4"></canvas>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        </div>
+    </div>
+</section>
 </body>
 </html>

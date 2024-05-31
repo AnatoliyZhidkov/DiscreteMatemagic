@@ -1,0 +1,130 @@
+body {
+    background-color: #1e2634;
+    font-family: "mt-bold";
+    margin: 0;
+}
+section{
+    display: flex;
+    justify-content: end;
+}
+.content{
+    background-image: url('images/back.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-height: 100vh;
+    align-items: center;
+}
+.block-progress{
+    width: 80%;
+    margin: 50px 0;
+    background-color: #77CCDD;
+    border-radius: 20px;
+}
+.block-progress-in{
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.block-info-progress{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 20px 0 20px 0;
+}
+.block-img-progress{
+    border-left: solid 2px #54919D;;
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    margin-left: 20px;
+}
+.block-info-progress h2{
+    font-size: 20px;
+    margin: 0;
+    font-family: 'mt-regular';
+}
+.block-statistics{
+    width: 80%;
+    background: rgba(119, 204, 221, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.4px);
+    -webkit-backdrop-filter: blur(3.4px);
+    margin-bottom: 20px;
+}
+.block-statistics-in{
+    padding: 1.43vw 3.57vw;
+}
+.top-block-statistics{
+    border-bottom: 2px solid white;
+    margin-bottom: 1.29vw;
+}
+.top-block-statistics h1{
+    font-size: 20px;
+    color: white;
+    margin-bottom: 13px;
+}
+.block-for-items-acheive{
+    margin-bottom: calc(20px + 4vw);
+}
+.block-for-items-acheive:last-child{
+    margin-bottom: 25px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Завершим анимацию смещением вниз */
+    }
+}
+.block-info-progress, .block-img-progress img, .top-block-statistics{
+    animation: fadeIn 0.5s ease forwards;
+}
+@media screen and (max-width: 900px){
+    .block-info-progress h2 {
+        font-size:calc(8px + 1vw);
+        margin-bottom: 0;
+    }
+    .block-img-progress{
+        display: none;
+    }
+    .block-info-progress{
+        padding: 3.5vw 3.5vw;
+    }
+    .block-info-progress{
+        width: auto;
+    }
+    .block-progress-in{
+        padding: 0;
+    }
+    .top-block-statistics h1{
+        font-size: calc(9px + 1vw);
+    }
+    .top-block-statistics span{
+        display: none;
+    }
+}
+@media screen and (max-width: 560px) {
+    .block-progress, .block-statistics{
+        border-radius: 11px;
+        width: 90%;
+    }
+    .block-progress{
+        margin: 20px 0;
+    }
+    .content{
+        width: 100%;
+        margin-top: 10%;
+    }
+}
