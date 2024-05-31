@@ -1,5 +1,6 @@
 package com.discret.controllers;
 
+import com.discret.controllers.payload.NewStudentPayload;
 import com.discret.repository.StudentsRepository;
 import com.discret.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @GetMapping("/admin")
     public String studentList(Model model){
-        model.addAttribute("allStudents",studentService.allStudents());
+        model.addAttribute("student",studentService.allStudents());
         return "admin";
     }
 
@@ -31,6 +32,12 @@ public class AdminController {
         }
 
         return "redirect:admin";
+    }
+    @PostMapping("/admin/create")
+    public String createStudent(NewStudentPayload payload,Model model){
+
+        //Student student = this.studentService.saveStudent(payload.)
+        return "admin";
     }
 
     @GetMapping("/admin/get/{studentId}")

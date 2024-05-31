@@ -42,12 +42,15 @@
                 </a>
             </li>
             <li>
-                <a th:href="@{/authorization}">
+
+
                     <div class="item-list" id="item4">
-                        <img class="five-item-img" src="images\settings.svg" alt="">
-                        <h1>ВЫХОД</h1>
+                        <form name = "logoutForm" th:action="@{/logout}" method="post" >
+                            <button id="loginButton" type="submit"  class="btn">Выйти</button>
+                        </form>
+
                     </div>
-                </a>
+
             </li>
         </ul>
     </div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Студент</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="student : ${student}">
+        <td data-th-text="${student.login}"></td>
+        <td data-th-text="${student.firstName}"></td>
+        <td data-th-text="${student.middleName}"></td>
+        <td data-th-text="${student.lastName}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

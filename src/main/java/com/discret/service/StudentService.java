@@ -2,6 +2,7 @@ package com.discret.service;
 
 import com.discret.entity.Role;
 import com.discret.entity.Student;
+import com.discret.entity.Student_Groups;
 import com.discret.repository.RoleRepository;
 import com.discret.repository.StudentsRepository;
 import jakarta.persistence.EntityManager;
@@ -63,6 +64,25 @@ public class StudentService implements UserDetailsService {
 
         student.setRoles(Collections.singleton(new Role(1L,"ROLE_STUDENT")));
         student.setPassword(bCryptPasswordEncoder.encode(student.getPassword()));
+        studentsRepository.save(student);
+        return true;
+
+    }
+    public boolean createStudent(String login, String password, String firstName, String middleName, String lastName,  Student_Groups student_groups){
+
+        Student studentFromDb = studentsRepository.findByLogin(login);
+
+        if (studentFromDb != null){
+            return false;
+        }
+        Student student = new Student();
+        student.setLogin(login);
+        student.setFirstName(firstName);
+        student.setMiddleName(middleName);
+        student.setLastName(lastName);
+        student.setStudent_groups(student_groups);
+        student.setRoles(Collections.singleton(new Role(1L,"ROLE_STUDENT")));
+        student.setPassword(bCryptPasswordEncoder.encode(password));
         studentsRepository.save(student);
         return true;
 
