@@ -42,13 +42,14 @@
                 </a>
             </li>
             <li>
-                <a th:action="@{/logout}">
-                    <div class="item-list">
-                        <img class="five-item-img" src="images\settings.svg" alt="">
-
-                        <h1>ВЫХОД</h1>
-                    </div>
-                </a>
+                <form name = "logoutForm" th:action="@{/logout}" method="post" >
+                    <button id="loginButton" type="submit"  class="btn">
+                        <div class="item-list" id="item4">
+                            <img class="five-item-img" src="images\settings.svg" alt="">
+                            <h1>ВЫХОД</h1>
+                        </div>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
