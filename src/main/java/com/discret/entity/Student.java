@@ -29,7 +29,7 @@ public class Student implements UserDetails {
     @Transient
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private Set<Role> role;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private Student_Groups student_groups;
@@ -55,7 +55,7 @@ public class Student implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return role;
     }
 
     public String getPassword() {
@@ -112,11 +112,11 @@ public class Student implements UserDetails {
     }
 
     public Set<Role> getRoles() {
-        return roles;
+        return role;
     }
 
     public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        this.role = roles;
     }
 
     @Override

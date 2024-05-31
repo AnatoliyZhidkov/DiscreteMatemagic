@@ -33,10 +33,12 @@ public class AdminController {
 
         return "redirect:admin";
     }
+    @GetMapping("/admin/create")
+    public String getNewStudentPage(){return "new_student";}
     @PostMapping("/admin/create")
-    public String createStudent(NewStudentPayload payload,Model model){
+    public String createStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
 
-        //Student student = this.studentService.saveStudent(payload.)
+        studentService.createStudent(login, password, lastName, firstName, middleName, role,groupId);
         return "admin";
     }
 

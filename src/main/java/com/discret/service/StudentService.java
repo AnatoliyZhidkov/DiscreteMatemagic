@@ -4,9 +4,11 @@ import com.discret.entity.Role;
 import com.discret.entity.Student;
 import com.discret.entity.Student_Groups;
 import com.discret.repository.RoleRepository;
+import com.discret.repository.StudentsGroupsRepository;
 import com.discret.repository.StudentsRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,18 +17,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.logging.Logger;
 
 @Service
 public class StudentService implements UserDetailsService {
+
+
 
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
     StudentsRepository studentsRepository;
+
+    @Autowired
+    StudentsGroupsRepository studentsGroupsRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -70,22 +76,38 @@ public class StudentService implements UserDetailsService {
 
     }
     @Transactional
-    public boolean creatStudent(String login, String password, String firstName, String middleName, String lastName,  Student_Groups student_groups){
+    public boolean createStudent(String login, String password, String lastName, String firstName, String middleName,String roleName ,Long groupId){
 
         Student studentFromDb = studentsRepository.findByLogin(login);
 
         if (studentFromDb != null){
             return false;
         }
+        Student_Groups studentGroup = studentsGroupsRepository.findById(groupId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid group ID: " + groupId));
+        Role role = roleRepository.findByName(roleName);
+        if (role == null) {
+            throw new IllegalArgumentException("Invalid role: " + roleName);
+        }
         Student student = new Student();
         student.setLogin(login);
         student.setFirstName(firstName);
         student.setMiddleName(middleName);
         student.setLastName(lastName);
-        student.setStudent_groups(student_groups);
-        student.setRoles(Collections.singleton(new Role(1L,"ROLE_STUDENT")));
+        student.setStudent_groups(studentGroup);
         student.setPassword(bCryptPasswordEncoder.encode(password));
+
         studentsRepository.save(student);
+
+
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        student.setRoles(roles);
+
+        studentsRepository.save(student);
+
+
         return true;
 
     }

@@ -1,9 +1,6 @@
 package com.discret.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;
@@ -11,15 +8,21 @@ import java.util.Set;
 @Entity
 public class Role implements GrantedAuthority {
 
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     @Transient
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany()
     private Set<Student> students;
 
+    @Override
+    public String getAuthority() {
+        return name;
+    }
     public Role() {
     }
 
@@ -56,8 +59,5 @@ public class Role implements GrantedAuthority {
         this.students = students;
     }
 
-    @Override
-    public String getAuthority() {
-        return null;
-    }
+
 }
