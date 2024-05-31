@@ -60,7 +60,7 @@
             <div class="block-profile-in">
                 <div class="block-info-profile">
                     <div class="left-block-info-profile">
-                        <h1>Андрей Мельниченко</h1>
+                        <h1 data-th-text="${fullName}"></h1>
                         <div class="data-left-block-info-profile">
                             <div class="conteiner-info">
                                 <div class="info">
@@ -69,9 +69,9 @@
                                     <h3>Логин</h3>
                                 </div>
                                 <div class="info-from-db">
-                                    <h4 id="info-group">ИБ-21БО</h4>
+                                    <h4 id="info-group" data-th-text="${groupName}"></h4>
                                     <p></p>
-                                    <h4 id="info-login">a.melnichenko</h4>
+                                    <h4 id="info-login" data-th-text="${loginName}"></h4>
                                 </div>
                             </div>
                             <button class="button-info" id="change-password-btn">Изменить пароль</button>
