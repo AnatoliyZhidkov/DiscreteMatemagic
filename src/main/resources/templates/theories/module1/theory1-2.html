@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/commontheories/commontheory.css}"/>
+    <title>Теория</title>
+    <script th:src="@{/commontheories/commontheory.js}" defer></script>
 </head>
 <body>
-    <h1>asdasd</h1>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+        <div class="middle-header">
+            <a href="#anchor-for-theory" class="scroll-to"><h1>Теория</h1></a>
+            <a href="#anchor-for-example" class="scroll-to"><h1>Примеры</h1></a>
+        </div>
+        <a>
+            <div class="left-header" onclick="goBack()">
+                <img src="/images/settings.svg" alt="">
+                <h1>Вернуться</h1>
+            </div>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="sec-content">
+    <div class="content">
+        <h1>Урок 2</h1>
+        <h1 id="anchor-for-theory">Теория</h1>
+        <img id="img-theory" src="/commontheories/imagesTheories/Theory1_2.jpg" alt="">
+        <h1 id="anchor-for-example">Примеры</h1>
+        <img id="img-example" src="/commontheories/imagesTheories/examples1_2.jpg" alt="">
+    </div>
+</section>
 </body>
 </html>
