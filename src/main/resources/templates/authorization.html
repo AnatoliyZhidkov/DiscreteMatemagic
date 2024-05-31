@@ -1,50 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="ru" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/utilities/fonts.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/authorization.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/authorization/authorization.css}" type="text/css" />
     <title>DiscreteMathemagic</title>
-    <script th:src="@{/css/authorization.js}" defer></script>
+    <script th:src="@{/authorization/authorization.js}" defer></script>
 </head>
 <body>
-    <div class="box-form">
-        <div class="left">
-          <div class="overlay">
-          <img class="img" th:src="@{/images/login.png}">
-          <p>Этот курс позволит вам овладеть базовыми понятиями и принципами дискретной математики и некоторых ее смежных глав. Вы познакомитесь с базовыми математическими объектами, без которых знание математики тяжело себе представить</p>
-          </div>
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+            <img class="img" th:src="@{/images/login.png}">
+            <p>Этот курс позволит вам овладеть базовыми понятиями и принципами дискретной математики и некоторых ее смежных глав. Вы познакомитесь с базовыми математическими объектами, без которых знание математики тяжело себе представить</p>
         </div>
-        <div class="right">
-          <h5>Добро пожаловать</h5>
-          <h6>Пожалуйста, введите свой логин и пароль, который вы получили ранее</h6>
-            <form name="f" th:action="@{/login}" method="post">
-          <div class="inputs">
-
-                  <div th:if="${param.error}" class="alert alert-error">
-                      Неправильные имя и пароль.
-                  </div>
-                  <div th:if="${param.logout}" class="alert alert-success">
-                      You have been logged out.
-                  </div>
-            <input type="text" id="login" name = "login"  placeholder="логин">
-            <div id="lengthError">Превышено максимальное количество символов</div>
-            <div id="formatError">Можно вводить только символы латинского алфавита и цифры</div>
-            <br>
-            <input type="password" id="password" name = "password" placeholder="пароль">
-            <div id="lengthErrorMessage">Пароль не может содержать более 30 символов</div>
-            <div id="formatErrorMessage">Пароль может содержать только символы латинского алфавита, цифры и спецсимволы</div>
-
-          </div>
+    </div>
+    <div class="right">
+        <h5>Добро пожаловать</h5>
+        <h6>Пожалуйста, введите свой логин и пароль, который вы получили ранее</h6>
+        <form name="f" th:action="@{/login}" method="post">
+            <div class="inputs">
+                <div th:if="${param.error}" class="alert alert-error">Неправильные имя и пароль.</div>
+                <div th:if="${param.logout}" class="alert alert-success">Вы вышли из системы.</div>
+                <input type="text" id="login" name="login" placeholder="логин">
+                <div id="lengthError" class="error-message">Превышено максимальное количество символов</div>
+                <div id="formatError" class="error-message">Разрешено использовать только символы латинского алфавита, цифры и точку</div>
+                <br>
+                <input type="password" id="password" name="password" placeholder="пароль">
+                <div id="lengthErrorMessage" class="error-message">Пароль не может содержать более 30 символов</div>
+                <div id="formatErrorMessage" class="error-message">Пароль должен содержать не менее 8 символов, включать заглавные и строчные буквы латинского алфавита, хотя бы одну цифру и специальный символ</div>
+            </div>
             <br><br>
-          <div class="remember-me--forget-password">
-              <button id="loginButton" type="submit" class="btn">Войти</button>
-            <p>Забыли пароль?</p>
-          </div>
-            </form>
-        </div>
-
-      </div>
+            <div class="remember-me--forget-password">
+                <button id="loginButton" type="submit" class="btn">Войти</button>
+                <p><a href="#" id="forgotPassword">Забыли пароль?</a></p>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
