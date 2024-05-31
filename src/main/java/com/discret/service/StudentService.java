@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +69,8 @@ public class StudentService implements UserDetailsService {
         return true;
 
     }
-    public boolean createStudent(String login, String password, String firstName, String middleName, String lastName,  Student_Groups student_groups){
+    @Transactional
+    public boolean creatStudent(String login, String password, String firstName, String middleName, String lastName,  Student_Groups student_groups){
 
         Student studentFromDb = studentsRepository.findByLogin(login);
 
