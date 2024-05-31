@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="ru">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="utilities/fonts.css" />
-    <link rel="stylesheet" href="utilities/navigation.css" />
-    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
+    <link rel="stylesheet" th:href="@{profile.css}" />
     <title>DiscreteMathemagic</title>
-    <script src="utilities/navigation.js" defer></script>
-    <script src="profile.js" defer></script>
+    <script th:src="@{/utilities/navigation.js}" defer></script>
+    <script th:src="@{profile.js}" defer></script>
 </head>
 <body>
 <header>
@@ -26,14 +26,14 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a th:href="@{/progress}">
                     <div class="item-list">
                         <img class="second-item-img" src="images\progress.svg" alt="">
                         <h1>СТАТИСТИКА</h1>
                     </div>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a>
                     <div class="item-list">
                         <img class="four-item-img" src="images\profile.svg" alt="">
@@ -42,15 +42,15 @@
                 </a>
             </li>
             <li>
-                <a href="authorization.html">
+                <a th:href="@{/authorization}">
                     <div class="item-list">
                         <img class="five-item-img" src="images\settings.svg" alt="">
                         <h1>ВЫХОД</h1>
                     </div>
                 </a>
-            </li>           
-        </ul>     
-    </div>  
+            </li>
+        </ul>
+    </div>
 </header>
 <section class="learning-html">
     <div class="content">
@@ -60,33 +60,31 @@
                     <div class="left-block-info-profile">
                         <h1>Андрей Мельниченко</h1>
                         <div class="data-left-block-info-profile">
-                            <div class="info">
-                                <h3>Группа</h3>
-                                <p></p>
-                                <h3>Логин</h3>
+                            <div class="conteiner-info">
+                                <div class="info">
+                                    <h3>Группа</h3>
+                                    <p></p>
+                                    <h3>Логин</h3>
+                                </div>
+                                <div class="info-from-db">
+                                    <h4 id="info-group">ИБ-21БО</h4>
+                                    <p></p>
+                                    <h4 id="info-login">a.melnichenko</h4>
+                                </div>
                             </div>
-                            <div class="info-from-db">
-                                <h4 id="info-group">подгрузка_из_бд</h4>
-                                <p></p>
-                                <h4 id="info-login">подгрузка_из_бд</h4>
+                            <button class="button-info" id="change-password-btn">Изменить пароль</button>
+                        </div>
+                        <div class="change-password" style="display: none;">
+                            <input type="password" id="passwordInput" placeholder="Старый пароль">
+                            <input type="password" id="passwordInput1" placeholder="Новый пароль">
+                            <input type="password" id="passwordInput2" placeholder="Подтверждение нового пароля">
+                            <div id="lengthErrorMessage" class="error-message"></div>
+                            <div id="formatErrorMessage" class="error-message"></div>
+                            <div class="button-in-change-password">
+                                <button class="button-info" id="cancel-password-btn" style="display: none;">Отменить</button>
+                                <button class="button-info" id="safe-password-btn" style="display: none;">Сохранить</button>
                             </div>
                         </div>
-                        <div class="change-password">
-                            <input type="password" id="passwordInput" placeholder="Введите старый пароль">
-                            <div class="ErrorMessage" id="lengthErrorMessage">Пароль не может содержать более 30 символов</div>
-                            <div class="ErrorMessage" id="formatErrorMessage">Пароль может содержать только символы латинского алфавита, цифры и спецсимволы</div>
-                            <input type="password" id="passwordInput1" placeholder="Введите новый пароль">
-                            <div class="ErrorMessage" id="lengthErrorMessage1">Пароль должен содержать минимум 8 символов</div>
-                            <div class="ErrorMessage" id="formatErrorMessage1">Пароль должен содержать символы латинского алфавита, цифры и спецсимволы !@#%^&*-+</div>
-                            <input type="password" id="passwordInput2" placeholder="Повторите пароль">
-                            <div class="ErrorMessage" id="lengthErrorMessage2">Пароль должен содержать минимум 8 символов</div>
-                            <div class="ErrorMessage" id="formatErrorMessage2">Пароль может содержать символы латинского алфавита, цифры и спецсимволы !@#%^&*-+</div>
-                        </div>
-                    </div>
-                    <div class="right-block-info-profile">
-                        <button id="cancel-password-btn"><h3>отменить</h3></button>
-                        <button id="safe-password-btn"><h3>сохранить</h3></button>
-                        <button id="change-password-btn"><h3>изменить пароль</h3></button>
                     </div>
                 </div>
                 <div class="block-img-profile">
@@ -110,22 +108,29 @@
                     <div class="item-achieve">
                         <img src="images\achieve2.svg" alt="">
                         <div class="description-item-achieve">
-                            <h3>Мастер комбинаторики</h3>
+                            <h3>Комбинаторный Пионер</h3>
                             <h4>За успешное завершение всех тестов модуля 1</h4>
                         </div>
                     </div>
                     <div class="item-achieve">
                         <img src="images\achieve3.svg" alt="">
                         <div class="description-item-achieve">
-                            <h3>Биномиальный виртуоз</h3>
+                            <h3>Комбинаторный Эксперт</h3>
                             <h4>За успешное завершение всех тестов модуля 2</h4>
                         </div>
                     </div>
                     <div class="item-achieve">
                         <img src="images\achieve4.svg" alt="">
                         <div class="description-item-achieve">
-                            <h3>Мастер графов</h3>
+                            <h3>Исследователь Графов</h3>
                             <h4>За успешное завершение всех тестов модуля 3</h4>
+                        </div>
+                    </div>
+                    <div class="item-achieve">
+                        <img src="images\achieve4.1.svg" alt="">
+                        <div class="description-item-achieve">
+                            <h3>Мастер Графов</h3>
+                            <h4>За успешное завершение всех тестов модуля 4</h4>
                         </div>
                     </div>
                     <div class="item-achieve">

@@ -1,13 +1,16 @@
 a{
   text-decoration: none;
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 .sidebar {
   width: 20%;
   background-color: #1e2634;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;  
+  position: fixed;
   height: 100%;
   border-right: solid 3px #41516C;
 }
@@ -15,7 +18,7 @@ a{
   list-style: none;
   margin: 0;
   padding: 0;
-  text-decoration: none; 
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -31,7 +34,7 @@ a{
   border-bottom-right-radius: 16px;
   margin-bottom: 30px;
   background: rgb(102, 40, 187);
-  background: linear-gradient(36deg, rgba(102, 40, 187, 1) 0%, rgba(81, 197, 169, 1) 100%); 
+  background: linear-gradient(36deg, rgba(102, 40, 187, 1) 0%, rgba(81, 197, 169, 1) 100%);
 }
 .item-list{
   display: flex;
@@ -46,12 +49,12 @@ a{
   -webkit-tap-highlight-color: transparent;
 }
 .menu .active .item-list {
-  background-color: rgba(119, 204, 221, 0.1); 
-  border: solid 1.2px #77ccdd; 
+  background-color: rgba(119, 204, 221, 0.1);
+  border: solid 1.2px #77ccdd;
 }
-.item-list:hover{ 
+.item-list:hover{
   transition: 0.2s linear;
-  background-color: #333f54; 
+  background-color: #333f54;
 }
 .first-item-img,  .five-item-img{ margin-left: 4px; }
 .item-list h1{
@@ -103,5 +106,5 @@ a{
     margin-left: 1px;
   }
   .second-item-img, .third-item-img,  .four-item-img{ width: 14.21px; }
-  .item-list{ height: 50%; } 
+  .item-list{ height: 50%; }
 }

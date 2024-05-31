@@ -21,15 +21,15 @@
         <h6>Пожалуйста, введите свой логин и пароль, который вы получили ранее</h6>
         <form name="f" th:action="@{/login}" method="post">
             <div class="inputs">
-                <div th:if="${param.error}" class="alert alert-error">Неправильные имя и пароль.</div>
-                <div th:if="${param.logout}" class="alert alert-success">Вы вышли из системы.</div>
+                <div th:if="${param.error}" class="alert alert-error error-message">Неправильные имя или пароль.</div>
+                <div th:if="${param.logout}" class="alert alert-success error-message">Вы вышли из системы.</div>
                 <input type="text" id="login" name="login" placeholder="логин">
-                <div id="lengthError" class="error-message">Превышено максимальное количество символов</div>
-                <div id="formatError" class="error-message">Разрешено использовать только символы латинского алфавита, цифры и точку</div>
+<!--                <div id="lengthError" class="error-message">Превышено максимальное количество символов</div>-->
+<!--                <div id="formatError" class="error-message">Разрешено использовать только символы латинского алфавита, цифры и точку</div>-->
                 <br>
                 <input type="password" id="password" name="password" placeholder="пароль">
-                <div id="lengthErrorMessage" class="error-message">Пароль не может содержать более 30 символов</div>
-                <div id="formatErrorMessage" class="error-message">Пароль должен содержать не менее 8 символов, включать заглавные и строчные буквы латинского алфавита, хотя бы одну цифру и специальный символ</div>
+<!--                <div id="lengthErrorMessage" class="error-message">Пароль не может содержать более 30 символов</div>-->
+<!--                <div id="formatErrorMessage" class="error-message">Пароль должен содержать не менее 8 символов, включать заглавные и строчные буквы латинского алфавита, хотя бы одну цифру и специальный символ</div>-->
             </div>
             <br><br>
             <div class="remember-me--forget-password">

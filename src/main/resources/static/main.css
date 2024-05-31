@@ -59,14 +59,20 @@ section{
   flex-direction: row;
   justify-content: space-around;
   gap: 10px;
-  
+
 }
 .item-lesson {
   display: inline-block;
   width: 20vw;
-  height: 20vw; 
+  height: 20vw;
 }
-.item-lesson:hover .overlay, .item-lesson:hover .overlay button { opacity: 1;}
+.item-lesson:hover .overlay {
+  opacity: 1;
+  pointer-events: auto; /* Включаем события указателя для overlay */
+}
+.item-lesson:hover .overlay button {
+  pointer-events: auto; /* Включаем события указателя для кнопок */
+}
 .overlay{
   background-color: #9657EE;
   position: relative;
@@ -76,6 +82,7 @@ section{
   border-radius: 1.4vw;
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none; /* Отключаем события указателя для overlay */
 }
 .images-item-lesson{
   width: 20vw;
@@ -84,15 +91,10 @@ section{
   background-repeat:no-repeat;
   background-size:cover;
 }
-.overlay div{
-  padding: 2vw;
-}
-
 .overlay button{
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
+  color: inherit;
+  border: none;
   background-color: #67409F;
   border-radius: 9px;
   width: 100%;
@@ -102,17 +104,21 @@ section{
   color: white;
   padding: 0.4vw 0;
   cursor: pointer;
-	outline: inherit;
-  opacity: 0;
+  outline: inherit;
+  pointer-events: none; /* Отключаем события указателя для кнопок */
 }
-.overlay button:hover{
-  background-color: #00DAA1;
+.item-lesson .buttoninoverlay button {
+  pointer-events: none; /* Отключаем события указателя для кнопок внутри buttoninoverlay по умолчанию */
 }
-.overlay button:hover h2{
-  color: #1e2634;
+.item-lesson:hover .buttoninoverlay button {
+  pointer-events: auto; /* Включаем события указателя для кнопок внутри buttoninoverlay, когда overlay видим */
 }
-#startButton:active {
-  background-color: #00FFB2; /* Цвет фона при нажатии */
+#theoryButton:hover, #testButton:hover{
+  background-color: #553583;
+}
+#testButton:active, #theoryButton:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 .overlay h3{
   color:white;
@@ -120,34 +126,50 @@ section{
   font-family: 'mt-regular';
   margin: 0;
 }
-
+.buttoninoverlay{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .overlay h2{
   color:white;
   font-family: 'mt-bold';
   margin: 0;
 }
+.overlay button h2{
+  margin: 4px 0;
+}
 #plug{
   opacity: 0;
 }
-.overlay div{
+.div-in-overlay{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 16vw;
+  padding: 2vw;
 }
 #item1-1{background-image: url('images/mod1.les1.svg');}
 #item1-2{background-image: url('images/mod1.les2.svg');}
 #item1-3{background-image: url('images/mod1.les3.svg');}
+#item1-4{background-image: url('images/mod1.les4.svg');}
+#item2-1{background-image: url('images/mod2.les1.svg');}
+#item2-2{background-image: url('images/mod2.les2.svg');}
+#item2-3{background-image: url('images/mod2.les3.svg');}
 #item3-1{background-image: url('images/mod3.les1.svg');}
 #item3-2{background-image: url('images/mod3.les2.svg');}
+#item4-1{background-image: url('images/mod4.les1.svg');}
+#item4-2{background-image: url('images/mod4.les2.svg');}
+#item4-3{background-image: url('images/mod4.les3.svg');}
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
+    opacity: 0;
+    transform: translateY(-20px); /* Начнем анимацию с небольшого смещения вверх */
   }
   to {
-      opacity: 1;
-      transform: translateY(0); /* Завершим анимацию смещением вниз */
+    opacity: 1;
+    transform: translateY(0); /* Завершим анимацию смещением вниз */
   }
 }
 
@@ -157,7 +179,7 @@ section{
 
 @media screen and (max-width: 1100px) {
   .overlay h3, .overlay h2{
-    font-size:calc(4px + 1vw);
+    font-size:calc(5px + 1vw);
   }
 }
 @media screen and (max-width: 900px){
@@ -166,17 +188,22 @@ section{
     margin-top: 0;
   }
   .lesson h2 {
-    font-size:calc(7px + 1vw);
+    font-size:calc(8px + 1vw);
     margin-bottom: 0;
   }
   .image-in-mod{
     display: none;
   }
   .block-mod{
-    padding: 2vw 3vw;
+    padding: 3.5vw 3.5vw;
   }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 860px){
+  .block-lessons{
+    gap: 3vw;
+    flex-direction: column;
+    align-items: center;
+  }
   .overlay{
     border-radius: 2.4vw;
     width: 35vw;
@@ -187,28 +214,42 @@ section{
     width: 35vw;
     height: 35vw;
   }
-  .overlay div{
-    justify-content: space-around ;
-    height: 31vw;
-  }
-  .block-lessons{
-    gap: 3vw;
-    flex-direction: column;
-    align-items: center;
+  .div-in-overlay{
+    height:27vw;
+    padding: 4vw;
   }
   #plug{
     display: none;
   }
+}
+@media screen and (max-width: 560px) {
+  .overlay h3, .overlay h2{
+    font-size: calc(7px + 1vw);
+  }
+  .overlay{
+    border-radius: 2.4vw;
+    width: 50vw;
+    height: 50vw;
+    top: -50vw;
+  }
+  .images-item-lesson, .item-lesson{
+    width: 50vw;
+    height: 50vw;
+  }
+  .div-in-overlay{
+    height:40vw;
+    padding: 5vw;
+  }
+  .overlay button h2{
+    margin: 2.4vw 0;
+  }
+
+
   .lesson{
-    margin: 10px 0;
+    margin: 20px 0;
   }
   .text-in-mod h1{
-    font-size:calc(6px + 1vw);
     margin-bottom: 5px;
-  }
-  .lesson h2 {
-    font-size:calc(5px + 1vw);
-    margin-bottom: 0;
   }
   .content{
     width: 100%;
@@ -221,17 +262,7 @@ section{
   .block-mod{
     border-radius: 9px;
   }
-  #startButton{
-    display: none;
-  }
   #text-lessons-for-phone{display:block }
-  .overlay:active{
-    background-color:#67409F;
-  }
 }
-@media screen and (max-width: 500px){
-  .overlay h3, .overlay h2{
-    font-size:calc(4px + 1vw);
-  }
-}
+
 

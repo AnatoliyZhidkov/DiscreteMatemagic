@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="utilities/fonts.css" />
-    <link rel="stylesheet" href="utilities/navigation.css" />
-    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
+    <link rel="stylesheet" th:href="@{main.css}"/>
     <title>DiscreteMathemagic</title>
-    <script src="utilities/navigation.js" defer></script>
+    <script th:src="@{/utilities/navigation.js}" defer></script>
+    <script th:src="@{main.js}" defer></script>
 </head>
-<body>
+<body tabIndex=0>
 <header>
     <div class="sidebar">
         <div class="block-for-logo">
             <img class="img-logo" src="images\login.png" alt="">
         </div>
         <ul class="menu">
-            <li>
+            <li class="active">
                 <a>
                     <div class="item-list" id="item1">
                         <img class="first-item-img" src="images\learning.svg" alt="">
@@ -25,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a th:href="@{/progress}">
                     <div class="item-list" id="item2">
                         <img class="second-item-img" src="images\progress.svg" alt="">
                         <h1>СТАТИСТИКА</h1>
@@ -41,15 +42,15 @@
                 </a>
             </li>
             <li>
-                <a href="authorization.html">
+                <a th:href="@{/authorization}">
                     <div class="item-list" id="item4">
                         <img class="five-item-img" src="images\settings.svg" alt="">
                         <h1>ВЫХОД</h1>
                     </div>
                 </a>
-            </li>           
-        </ul>     
-    </div>  
+            </li>
+        </ul>
+    </div>
 </header>
 <section class="learning-html">
     <div class="content">
@@ -65,35 +66,108 @@
             </div>
             <div class="block-lessons">
                 <div class="item-lesson">
-                    <div class="images-item-lesson" id="item1-1"></div>    
+                    <div class="images-item-lesson" id="item1-1"></div>
                     <div class="overlay">
-                        <div>
+                        <div class="div-in-overlay">
                             <h2>Урок 1</h2>
                             <h3>Размещения с повторениями и без повторений</h3>
-                            <h3 id="text-lessons-for-phone">Нажми второй раз, чтобы начать урок</h3>
-                            <button id="startButton"><h2>Начать</h2></button>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="1-1"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="1-1"><h2>Тест</h2></button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="item-lesson">
-                    <div class="images-item-lesson" id="item1-2"></div>    
-                    <div class="overlay">
-                        <div>
+                    <div class="images-item-lesson" id="item1-2"></div>
+                    <div class="overlay" tabIndex=0>
+                        <div class="div-in-overlay">
                             <h2>Урок 2</h2>
                             <h3>Перестановки с повторениями и без повторений</h3>
-                            <h3 id="text-lessons-for-phone">Нажми второй раз, чтобы начать урок</h3>
-                            <button id="startButton"><h2>Начать</h2></button>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="1-2"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="1-2"><h2>Тест</h2></button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="item-lesson">
-                    <div class="images-item-lesson" id="item1-3"></div>    
+                    <div class="images-item-lesson" id="item1-3"></div>
                     <div class="overlay">
-                        <div>
+                        <div class="div-in-overlay">
                             <h2>Урок 3</h2>
                             <h3>Сочетания с повторениями и без повторений</h3>
-                            <h3 id="text-lessons-for-phone">Нажми второй раз, чтобы начать урок</h3>
-                            <button id="startButton"><h2>Начать</h2></button>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="1-3"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="1-3"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-lessons">
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item1-4"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 4</h2>
+                            <h3>Элементарная комбинаторика в информационной безопасности</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="1-4"><h2>Теория</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-lesson" id="plug"><div class="images-item-lesson"></div></div>
+                <div class="item-lesson" id="plug"><div class="images-item-lesson"></div></div>
+            </div>
+        </div>
+        <div class="lesson">
+            <div class="block-mod">
+                <div class="text-in-mod">
+                    <h1>МОДУЛЬ 2</h1>
+                    <h2>Этот модуль посвящен углубленному изучению комбинаторных методов и их применений. Вы изучите биномиальную и полиномиальную теоремы, а также научитесь решать задачи с использованием рекуррентных соотношений. Эти инструменты позволят вам решать более сложные комбинаторные задачи и понимать их структуру</h2>
+                </div>
+                <div class="image-in-mod">
+                    <img src="images\module.svg" alt="">
+                </div>
+            </div>
+            <div class="block-lessons">
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item2-1"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 1</h2>
+                            <h3>Полиномиальная теорема</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="2-1"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="2-1"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item2-2"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 2</h2>
+                            <h3>Биномиальная теорема</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="2-2"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="2-2"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item2-3"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 3</h2>
+                            <h3>Рекуррентные уравнения</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="2-3"><h2>Теория</h2></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,28 +185,84 @@
             </div>
             <div class="block-lessons">
                 <div class="item-lesson">
-                    <div class="images-item-lesson" id="item3-1"></div>    
+                    <div class="images-item-lesson" id="item3-1"></div>
                     <div class="overlay">
-                        <div>
+                        <div class="div-in-overlay">
                             <h2>Урок 1</h2>
                             <h3>Основные понятия теории графов </h3>
-                            <h3 id="text-lessons-for-phone">Нажми второй раз, чтобы начать урок</h3>
-                            <button id="startButton"><h2>Начать</h2></button>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="3-1"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="3-1"><h2>Тест</h2></button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="item-lesson">
                     <div class="images-item-lesson" id="item3-2"></div>
                     <div class="overlay">
-                        <div>
+                        <div class="div-in-overlay">
                             <h2>Урок 2</h2>
                             <h3>Виды графов и операции над ними </h3>
-                            <h3 id="text-lessons-for-phone">Нажми второй раз, чтобы начать урок</h3>
-                            <button id="startButton"><h2>Начать</h2></button>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="3-2"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="3-2"><h2>Тест</h2></button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="item-lesson" id="plug"><div class="images-item-lesson"></div></div>
+            </div>
+        </div>
+        <div class="lesson">
+            <div class="block-mod">
+                <div class="text-in-mod">
+                    <h1>МОДУЛЬ 4</h1>
+                    <h2>Модуль посвящен углубленному изучению теории графов. В этом модуле вы изучите двудольные графы, методы обхода графов и понятия связности. Также вы узнаете, как теоретические концепции графов применяются в криптографии, открывая новые горизонты их практического использования</h2>
+                </div>
+                <div class="image-in-mod">
+                    <img src="images\module.svg" alt="">
+                </div>
+            </div>
+            <div class="block-lessons">
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item4-1"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 1</h2>
+                            <h3>Основные понятия двудольных графов</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="4-1"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="4-1"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item4-2"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 2</h2>
+                            <h3>Обходы, связность графов</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="4-2"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="4-2"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-lesson">
+                    <div class="images-item-lesson" id="item4-3"></div>
+                    <div class="overlay">
+                        <div class="div-in-overlay">
+                            <h2>Урок 3</h2>
+                            <h3>Теория графов в криптографии</h3>
+                            <div class="buttoninoverlay">
+                                <button class="theoryButton" id="theoryButton" data-lesson="4-3"><h2>Теория</h2></button>
+                                <button class="testButton" id="testButton" data-lesson="4-3"><h2>Тест</h2></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

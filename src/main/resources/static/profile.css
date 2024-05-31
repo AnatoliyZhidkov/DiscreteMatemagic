@@ -1,45 +1,52 @@
 body {
-  background-color: #1e2634;
-  font-family: "mt-bold";
-  margin: 0;
+    background-color: #1e2634;
+    font-family: "mt-bold";
+    margin: 0;
 }
 section{
-  display: flex;
-  justify-content: end;
+    display: flex;
+    justify-content: end;
 }
 .content{
-  background-image: url('images/back.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  min-height: 100vh;
-  align-items: center;
+    background-image: url('images/back.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    min-height: 100vh;
+    align-items: center;
 }
 .block-profile{
-  width: 80%;
-  margin: 50px 0;
-  background-color: #77CCDD;
-  border-radius: 20px;
+    width: 80%;
+    margin: 50px 0;
+    background-color: #77CCDD;
+    border-radius: 20px;
 }
 .block-profile-in{
- padding-left: 40px;
- display: flex;
- justify-content: space-between;
+    padding-left: 40px;
+    display: flex;
+    justify-content: space-between;
 }
 .block-info-profile{
     width: 80%;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: space-between;
     padding: 20px 0 40px 0;
 }
 .left-block-info-profile h1{
     font-size: 26px;
 }
+.conteiner-info{
+    display: flex;
+    gap: 5%;
+}
 .data-left-block-info-profile{
     display: flex;
-    gap: 10%;
+    flex-direction: column;
+    gap: 21px;
 }
 .info h3{
     font-size: 20px;
@@ -58,46 +65,58 @@ section{
     justify-content: center;
     padding-top: 20px;
     margin-left: 20px;
-  }
+}
 .right-block-info-profile{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 6px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5%;
 }
 .right-block-info-profile button h3{
     font-size: 18px;
     font-family: 'mt-regular';
     margin: 0;
     color: white;
+
 }
-.right-block-info-profile button{
+.button-info{
     background-color: #5F3B91;
     border-radius: 11px;
     padding: calc(2px + 0.5vw) calc(4px + 1vw);
     color: inherit;
-	border: none;
+    border: none;
     cursor: pointer;
-	outline: inherit;
+    outline: inherit;
     -webkit-tap-highlight-color: transparent;
+    min-width: 195px;
+    color: white;
+    font-size: 17px;
+    font-family: 'mt-bold';
+    width: fit-content;
 }
-.right-block-info-profile button:hover{
-    background-color: #9657EE;
-    transition: 0.2s ease;
-}
-.right-block-info-profile button:active{
-    background-color: #5F3B91;
+.button-info:hover{
+    background-color: #6d4f96;
 }
 #cancel-password-btn{background-color: #FF5252; display: none; padding: calc(2px + 0.5vw) calc(25px + 1vw);}
-#cancel-password-btn:hover{background-color: #E74949; transition: 0.2s ease;}
-#cancel-password-btn:active{background-color: #FF5252;}
+#cancel-password-btn:hover{background-color: #E74949;}
+#cancel-password-btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 #safe-password-btn{background-color: #59C547; display: none; padding: calc(2px + 0.5vw) calc(25px + 1vw);}
-#safe-password-btn:hover{background-color: #4EB23E; transition: 0.2s ease;}
-#safe-password-btn:active{background-color: #59C547;}
+#safe-password-btn:hover{background-color: #4EB23E;}
+.left-block-info-profile button:active{
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
 .change-password{
     display: flex;
     flex-direction: column;
     display: none;
+}
+.error-message {
+    color: red;
+    opacity: 0;
+    transform: translateY(20px);
+    max-height: 0;
+    transition: all 0.3s ease;
 }
 .change-password input{
     background-color: #77CCDD;
@@ -108,9 +127,15 @@ section{
     outline: none;
     border-bottom: 2px solid black;
 }
-.change-password input::-webkit-input-placeholder { 
+.change-password input::-webkit-input-placeholder {
     color: #1E1E1E;
 }
+.button-in-change-password{
+    display: flex;
+    margin-top: 21px;
+    gap: 5%;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -132,8 +157,8 @@ section{
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.4px);
-    -webkit-backdrop-filter: blur(3.4px); 
-    margin-bottom: 20px; 
+    -webkit-backdrop-filter: blur(3.4px);
+    margin-bottom: 20px;
 }
 .block-achieve-in{
     padding: 1.43vw 3.57vw;
@@ -171,23 +196,16 @@ section{
 .item-achieve img {
     filter: grayscale(100%);
 }
-.ErrorMessage{
-    color: red; 
-    display: none;
+.error-message{
+    color: red;
     font-family: 'mt-regular';
-    font-size: calc(4px + 0.5vw);
-    padding-left: 10px;
-  }
-.change-password input, .ErrorMessage{
-    width: 350px;
+    font-size: 15px;
 }
-@media screen and (max-width: 1185px){
-    .change-password input, .ErrorMessage{
-        width: 200px;
-    }
+.change-password input, .error-message{
+    width: calc(390px + 2%);
 }
 @media screen and (max-width: 1100px) {
-    .info-from-db h4, .info h3, .right-block-info-profile button h3 {
+    .info-from-db h4, .info h3, .right-block-info-profile button h3, .button-info, .error-message {
         font-size:calc(4px + 1.3vw);
     }
     .left-block-info-profile h1, .top-block-achieve h1{
@@ -195,7 +213,7 @@ section{
     }
 }
 @media screen and (max-width: 950px) {
-    
+
     .description-item-achieve h3{font-size: calc(6px + 0.8vw);}
     .description-item-achieve h4{font-size: calc(5px + 0.8vw);}
 }
@@ -203,9 +221,13 @@ section{
     .ErrorMessage{
         font-size: calc(4px + 0.8vw);
     }
-    .change-password input{
+    .change-password input, .error-message{
         font-size: 12px;
         padding: 7px;
+    }
+    .right-block-info-profile{
+        width: 90%;
+        justify-content: space-between;
     }
     .block-img-profile{
         display: none;
@@ -229,20 +251,42 @@ section{
         padding: 0 3.57vw;
     }
 }
-@media screen and (max-width: 660px){
-    .change-password input {
-        width: 130px;
-        font-size: 9px;
-        padding: 6px;
+@media screen and (max-width: 750px){
+    .change-password input, .error-message{
+        width: auto;
     }
-    .ErrorMessage{width: 130px;}
+    .right-block-info-profile button{
+        min-width:auto;
+        width: fit-content;
+        padding: calc(5px + 0.5vw) calc(10px + 1vw);
+    }
+    .right-block-info-profile{
+        justify-content: flex-start;
+    }
+    #cancel-password-btn, #safe-password-btn, .button-info{
+        min-width: auto ;
+        padding: calc(9px + 0.5vw) calc(25px + 1vw);
+    }
 }
+
 @media screen and (max-width: 560px) {
+    .left-block-info-profile h1, .top-block-achieve h1{
+        font-size: calc(9px + 1vw);
+    }
+    .info-from-db h4, .info h3, .right-block-info-profile button h3, #cancel-password-btn, #safe-password-btn, .button-info {
+        font-size: calc(8px + 1vw);
+    }
+    .description-item-achieve h3, .description-item-achieve h4{
+        font-size: calc(7px + 1vw);
+    }
     .right-block-info-profile button:hover{
         transition: 0s ease;
     }
     .block-profile, .block-achieve{
         border-radius: 11px;
+    }
+    .block-profile{
+        margin: 20px 0;
     }
     .right-block-info-profile button{
         border-radius: 6px;
@@ -260,5 +304,8 @@ section{
     .block-achieve, .block-profile{
         width: 90%;
     }
-    
+    .change-password input{
+        font-size: calc(8px + 1vw);
+        padding: 7px;
+    }
 }
