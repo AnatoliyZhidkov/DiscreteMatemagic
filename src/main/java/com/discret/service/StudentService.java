@@ -99,8 +99,6 @@ public class StudentService implements UserDetailsService {
 
         studentsRepository.save(student);
 
-
-
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         student.setRoles(roles);
@@ -112,6 +110,7 @@ public class StudentService implements UserDetailsService {
 
     }
 
+    @Transactional
     public boolean deleteStudent(Long studentId){
         if (studentsRepository.findById(studentId).isPresent()){
             studentsRepository.deleteById(studentId);
