@@ -82,6 +82,9 @@ a{
   .second-item-img,  .four-item-img{ width: 20.3px; }
 }
 @media screen and (max-width: 560px) {
+  #loginButton{
+    margin-top: 4px;
+  }
   .sidebar{
     flex-direction: row;
     align-items: center;
@@ -106,6 +109,9 @@ a{
   .item-list{ height: 70%;}
 }
 @media screen and (max-width: 370px){
+  #loginButton{
+    margin-top: 0;
+  }
   .first-item-img, .five-item-img{
     width: 11.76px;
     margin-left: 1px;
