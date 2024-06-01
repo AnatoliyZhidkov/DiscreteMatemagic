@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "student")
@@ -35,6 +36,9 @@ public class Student implements UserDetails {
     @ManyToOne()
     @JoinColumn(name = "group_id")
     private Student_Groups student_groups;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Achievement> achievements;
 
     public Student() {
     }

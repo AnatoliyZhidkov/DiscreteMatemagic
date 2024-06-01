@@ -15,7 +15,8 @@ public class Test {
     private Long Id;
 
     private String name;
-
+    private int number;
+    private int module;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Question> question;
 

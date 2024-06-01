@@ -12,11 +12,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TestService implements TestServiceInt {
 
-    private TestResultRepository testResultRepository;
-    private TestRepository testRepository;
-    private StudentsRepository studentsRepository;
+    private final TestResultRepository testResultRepository;
+    private final TestRepository testRepository;
+
+    private final StudentsRepository studentsRepository;
 
     public Test findById(Long testid){
         return testRepository.findById(testid).orElseThrow(() -> new EntityNotFoundException("Test not found"));
+    }
+
+    public Test findTestByModuleAndNumber(int Module,int Number){
+        return testRepository.findByModuleAndAndNumber( Module, Number);
     }
 }

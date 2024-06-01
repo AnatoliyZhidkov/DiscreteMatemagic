@@ -15,7 +15,7 @@ public class Question {
 
     private String questionText;
 
-    private String parametrs;
+    private String parameters;
 
     @ManyToOne
     @JoinColumn(name = "test_id")
