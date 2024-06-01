@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Изменение студента</h2>
+    <form th:action="@{/admin/update/{id}}" method="post">
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" data-th-value = "${student.login}" class="form-control" id="login" name="login" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Фамилия</label>
+            <input type="text" class="form-control" data-th-value = "${student.lastName}" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="firstName">Имя</label>
+            <input type="text" class="form-control" data-th-value = "${student.firstName}" id="firstName"  name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="middleName">Отчество</label>
+            <input type="text" class="form-control" data-th-value = "${student.middleName}" id="middleName" name="middleName">
+        </div>
+        <div class="form-group">
+            <label for="role">Роль</label>
+            <select class="form-control" id="role" name="role" required>
+                <option value="ROLE_STUDENT">Student</option>
+                <option value="ROLE_ADMIN">Admin</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="groupId">Группа</label>
+            <select class="form-control" id="groupId" name="groupId" required>
+                <option  th:each="groups : ${groups}" th:value="${groups.id}" th:text="${groups.groupname + '-' + groups.groupNumber}" > </option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Изменить</button>
+
+    </form>
+    <a th:href="@{/admin}">
+        <button class="btn btn-success ml-auto" >Назад</button>
+    </a>
+</div>
+</body>
+</html>

@@ -1,13 +1,9 @@
 package com.discret.controllers;
 
-import com.discret.controllers.payload.NewStudentPayload;
 import com.discret.entity.Student;
-import com.discret.repository.StudentsGroupsRepository;
-import com.discret.repository.StudentsRepository;
 import com.discret.service.StudentGroupsService;
 import com.discret.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +44,7 @@ public class AdminController {
     @PostMapping("/admin/create")
     public String createStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
 
-        studentService.createStudent(login, password, lastName, firstName, middleName, role,groupId);
+        studentService.saveStudent(login, password, lastName, firstName, middleName, role,groupId);
         return "redirect:/admin";
     }
 
@@ -79,5 +75,24 @@ public class AdminController {
 
         return "redirect:/admin";
     }
+
+    @GetMapping("/admin/update/{studentId}")
+    public String updateStudent(@PathVariable("studentId") Long studentId, Model model){
+
+        model.addAttribute("student", studentService.findStudentById(studentId));
+        model.addAttribute("groups", studentGroupsService.findAllGroups());
+        return "adminPanel/update_student";
+    }
+
+    @PostMapping("/admin/update/{studentId}")
+    public String updateStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
+
+        studentService.saveStudent(login, password, lastName, firstName, middleName, role,groupId);
+        return "redirect:/admin";
+    }
+
+
+
+
 
 }

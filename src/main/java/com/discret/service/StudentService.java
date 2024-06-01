@@ -8,7 +8,6 @@ import com.discret.repository.StudentsGroupsRepository;
 import com.discret.repository.StudentsRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 @Service
 public class StudentService implements UserDetailsService {
@@ -63,34 +61,43 @@ public class StudentService implements UserDetailsService {
 
 
     @Transactional
-    public boolean createStudent(String login, String password, String lastName, String firstName, String middleName,String roleName ,Long groupId){
+    public boolean saveStudent(String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
 
         Student studentFromDb = studentsRepository.findByLogin(login);
 
         if (studentFromDb != null){
-            return false;
+            setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
+            studentsRepository.save(studentFromDb);
+            return true;
         }
+
+        Student student = new Student();
+        setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
+        studentsRepository.save(student);
+        return true;
+
+    }
+
+    private Student setStudent(Student student,String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
+
         Student_Groups studentGroup = studentsGroupsRepository.findById(groupId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid group ID: " + groupId));
         Role role = roleRepository.findByName(roleName);
         if (role == null) {
             throw new IllegalArgumentException("Invalid role: " + roleName);
         }
-        Student student = new Student();
         student.setLogin(login);
         student.setFirstName(firstName);
         student.setMiddleName(middleName);
         student.setLastName(lastName);
         student.setStudent_groups(studentGroup);
         student.setPassword(bCryptPasswordEncoder.encode(password));
-        studentsRepository.save(student);
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         student.setRoles(roles);
-        studentsRepository.save(student);
-        return true;
-
+        return student;
     }
+
 
     @Transactional
     public boolean deleteStudent(Long studentId){
@@ -104,5 +111,6 @@ public class StudentService implements UserDetailsService {
         return em.createQuery("SELECT s FROM student s WHERE s.student_groups.id = :paramId", Student.class)
                 .setParameter("paramId", grId).getResultList();
     }
+
 
 }
