@@ -14,4 +14,6 @@ public interface StudentsGroupsRepository extends CrudRepository<Student_Groups,
     List<Student_Groups> findAll();
 
     Student_Groups findByGroupnameAndAndGroupNumber(String groupname, int groupNumber);
+
+
 }

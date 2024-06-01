@@ -50,6 +50,7 @@
             <th>Группа</th>
             <th>Курс</th>
             <th>Удалить</th>
+            <th>Изменить данные</th>
         </tr>
         </thead>
         <tbody>
@@ -65,15 +66,25 @@
                 <form method="post" th:action="@{/admin/delete}">
                     <input type="hidden" name="studentId" data-th-value="${student.id}"/>
                     <input type="hidden" name="action" data-th-value="delete"/>
-                <button class="btn btn-danger" >Delete</button>
+                <button class="btn btn-danger" >Удалить</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
+                    <button class="btn btn-primary" >Изменить</button>
                 </form>
             </td>
         </tr>
         </tbody>
     </table>
+    <div>
     <a th:href="@{/admin/create}">
         <button class="btn btn-success" >Добавить студента</button>
     </a>
+    <a th:href="@{/main}">
+    <button class="btn btn-secondary ml-auto" >Вернуться</button>
+    </a>
+    </div>
 </div>
 
 </body>
