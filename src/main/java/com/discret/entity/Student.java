@@ -33,7 +33,7 @@ public class Student implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> role;
     @ManyToOne()
-    @JoinColumn(name = "group_id", updatable=false)
+    @JoinColumn(name = "group_id")
     private Student_Groups student_groups;
 
     public Student() {

@@ -71,7 +71,7 @@ public class StudentService implements UserDetailsService {
         }
 
         Student student = new Student();
-        setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
+       student = setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
         studentsRepository.save(student);
         return true;
 
@@ -81,7 +81,8 @@ public class StudentService implements UserDetailsService {
         Student studentFromDb = studentsRepository.findById(Id).get();
 
         if (studentFromDb != null){
-            setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
+
+            studentFromDb = setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
 
             studentsRepository.save(studentFromDb);
             return true;
