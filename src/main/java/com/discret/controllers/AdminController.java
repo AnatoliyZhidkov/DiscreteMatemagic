@@ -4,6 +4,7 @@ import com.discret.controllers.payload.NewStudentPayload;
 import com.discret.entity.Student;
 import com.discret.repository.StudentsGroupsRepository;
 import com.discret.repository.StudentsRepository;
+import com.discret.service.StudentGroupsService;
 import com.discret.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,13 @@ public class AdminController {
 
     private final StudentService studentService;
 
-    private final StudentsGroupsRepository studentsGroupsRepository;
+    private final StudentGroupsService studentGroupsService;
 
     @GetMapping("/admin")
     public String studentList(Model model){
         model.addAttribute("student",studentService.allStudents());
-        return "admin";
+        model.addAttribute("groups", studentGroupsService.findAllGroups());
+        return "adminPanel/admin";
     }
 
     @PostMapping("/admin/delete")
@@ -41,8 +43,8 @@ public class AdminController {
     }
     @GetMapping("/admin/create")
     public String getNewStudentPage(Model model){
-        model.addAttribute("groups", studentsGroupsRepository.findAll());
-        return "new_student";}
+        model.addAttribute("groups", studentGroupsService.findAllGroups());
+        return "adminPanel/new_student";}
     @PostMapping("/admin/create")
     public String createStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
 
@@ -54,7 +56,28 @@ public class AdminController {
     public String getStudent(@PathVariable("groupId") Long groupId, Model model){
         List<Student> students = studentService.studentGetListByGroup(groupId);
         model.addAttribute("student", studentService.studentGetListByGroup(groupId));
-        return "admin";
+        return "adminPanel/admin";
+    }
+    @GetMapping("/admin/create/group")
+    public String getNewGroupPage(){
+        return "adminPanel/new_group";
+    }
+    @PostMapping("/admin/create/group")
+    public String createGroup(String groupname, int groupNumber){
+        studentGroupsService.createGroup(groupname,groupNumber);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/admin/delete/group")
+    public String deleteGroup(@RequestParam(required = true, defaultValue = "") String groupname,
+                              @RequestParam(required = true, defaultValue = "") int groupNumber,
+                              @RequestParam(required = true, defaultValue = "") String action, Model model){
+
+        if(action.equals("delete")){
+            studentGroupsService.deleteGroup(groupname,groupNumber);
+        }
+
+        return "redirect:/admin";
     }
 
 }

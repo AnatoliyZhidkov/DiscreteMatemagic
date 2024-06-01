@@ -9,7 +9,36 @@
 </head>
 <body>
 <div class="container">
-    <h1>Студенты</h1>
+    <h1>Группы</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Курс</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="groups : ${groups}">
+            <td th:text="${groups.groupname}"></td>
+            <td th:text="${groups.groupNumber}"></td>
+            <td>
+                <form method="post" th:action="@{/admin/delete/group}">
+                    <input type="hidden" name="groupname" data-th-value="${groups.groupname}"/>
+                    <input type="hidden" name="groupNumber" data-th-value="${groups.groupNumber}"/>
+                    <input type="hidden" name="action" data-th-value="delete"/>
+                    <button class="btn btn-danger" >Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/create/group}">
+        <button class="btn btn-success" >Добавить группу</button>
+    </a>
+</div>
+<div class="container">
+    <h2>Студенты</h2>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -46,5 +75,6 @@
         <button class="btn btn-success" >Добавить студента</button>
     </a>
 </div>
+
 </body>
 </html>

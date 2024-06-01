@@ -14,6 +14,7 @@ public class Student_Groups {
    @Column(name = "group_number")
     private int groupNumber;
 
+
     public Student_Groups() {
     }
 

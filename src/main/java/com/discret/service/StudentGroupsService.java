@@ -5,6 +5,7 @@ import com.discret.repository.StudentsGroupsRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -34,6 +35,16 @@ public class StudentGroupsService {
         student_group.setGroupNumber(groupNumber);
         studentsGroupsRepository.save(student_group);
         return true;
+    }
+
+    @Transactional
+    public boolean deleteGroup(String groupname, int groupNumber){
+            Student_Groups student_groups = studentsGroupsRepository.findByGroupnameAndAndGroupNumber(groupname,groupNumber);
+        if ( student_groups!= null){
+            studentsGroupsRepository.deleteById(student_groups.getId());
+            return true;
+        }
+        return false;
     }
 
 }

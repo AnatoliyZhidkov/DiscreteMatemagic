@@ -43,12 +43,17 @@
         </div>
         <div class="form-group">
             <label for="groupId">Группа</label>
-            <select class="form-control" id="groupId" name="group" required>
-                <option  th:each="groups : ${groups}" th:value="${groups.groupname}" th:text="${groups.groupname + '-' + groups.groupNumber}" > </option>
+            <select class="form-control" id="groupId" name="groupId" required>
+                <option  th:each="groups : ${groups}" th:value="${groups.id}" th:text="${groups.groupname + '-' + groups.groupNumber}" > </option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Create Student</button>
+
+        <button type="submit" class="btn btn-primary">Добавить</button>
+
     </form>
+    <a th:href="@{/admin}">
+        <button class="btn btn-success ml-auto" >Назад</button>
+    </a>
 </div>
 </body>
 </html>
