@@ -50,7 +50,7 @@
             <th>Группа</th>
             <th>Курс</th>
             <th>Удалить</th>
-            <th>Изменить пароль</th>
+            <th>Изменить данные</th>
         </tr>
         </thead>
         <tbody>
@@ -71,7 +71,7 @@
             </td>
             <td>
                 <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
-                    <button class="btn btn-danger" >Изменить</button>
+                    <button class="btn btn-primary" >Изменить</button>
                 </form>
             </td>
         </tr>

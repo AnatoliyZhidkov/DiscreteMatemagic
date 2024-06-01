@@ -9,7 +9,7 @@
 <body>
 <div class="container mt-5">
     <h2>Изменение студента</h2>
-    <form th:action="@{/admin/update/{id}}" method="post">
+    <form th:action="@{/admin/update/{studentid}(studentid =${student.id})}" method="post">
         <div class="form-group">
             <label for="login">Login</label>
             <input type="text" data-th-value = "${student.login}" class="form-control" id="login" name="login" required>

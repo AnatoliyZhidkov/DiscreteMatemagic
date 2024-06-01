@@ -66,14 +66,27 @@ public class StudentService implements UserDetailsService {
         Student studentFromDb = studentsRepository.findByLogin(login);
 
         if (studentFromDb != null){
-            setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
-            studentsRepository.save(studentFromDb);
-            return true;
+
+            return false;
         }
 
         Student student = new Student();
         setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
         studentsRepository.save(student);
+        return true;
+
+    }@Transactional
+    public boolean updateStudent(Long Id,String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
+
+        Student studentFromDb = studentsRepository.findById(Id).get();
+
+        if (studentFromDb != null){
+            setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
+
+            studentsRepository.save(studentFromDb);
+            return true;
+        }
+
         return true;
 
     }

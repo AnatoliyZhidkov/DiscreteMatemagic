@@ -85,9 +85,9 @@ public class AdminController {
     }
 
     @PostMapping("/admin/update/{studentId}")
-    public String updateStudent(String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
+    public String updateStudent(@PathVariable("studentId") Long studentId,String login,String password, String lastName,String firstName, String middleName,Long groupId,String role,Model model){
 
-        studentService.saveStudent(login, password, lastName, firstName, middleName, role,groupId);
+        studentService.updateStudent(studentId,login, password, lastName, firstName, middleName, role,groupId);
         return "redirect:/admin";
     }
 
