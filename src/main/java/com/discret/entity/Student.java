@@ -32,9 +32,8 @@ public class Student implements UserDetails {
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> role;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "group_id")
-    @OnDelete(action=OnDeleteAction.CASCADE)
+    @ManyToOne()
+    @JoinColumn(name = "group_id", updatable=false)
     private Student_Groups student_groups;
 
     public Student() {

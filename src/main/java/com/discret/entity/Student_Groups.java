@@ -2,6 +2,8 @@ package com.discret.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity(name = "student_group")
 public class Student_Groups {
     @Id
@@ -13,6 +15,9 @@ public class Student_Groups {
 
    @Column(name = "group_number")
     private int groupNumber;
+
+    @OneToMany(mappedBy = "student_groups", cascade = CascadeType.ALL)
+    private List<Student> students;
 
 
     public Student_Groups() {
