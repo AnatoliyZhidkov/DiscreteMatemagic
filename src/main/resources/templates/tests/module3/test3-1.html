@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org/" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/commontests/commontest.css}"/>
+    <title>Теория</title>
 </head>
 <body>
-
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="sec-content">
+    <div class="content">
+        <div th:each="question : ${question}" class="task">
+            <h1 th:text="${question.questionText}">Question text here</h1>
+            <div class="container-for-input-reply">
+                <form method="post" th:action="">
+                <input type="text" class="reply">
+                </form>
+            </div>
+        </div>
+        <div class="container-for-button">
+            <a><button>Завершить</button></a>
+        </div>
+    </div>
+</section>
 </body>
 </html>
