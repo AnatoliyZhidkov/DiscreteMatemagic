@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 public class AnswerGeneratorM3Test1 extends AnswerGenerator{
 
     public Answer answerFirstQuestion(Answer a, int number){
-
         a.setAnswerText(String.valueOf(number*(number-1)/2));
         return a;
     }

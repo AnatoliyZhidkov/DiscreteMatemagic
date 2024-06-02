@@ -23,6 +23,7 @@ public class QuestionSession {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    private String generatedText;
     private String generatedData;
     private String correctAnswer;
 

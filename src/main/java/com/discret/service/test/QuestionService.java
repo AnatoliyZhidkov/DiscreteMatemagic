@@ -1,5 +1,6 @@
 package com.discret.service.test;
 
+import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.entity.Student;
 import com.discret.entity.test.*;
 import com.discret.repository.test.QuestionRepository;
@@ -21,13 +22,15 @@ public class QuestionService {
     private EntityManager em;
     private final QuestionRepository questionRepository;
     private final TestService testService;
+
+  //  private final AnswerGenerator answerGenerator;
     private static final Random random = new Random();
     public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
 
         Test test = testService.findTestByModuleAndNumber(module,testNumber);
         Long testId = test.getId();
         List<QuestionSession> questions = questionRepository.findAllByTestId(testId).stream().map(question -> generateQuestion(question, testResult)).collect(Collectors.toList());
-        List<QuestionSession> questionSessions = new ArrayList<>();
+
 
         return questions;
 
@@ -49,11 +52,12 @@ public class QuestionService {
                 text = text.replaceFirst("\\{\\}", String.valueOf(randomValue));
             }
         }
-        String generatedParam = numbers.stream().map(Objects::toString).collect(Collectors.joining(","));
-        QuestionSession questionSession = new QuestionSession();
 
+        QuestionSession questionSession = new QuestionSession();
+        // questionSession.setCorrectAnswer(answerGenerator.);
         questionSession.setQuestion(question);
-        questionSession.setGeneratedData(text);
+        questionSession.setGeneratedText(text);
+        questionSession.setGeneratedData(numbers.stream().map(Objects::toString).collect(Collectors.joining(",")));
         questionSession.setTestResult(testResult);
 
         return questionSession;

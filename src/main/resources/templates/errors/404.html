@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/error/error.css}" type="text/css" />
+    <title>Страница не найдена - DiscreteMathemagic</title>
+</head>
+<body>
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+            <img class="img" th:src="@{/images/404.png}">
+            <p>К сожалению, страница, которую вы ищете, не существует. Возможно, она была удалена или перемещена.</p>
+        </div>
+    </div>
+    <div class="right">
+        <h5>Ошибка 404</h5>
+        <h6>Страница не найдена</h6>
+        <p>Пожалуйста, вернитесь на <a th:href="@{/}">главную страницу</a> или воспользуйтесь навигацией на сайте.</p>
+        <br><br>
+        <div class="remember-me--forget-password">
+            <button onclick="window.location.href='/'" class="btn">На главную</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
