@@ -1,14 +1,14 @@
 package com.discret.service.test;
 
 import com.discret.entity.Student;
-import com.discret.entity.test.Question;
-import com.discret.entity.test.Test;
+import com.discret.entity.test.*;
 import com.discret.repository.test.QuestionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -22,28 +22,23 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final TestService testService;
     private static final Random random = new Random();
-    public List<Question> getGeneratedQuestions(int module, int testNumber) {
+    public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
 
         Test test = testService.findTestByModuleAndNumber(module,testNumber);
         Long testId = test.getId();
-        List<Question> questions = questionRepository.findAllByTestId(testId).stream().map(this::generateQuestion).collect(Collectors.toList());
+        List<QuestionSession> questions = questionRepository.findAllByTestId(testId).stream().map(question -> generateQuestion(question, testResult)).collect(Collectors.toList());
+        List<QuestionSession> questionSessions = new ArrayList<>();
 
-        for (Question q : questions){
-
-           // q.setAnswers();
-
-        }
-
-        return null;
+        return questions;
 
     }
 
 
 
-    private Question generateQuestion(Question question) {
+    private QuestionSession generateQuestion(Question question, TestResult testResult) {
         String text = question.getQuestionText();
         String[] params = question.getParameters().split(",");
-        List<Integer> numbers = null;
+        List<Integer> numbers = new ArrayList<>();
         for (String param : params) {
             if (!param.isEmpty()) {
                 String[] range = param.split("-");
@@ -54,11 +49,13 @@ public class QuestionService {
                 text = text.replaceFirst("\\{\\}", String.valueOf(randomValue));
             }
         }
-        text = numbers.stream().map(Objects::toString).collect(Collectors.joining(","));
-        Question generatedQuestion = new Question();
-        generatedQuestion.setParameters(text);
-        generatedQuestion.setId(question.getId());
-        generatedQuestion.setQuestionText(text);
-        return generatedQuestion;
+        String generatedParam = numbers.stream().map(Objects::toString).collect(Collectors.joining(","));
+        QuestionSession questionSession = new QuestionSession();
+
+        questionSession.setQuestion(question);
+        questionSession.setGeneratedData(text);
+        questionSession.setTestResult(testResult);
+
+        return questionSession;
     }
 }

@@ -4,6 +4,9 @@ import com.discret.entity.Student;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 @Entity
 public class TestResult {
@@ -19,6 +22,12 @@ public class TestResult {
     @JoinColumn(name = "test_id")
     private Test test;
 
+    @OneToMany(mappedBy = "testResult", cascade = CascadeType.ALL)
+    private List<QuestionSession> questionSessions;
+
     private int score;
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
 }

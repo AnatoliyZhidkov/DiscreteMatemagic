@@ -2,6 +2,7 @@ package com.discret.entity.test;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -17,7 +18,10 @@ public class Question {
 
     private String parameters;
 
+
+
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "test_id")
     private Test test;
 

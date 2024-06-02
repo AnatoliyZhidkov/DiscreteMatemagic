@@ -18,12 +18,10 @@
 <div class="clone"></div>
 <section class="sec-content">
     <div class="content">
-        <div th:each="question : ${question}" class="task">
-            <h1 th:text="${question.questionText}">Question text here</h1>
+        <div th:each="questions : ${questions}" class="task">
+            <h1 th:text="${questions.generatedData}">Question text here</h1>
             <div class="container-for-input-reply">
-                <form method="post" th:action="">
                 <input type="text" class="reply">
-                </form>
             </div>
         </div>
         <div class="container-for-button">

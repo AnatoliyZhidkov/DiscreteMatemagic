@@ -1,9 +1,16 @@
 package com.discret.controllers.test;
 
+import com.discret.entity.Student;
 import com.discret.entity.test.Question;
+import com.discret.entity.test.QuestionSession;
+import com.discret.entity.test.TestResult;
+import com.discret.repository.test.TestResultRepository;
 import com.discret.service.test.QuestionService;
+import com.discret.service.test.TestResultService;
 import com.discret.service.test.TestService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +27,25 @@ public class TestController {
 
     private final TestService testService;
     private final QuestionService questionService;
-    @GetMapping("/{module}/{testnumber}")
-    public String showTest(@PathVariable("testnumber") int testnumber,
-                           @PathVariable ("module") int module, Model model,  Principal principal) {
 
-        List<Question> questions = questionService.getGeneratedQuestions(module,testnumber);
-        model.addAttribute("question", questions);
+    private final TestResultRepository testResultRepository;
+    private final TestResultService testResultService;
+
+
+    @GetMapping("/{module}/{testnumber}")
+    public String startTest(@PathVariable("testnumber") int testnumber,
+                           @PathVariable ("module") int module, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student) authentication.getPrincipal();
+        TestResult testResult = testResultService.startTest(module,testnumber,student);
+
+        List<QuestionSession> questions = testResult.getQuestionSessions();
+        model.addAttribute("questions", questions);
 
 
         return String.format("/tests/module%d/test%d-%d", module, module, testnumber);
     }
+
+
 
 }
