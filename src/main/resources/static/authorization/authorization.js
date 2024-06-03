@@ -101,3 +101,16 @@ var forgotPasswordLink = document.getElementById("forgotPassword");
 forgotPasswordLink.addEventListener("click", function() {
     alert("Если вы забыли свой пароль, пожалуйста, обратитесь к вашему преподавателю для его замены. Он сможет помочь вам восстановить доступ к вашей учетной записи");
 });
+
+
+//просмотр пароля
+$('body').on('click', '.password-control', function(){
+    if ($('#password').attr('type') == 'password') {
+        $(this).text('Скрыть пароль');
+        $('#password').attr('type', 'text');
+    } else {
+        $(this).text('Показать пароль');
+        $('#password').attr('type', 'password');
+    }
+    return false;
+});

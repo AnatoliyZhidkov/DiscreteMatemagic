@@ -143,3 +143,20 @@ document.getElementById('safe-password-btn').addEventListener('click', function(
     document.getElementById('passwordInput1').value = '';
     document.getElementById('passwordInput2').value = '';
 });
+
+
+// просмотр пароля
+$(document).ready(function() {
+    $('.password-control').on('click', function() {
+        var target = $(this).data('target');
+        var $input = $(target);
+        if ($input.attr('type') === 'password') {
+            $(this).text('Скрыть пароль');
+            $input.attr('type', 'text');
+        } else {
+            $(this).text('Показать пароль');
+            $input.attr('type', 'password');
+        }
+        return false;
+    });
+});

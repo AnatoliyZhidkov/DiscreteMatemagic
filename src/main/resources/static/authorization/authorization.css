@@ -134,6 +134,10 @@ h6 {
   margin: 0;
   font-size: 13px;
 }
+.password-control{
+  margin-top: 5px;
+  font-size: 13px;
+}
 .error-message {
   color: red;
   font-size: calc(4px + 0.5vw);
@@ -187,7 +191,7 @@ h6 {
   p{
     font-size: calc(10px + 1vw);
   }
-  .box-form .left p, h6 {
+  .box-form .left p, h6, .password-control {
     font-size: calc(10px + 1vw);
     margin: 0;
   }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/utilities/fonts.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/authorization/authorization.css}" type="text/css" />
     <title>DiscreteMathemagic</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/authorization/authorization.js}" defer></script>
 </head>
 <body>
@@ -28,6 +29,7 @@
 <!--                <div id="formatError" class="error-message">Разрешено использовать только символы латинского алфавита, цифры и точку</div>-->
                 <br>
                 <input type="password" id="password" name="password" placeholder="пароль">
+                <a href="#" class="password-control">Показать пароль</a>
 <!--                <div id="lengthErrorMessage" class="error-message">Пароль не может содержать более 30 символов</div>-->
 <!--                <div id="formatErrorMessage" class="error-message">Пароль должен содержать не менее 8 символов, включать заглавные и строчные буквы латинского алфавита, хотя бы одну цифру и специальный символ</div>-->
             </div>
