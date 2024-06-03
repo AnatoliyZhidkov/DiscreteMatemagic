@@ -20,7 +20,9 @@
     <div class="content">
         <div th:each="questions : ${questions}" class="task">
             <h1 th:text="${questions.generatedText}">Question text here</h1>
-
+            <div th:each="">
+                <img th:src="" alt="картинка графа">
+            </div>
             <div class="container-for-input-reply">
                 <input type="text" class="reply">
             </div>
