@@ -78,15 +78,21 @@ public class StudentService implements UserDetailsService {
     }@Transactional
     public boolean updateStudent(Long Id,String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
 
-        Student studentFromDb = studentsRepository.findById(Id).get();
-
-        if (studentFromDb != null){
-
-            studentFromDb = setStudent(studentFromDb, login, password, lastName, firstName, middleName, roleName, groupId);
-
-            studentsRepository.save(studentFromDb);
-            return true;
-        }
+        this.studentsRepository.findById(Id)
+                .ifPresentOrElse(student -> {
+                            student.setLogin(login);
+                            student.setPassword(bCryptPasswordEncoder.encode(password));
+                            student.setLastName(lastName);
+                            student.setFirstName(firstName);
+                            student.setMiddleName(middleName);
+                            student.setStudent_groups(
+                                    studentsGroupsRepository.findById(groupId)
+                                        .orElseThrow(() -> new IllegalArgumentException("Invalid group ID: " + groupId)));
+                            Set<Role> roles = new HashSet<>();
+                            roles.add(roleRepository.findByName(roleName));
+                            student.setRoles(roles);
+                        }  ,() -> {throw new NoSuchElementException();}
+                        );
 
         return true;
 
@@ -124,6 +130,13 @@ public class StudentService implements UserDetailsService {
     public List<Student> studentGetListByGroup(Long grId){
         return em.createQuery("SELECT s FROM student s WHERE s.student_groups.id = :paramId", Student.class)
                 .setParameter("paramId", grId).getResultList();
+    }
+
+    @Transactional
+    public boolean changePassword(Long studentId, String oldPassword, String newPassword){
+
+
+        return true;
     }
 
 

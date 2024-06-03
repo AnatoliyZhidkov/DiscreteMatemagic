@@ -77,15 +77,17 @@
                             <button class="button-info" id="change-password-btn">Изменить пароль</button>
                         </div>
                         <div class="change-password" style="display: none;">
-                            <input type="password" id="passwordInput" placeholder="Старый пароль">
-                            <input type="password" id="passwordInput1" placeholder="Новый пароль">
-                            <input type="password" id="passwordInput2" placeholder="Подтверждение нового пароля">
+                            <form method="post" th:action="@{/profile/changePassword}">
+                            <input type="password" id="passwordInput" name = "oldPassword" placeholder="Старый пароль">
+                            <input type="password" id="passwordInput1" name="newPassword" placeholder="Новый пароль">
+                            <input type="password" id="passwordInput2"  name="newPasswordConfirm" placeholder="Подтверждение нового пароля">
                             <div id="lengthErrorMessage" class="error-message"></div>
                             <div id="formatErrorMessage" class="error-message"></div>
                             <div class="button-in-change-password">
-                                <button class="button-info" id="cancel-password-btn" style="display: none;">Отменить</button>
-                                <button class="button-info" id="safe-password-btn" style="display: none;">Сохранить</button>
+                                <button type="button" class="button-info" id="cancel-password-btn" style="display: none;">Отменить</button>
+                                <button type="submit" class="button-info" id="safe-password-btn"  style="display: none;">Сохранить</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

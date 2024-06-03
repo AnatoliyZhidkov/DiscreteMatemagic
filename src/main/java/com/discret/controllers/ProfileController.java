@@ -6,6 +6,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class ProfileController {
@@ -23,4 +25,14 @@ public class ProfileController {
         model.addAttribute("loginName", student.getLogin());
         return "profile";
     }
+
+    @PostMapping("/profile/changePassword")
+    public String changePassword(String oldPassword, String newPassword, String newPasswordConfirm){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return "redirect:/profile";
+
+    }
+
 }

@@ -3,7 +3,8 @@ package com.discret.entity.test;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,8 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Size(max = 1000)
     private String questionText;
 
     private String parameters;

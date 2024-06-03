@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
@@ -23,6 +24,7 @@ public class QuestionSession {
     @JoinColumn(name = "question_id")
     private Question question;
 
+    @Size(max = 1000)
     private String generatedText;
     private String generatedData;
     private String correctAnswer;
