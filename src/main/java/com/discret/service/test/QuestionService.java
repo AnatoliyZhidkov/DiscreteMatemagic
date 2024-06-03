@@ -30,7 +30,7 @@ public class QuestionService {
 
         Test test = testService.findTestByModuleAndNumber(module,testNumber);
         Long testId = test.getId();
-        List<QuestionSession> questions = questionRepository.findAllByTestId(testId).stream().map(question -> generateQuestion(question, testResult)).collect(Collectors.toList());
+        List<QuestionSession> questions = questionRepository.findAllByTestIdOrderByQuestionNumber(testId).stream().map(question -> generateQuestion(question, testResult)).collect(Collectors.toList());
 
 
         return questions;

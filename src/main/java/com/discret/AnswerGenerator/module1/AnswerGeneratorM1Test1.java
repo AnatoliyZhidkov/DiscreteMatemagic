@@ -21,6 +21,11 @@ public class AnswerGeneratorM1Test1  {
             case 6: return "23";
             case 7: return "13";
             case 8: return "24";
+            case 9: return "24";
+            case 10: return "24";
+            case 11: return "24";
+            case 12: return "24";
+            case 13: return "24";
             default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());
         }
     }

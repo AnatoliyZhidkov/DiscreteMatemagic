@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
-    @Query("select q from Question q where q.test.Id = ?1")
-    List<Question> findAllByTestId(Long id);
+    @Query("select q from Question q where q.test.Id = ?1 order by q.questionNumber")
+    List<Question> findAllByTestIdOrderByQuestionNumber(Long id);
 }
