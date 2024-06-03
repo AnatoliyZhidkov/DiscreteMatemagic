@@ -28,5 +28,5 @@ public class QuestionSession {
     private String generatedText;
     private String generatedData;
     private String correctAnswer;
-
+    private String studentAnswer;
 }

@@ -6,6 +6,7 @@ import com.discret.entity.test.TestResult;
 import com.discret.repository.StudentsRepository;
 import com.discret.repository.test.TestRepository;
 import com.discret.repository.test.TestResultRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,16 @@ public class TestResultService {
 
         return testResultRepository.save(testResult);
     }
+
+//    public TestResult endTest(Long idTestResult){
+//
+//        TestResult testResult = testResultRepository.findById(idTestResult).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
+//        //testResult.se
+//
+//
+//      //  return
+//    }
+
+
 
 }
