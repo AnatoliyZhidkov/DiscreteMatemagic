@@ -1,5 +1,7 @@
 package com.discret.controllers.test;
 
+import com.discret.DTO.AnswerDTO;
+import com.discret.DTO.TestSubmissionDTO;
 import com.discret.entity.Student;
 import com.discret.entity.test.Question;
 import com.discret.entity.test.QuestionSession;
@@ -15,9 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -47,5 +51,19 @@ public class TestController {
     }
 
 
+    @GetMapping("/{module}/{testnumber}/submit")
+    public String submitTest(@PathVariable("testnumber") int testnumber,
+                             @PathVariable ("module") int module, TestSubmissionDTO testSubmissionDTO, Model model) {
+
+        List<AnswerDTO> answers = testSubmissionDTO.getAnswers();
+        List<Boolean> results = new ArrayList<>();
+
+
+
+        model.addAttribute("results", results);
+        return "resultPage"; // Вернуть страницу с результатами
+
+
+    }
 
 }

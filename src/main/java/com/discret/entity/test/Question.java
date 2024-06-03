@@ -15,13 +15,12 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Size(max = 1000)
     private String questionText;
 
     private String parameters;
 
-
+    private int questionNumber;
 
     @ManyToOne
     @ToString.Exclude
@@ -31,4 +30,6 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
 }

@@ -18,6 +18,7 @@
 <div class="clone"></div>
 <section class="sec-content">
     <div class="content">
+        <form method="post" data-th-action="">
         <div th:each="questions : ${questions}" class="task">
             <h1 th:text="${questions.generatedText}">Question text here</h1>
             <div class="container-for-input-reply">
@@ -27,6 +28,7 @@
         <div class="container-for-button">
             <a><button>Завершить</button></a>
         </div>
+        </form>
     </div>
 </section>
 </body>

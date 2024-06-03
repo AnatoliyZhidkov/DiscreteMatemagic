@@ -9,10 +9,7 @@ import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -22,6 +19,8 @@ public class QuestionService {
     private EntityManager em;
     private final QuestionRepository questionRepository;
     private final TestService testService;
+
+    private final AnswerGenerator answerGenerator;
 
   //  private final AnswerGenerator answerGenerator;
     private static final Random random = new Random();
@@ -54,7 +53,7 @@ public class QuestionService {
         }
 
         QuestionSession questionSession = new QuestionSession();
-        // questionSession.setCorrectAnswer(answerGenerator.);
+        questionSession.setCorrectAnswer(answerGenerator.generateAnswer(question,numbers));
         questionSession.setQuestion(question);
         questionSession.setGeneratedText(text);
         questionSession.setGeneratedData(numbers.stream().map(Objects::toString).collect(Collectors.joining(",")));
@@ -62,4 +61,8 @@ public class QuestionService {
 
         return questionSession;
     }
+
+
+
+
 }
