@@ -51,17 +51,20 @@ public class TestController {
     }
 
 
-    @GetMapping("/{module}/{testnumber}/submit")
-    public String submitTest(@PathVariable("testnumber") int testnumber,
-                             @PathVariable ("module") int module, TestSubmissionDTO testSubmissionDTO, Model model) {
+    @PostMapping("/submitTest")
+    public String submitTest(TestSubmissionDTO testSubmissionDTO ,Model model) {
 
         List<AnswerDTO> answers = testSubmissionDTO.getAnswers();
         List<Boolean> results = new ArrayList<>();
 
-
+        for (AnswerDTO answer : answers) {
+            QuestionSession questionSession = questionService.findQuestionSessionById(answer.getQuestionId());
+            boolean isCorrect = answer.getAnswer().equals(questionSession.getCorrectAnswer());
+            results.add(isCorrect);
+        }
 
         model.addAttribute("results", results);
-        return "resultPage"; // Вернуть страницу с результатами
+        return "tests/resultPage"; // Вернуть страницу с результатами
 
 
     }

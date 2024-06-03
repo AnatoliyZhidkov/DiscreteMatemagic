@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты теста</title>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/commontests/commontest.css}"/>
+</head>
+<body>
+<header>
+    <div class="container-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="sec-content">
+    <div class="content">
+        <h1>Результаты теста</h1>
+        <div th:each="result, stat : ${results}">
+            <p th:text="'Вопрос ' + ${stat.index + 1} + ': ' + (${result} ? 'Правильно' : 'Неправильно')"></p>
+        </div>
+        <a href="/"><button>На главную</button></a>
+    </div>
+</section>
+</body>
+</html>

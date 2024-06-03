@@ -4,6 +4,7 @@ import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.entity.Student;
 import com.discret.entity.test.*;
 import com.discret.repository.test.QuestionRepository;
+import com.discret.repository.test.QuestionSessionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class QuestionService {
     private EntityManager em;
     private final QuestionRepository questionRepository;
     private final TestService testService;
+    private final QuestionSessionRepository questionSessionRepository;
 
     private final AnswerGenerator answerGenerator;
 
@@ -63,6 +65,10 @@ public class QuestionService {
     }
 
 
+    public QuestionSession findQuestionSessionById(Long id) {
+        return questionSessionRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No QuestionSession found with id " + id));
+    }
 
 
 }
