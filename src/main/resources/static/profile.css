@@ -36,6 +36,10 @@ section{
     justify-content: space-between;
     padding: 20px 0 40px 0;
 }
+.form-for-change-password{
+    display: flex;
+    flex-direction: column;
+}
 .left-block-info-profile h1{
     font-size: 26px;
 }
@@ -121,11 +125,16 @@ section{
 .change-password input{
     background-color: #77CCDD;
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 17px;
     border: none;
     outline: none;
     border-bottom: 2px solid black;
+}
+.password-control{
+    font-size: 17px;
+    text-decoration: underline;
+    color: #5F3B91;
 }
 .change-password input::-webkit-input-placeholder {
     color: #1E1E1E;
@@ -225,6 +234,9 @@ section{
         font-size: 12px;
         padding: 7px;
     }
+    .password-control{
+        font-size: 12px;
+    }
     .right-block-info-profile{
         width: 90%;
         justify-content: space-between;
@@ -253,7 +265,7 @@ section{
 }
 @media screen and (max-width: 750px){
     .change-password input, .error-message{
-        width: auto;
+        width: 80%;
     }
     .right-block-info-profile button{
         min-width:auto;
@@ -307,5 +319,8 @@ section{
     .change-password input{
         font-size: calc(8px + 1vw);
         padding: 7px;
+    }
+    .password-control{
+        font-size: calc(8px + 1vw);
     }
 }

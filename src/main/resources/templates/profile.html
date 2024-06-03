@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
     <link rel="stylesheet" th:href="@{profile.css}" />
     <title>DiscreteMathemagic</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/utilities/navigation.js}" defer></script>
     <script th:src="@{profile.js}" defer></script>
 </head>
@@ -77,16 +78,19 @@
                             <button class="button-info" id="change-password-btn">Изменить пароль</button>
                         </div>
                         <div class="change-password" style="display: none;">
-                            <form method="post" th:action="@{/profile/changePassword}">
-                            <input type="password" id="passwordInput" name = "oldPassword" placeholder="Старый пароль">
-                            <input type="password" id="passwordInput1" name="newPassword" placeholder="Новый пароль">
-                            <input type="password" id="passwordInput2"  name="newPasswordConfirm" placeholder="Подтверждение нового пароля">
-                            <div id="lengthErrorMessage" class="error-message"></div>
-                            <div id="formatErrorMessage" class="error-message"></div>
-                            <div class="button-in-change-password">
-                                <button type="button" class="button-info" id="cancel-password-btn" style="display: none;">Отменить</button>
-                                <button type="submit" class="button-info" id="safe-password-btn"  style="display: none;">Сохранить</button>
-                            </div>
+                            <form method="post" th:action="@{/profile/changePassword}" class="form-for-change-password">
+                                <input type="password" id="passwordInput" name = "oldPassword" placeholder="Старый пароль">
+                                    <a href="#" class="password-control" data-target="#passwordInput">Показать пароль</a>
+                                <input type="password" id="passwordInput1" name="newPassword" placeholder="Новый пароль">
+                                    <a href="#" class="password-control" data-target="#passwordInput1">Показать пароль</a>
+                                <input type="password" id="passwordInput2"  name="newPasswordConfirm" placeholder="Подтверждение нового пароля">
+                                    <a href="#" class="password-control" data-target="#passwordInput2">Показать пароль</a>
+                                <div id="lengthErrorMessage" class="error-message"></div>
+                                <div id="formatErrorMessage" class="error-message"></div>
+                                <div class="button-in-change-password">
+                                    <button type="button" class="button-info" id="cancel-password-btn" style="display: none;">Отменить</button>
+                                    <button type="submit" class="button-info" id="safe-password-btn"  style="display: none;">Сохранить</button>
+                                </div>
                             </form>
                         </div>
                     </div>
