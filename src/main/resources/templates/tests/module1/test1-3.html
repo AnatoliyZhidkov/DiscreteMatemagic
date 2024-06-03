@@ -16,18 +16,20 @@
     </div>
 </header>
 <div class="clone"></div>
-<section class="sec-content">
-    <div class="content">
-        <div th:each="questions : ${questions}" class="task">
-            <h1 th:text="${questions.generatedText}">Question text here</h1>
-            <div class="container-for-input-reply">
-                <input type="text" class="reply">
+<form th:action="@{/tests/submitTest}" method="post">
+    <section class="sec-content">
+        <div class="content">
+            <div th:each="questions : ${questions}" class="task">
+                <h1 th:text="${questions.generatedText}">Question text here</h1>
+                <div class="container-for-input-reply">
+                    <input type="text" class="reply">
+                </div>
+            </div>
+            <div class="container-for-button">
+                <a><button>Завершить</button></a>
             </div>
         </div>
-        <div class="container-for-button">
-            <a><button>Завершить</button></a>
-        </div>
-    </div>
-</section>
+    </section>
+</form>
 </body>
 </html>

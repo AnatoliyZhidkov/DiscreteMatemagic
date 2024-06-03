@@ -16,22 +16,24 @@
     </div>
 </header>
 <div class="clone"></div>
-<section class="sec-content">
-    <div class="content">
-        <form th:action="@{/tests/submitTest}" method="post">
-            <div th:each="question, stat : ${questions}" class="task">
-                <h1 th:text="${question.generatedText}">Question text here</h1>
-                <div class="container-for-input-reply">
-                    <input type="text" class="reply" th:name="'answers[' + ${stat.index} + '].answer'" />
-                    <input type="hidden" th:name="'answers[' + ${stat.index} + '].questionId'" th:value="${question.id}" />
+<form th:action="@{/tests/submitTest}" method="post">
+    <section class="sec-content">
+        <div class="content">
+                <div th:each="question, stat : ${questions}" class="task">
+                    <h1 th:text="${question.generatedText}">Question text here</h1>
+                    <div th:each="" class="div-for-img">
+                        <img th:src="" class="img-in-test" alt="картинка графа">
+                    </div>
+                    <div class="container-for-input-reply">
+                        <input type="text" class="reply" th:name="'answers[' + ${stat.index} + '].answer'" />
+                        <input type="hidden" th:name="'answers[' + ${stat.index} + '].questionId'" th:value="${question.id}" />
+                    </div>
                 </div>
-            </div>
-            <div class="container-for-button">
-
-                <button type="submit">Завершить</button>
-            </div>
-        </form>
-    </div>
-</section>
+                <div class="container-for-button">
+                    <button type="submit">Завершить</button>
+                </div>
+        </div>
+    </section>
+</form>
 </body>
 </html>

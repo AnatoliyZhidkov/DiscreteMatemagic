@@ -117,6 +117,15 @@ header{
 .container-for-button, .task{
     animation: fadeIn 0.5s ease forwards;
 }
+.div-for-img{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.img-in-test{
+    width: 220px;
+}
 
 @media screen and (max-width: 750px){
     .task h1{
@@ -132,6 +141,9 @@ header{
         min-width: auto;
         padding: calc(9px + 0.5vw) calc(25px + 1vw);
     }
+    .img-in-test{
+        width: 200px;
+    }
 }
 @media screen and (max-width: 560px){
     .conteiner-header{
@@ -146,6 +158,9 @@ header{
     }
     .container-for-button button, .reply{
         font-size: calc(8px + 1vw);
+    }
+    .img-in-test{
+        width: 150px;
     }
 }
 @media screen and (max-width: 500px){
