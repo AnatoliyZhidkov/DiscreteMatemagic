@@ -24,7 +24,7 @@ public class QuestionService {
 
     private final AnswerGenerator answerGenerator;
 
-  //  private final AnswerGenerator answerGenerator;
+
     private static final Random random = new Random();
     public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
 

@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="container-for-button">
-                <a><button>Завершить</button></a>
+                <input type = "hidden" th:name="testResultId" th:value="${questions.get(0).getTestResult().getId()}">
+                <button type="submit">Завершить</button>
             </div>
         </div>
     </section>
