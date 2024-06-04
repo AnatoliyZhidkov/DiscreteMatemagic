@@ -45,6 +45,7 @@ public class QuestionService {
         List<Integer> numbers = new ArrayList<>();
         for (String param : params) {
             if (!param.isEmpty()) {
+
                 String[] range = param.split("-");
                 int min = Integer.parseInt(range[0]);
                 int max = Integer.parseInt(range[1]);

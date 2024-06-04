@@ -2,6 +2,9 @@ package com.discret.AnswerGenerator;
 
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
+import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test2;
+import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test1;
+import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test2;
 import com.discret.entity.test.Question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,22 +50,25 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
         }
     }
     private final AnswerGeneratorM3Test1 answerGeneratorM3Test1;
+    private final AnswerGeneratorM3Test2 answerGeneratorM3Test2;
 
     public String generateAnswerModule3(Question question, List<Integer> numbers){
         switch (question.getTest().getNumber()){
             case 1:
                 return answerGeneratorM3Test1.generateAnswer(question,numbers);
             case 2:
-                return "";
+                return answerGeneratorM3Test2.generateAnswer(question,numbers);
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
         }
     }
+    private final AnswerGeneratorM4Test1 answerGeneratorM4Test1;
+    private final AnswerGeneratorM4Test2 answerGeneratorM4Test2;
     public String generateAnswerModule4(Question question, List<Integer> numbers){
         switch (question.getTest().getNumber()){
             case 1:
-                return "";
+                return answerGeneratorM4Test1.generateAnswer(question,numbers);
             case 2:
-                return "";
+                return answerGeneratorM4Test2.generateAnswer(question,numbers);
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
         }
     }
