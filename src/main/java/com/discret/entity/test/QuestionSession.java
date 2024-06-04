@@ -15,12 +15,12 @@ public class QuestionSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @ToString.Exclude
     @JoinColumn(name = "test_result_id")
     private TestResult testResult;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "question_id")
     private Question question;
 
@@ -30,3 +30,4 @@ public class QuestionSession {
     private String correctAnswer;
     private String studentAnswer;
 }
+

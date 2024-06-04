@@ -1,5 +1,6 @@
 package com.discret.entity;
 
+import com.discret.entity.test.TestResult;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -36,6 +37,10 @@ public class Student implements UserDetails {
     @ManyToOne()
     @JoinColumn(name = "group_id")
     private Student_Groups student_groups;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<TestResult> testResults;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Achievement> achievements;

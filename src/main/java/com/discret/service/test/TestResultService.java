@@ -67,5 +67,15 @@ public class TestResultService {
     }
 
 
+    public List<TestResult> findAllByStudentId(Long studentId) {
+        return testResultRepository.findAllByStudentId(studentId);
+    }
+
+    public boolean deleteTestResult(Long testResultId) {
+       return this.testResultRepository.findById(testResultId).map(testResult -> {
+           this.testResultRepository.delete(testResult);
+           return true;
+       }).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
+    }
 
 }

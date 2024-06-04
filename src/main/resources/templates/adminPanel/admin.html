@@ -51,6 +51,7 @@
             <th>Курс</th>
             <th>Удалить</th>
             <th>Изменить данные</th>
+            <th>Тесты</th>
         </tr>
         </thead>
         <tbody>
@@ -72,6 +73,11 @@
             <td>
                 <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
                     <button class="btn btn-primary" >Изменить</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" th:action="@{/testResult/{studentId}(studentId = ${student.id})}">
+                    <button class="btn btn-primary" >Результаты</button>
                 </form>
             </td>
         </tr>
