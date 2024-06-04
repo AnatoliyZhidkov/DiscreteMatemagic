@@ -52,18 +52,9 @@ public class TestController {
 
 
     @PostMapping("/submitTest")
-    public String submitTest(TestSubmissionDTO testSubmissionDTO ,Model model) {
+    public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
 
-        List<AnswerDTO> answers = testSubmissionDTO.getAnswers();
-        List<Boolean> results = new ArrayList<>();
-
-        for (AnswerDTO answer : answers) {
-            QuestionSession questionSession = questionService.findQuestionSessionById(answer.getQuestionId());
-            boolean isCorrect = answer.getAnswer().equals(questionSession.getCorrectAnswer());
-            results.add(isCorrect);
-        }
-
-        model.addAttribute("results", results);
+        model.addAttribute("results", this.testResultService.endTest(testResultId,testSubmissionDTO));
         return "tests/resultPage"; // Вернуть страницу с результатами
 
 
