@@ -203,7 +203,7 @@ section{
 }
 
 .item-achieve img {
-    filter: grayscale(100%);
+    /*filter: grayscale(100%);*/
 }
 .error-message{
     color: red;

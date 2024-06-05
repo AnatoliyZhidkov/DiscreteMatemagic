@@ -9,6 +9,17 @@
     <script th:src="@{/progress.js}" defer></script>
 </head>
 <body>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+        <a th:href="@{/admin}" class="a-for-button-back">
+            <button class="btn btn-success ml-auto button-back-main" id="button-admin-back" >Назад</button>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
 <section class="learning-html">
     <div class="content">
         <div class="block-statistics">
@@ -17,25 +28,25 @@
                     <h1>Модуль 1 <span>— Элементарная комбинаторика</span></h1>
                 </div>
                 <div class="block-for-items-acheive">
-                    <canvas id="mod1"></canvas>
+                    <canvas id="mod1" th:data-results-json="${module1Results}"></canvas>
                 </div>
                 <div class="top-block-statistics">
                     <h1>Модуль 2 <span>— Углубленные комбинаторные методы</span></h1>
                 </div>
                 <div class="block-for-items-acheive">
-                    <canvas id="mod2"></canvas>
+                    <canvas id="mod2" th:data-results-json="${module2Results}"></canvas>
                 </div>
                 <div class="top-block-statistics">
                     <h1>Модуль 3 <span>— Основы теории графов</span></h1>
                 </div>
                 <div class="block-for-items-acheive">
-                    <canvas id="mod3"></canvas>
+                    <canvas id="mod3" th:data-results-json="${module3Results}"></canvas>
                 </div>
                 <div class="top-block-statistics">
                     <h1>Модуль 4 <span>— Углубленные исследования теории графов</span></h1>
                 </div>
                 <div class="block-for-items-acheive">
-                    <canvas id="mod4"></canvas>
+                    <canvas id="mod4" th:data-results-json="${module4Results}"></canvas>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -44,19 +55,19 @@
                 <div class="top-block-statistics">
                     <h1>Все результаты тестов</h1>
                 </div>
-                <div th:each="testResult : ${testResults}" class="result-item">
-                    <h2 th:text="'Тест: ' + ${testResult.test.module} + ' - ' + ${testResult.test.number}" class="h2-name-test"></h2>
-                    <p th:text="'Дата прохождения: ' + ${testResult.startTime}" class="p-info"></p>
-                    <p th:text="'Результат: ' + ${testResult.score} + ' из ' + ${testResult.questionSessions.size()}" class="p-info"></p>
-                    <form th:action="@{/testResult/deleteResult}" method="post">
-                        <input type="hidden" th:name="resultId" th:value="${testResult.id}" />
-                        <input type="hidden" th:name="studentId" th:value="${testResult.student.id}" />
-                        <button type="submit" class="button-back-main">Удалить</button>
-                    </form>
+                <div class="block-for-result">
+                    <div th:each="testResult : ${testResults}" class="result-item">
+                        <h2 th:text="'Тест: ' + ${testResult.test.module} + ' - ' + ${testResult.test.number}" class="h2-name-test"></h2>
+                        <p th:text="'Дата прохождения: ' + ${testResult.startTime}" class="p-info"></p>
+                        <p th:text="'Результат: ' + ${testResult.score} + ' из ' + ${testResult.questionSessions.size()}" class="p-info"></p>
+                        <form th:action="@{/testResult/deleteResult}" method="post">
+                            <input type="hidden" th:name="resultId" th:value="${testResult.id}" />
+                            <input type="hidden" th:name="studentId" th:value="${testResult.student.id}" />
+                            <button type="submit" class="button-back-main">Удалить</button>
+                        </form>
+                    </div>
                 </div>
-                <a th:href="@{/admin}">
-                    <button class="btn btn-success ml-auto" >Назад</button>
-                </a>
+
             </div>
         </div>
     </div>

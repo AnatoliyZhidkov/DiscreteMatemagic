@@ -1,7 +1,10 @@
 package com.discret.controllers.test;
 
+import com.discret.entity.Student;
 import com.discret.entity.test.TestResult;
+import com.discret.repository.StudentsRepository;
 import com.discret.repository.test.TestResultRepository;
+import com.discret.service.StudentService;
 import com.discret.service.test.TestResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,10 +23,15 @@ import java.util.List;
 public class TestResultController {
 
     private final TestResultService testResultService;
+    private final StudentService studentService;
 
     @GetMapping("/testResult/{studentId}")
     public String testResult(@PathVariable("studentId") Long studentId, Model model){
-
+        Student student = studentService.findStudentById(studentId);
+        for (int moduleNumber = 1; moduleNumber <= 4; moduleNumber++) {
+            List<Integer> testResults = testResultService.findLatestTestResultsByModule(student, moduleNumber);
+            model.addAttribute("module" + moduleNumber + "Results", testResults);
+        }
         List<TestResult> testResults = testResultService.findAllByStudentId(studentId);
         if (testResults.isEmpty()) {
             return "redirect:/admin";

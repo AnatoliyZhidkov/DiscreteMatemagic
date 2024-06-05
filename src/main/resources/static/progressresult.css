@@ -3,8 +3,37 @@ body {
     font-family: "mt-bold";
     margin: 0;
 }
-section{
-    margin: calc(10px + 3vw);
+header{
+    display:block;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: #1e2634;
+    z-index: 1;
+}
+.conteiner-header{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 60px;
+    border-bottom: solid 3px #41516C;
+    align-items: center;
+}
+.right-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 40px;
+    border-bottom-right-radius: 16px;
+    background: linear-gradient(36deg, rgba(102, 40, 187, 1) 0%, rgba(81, 197, 169, 1) 100%);
+}
+.right-header img{
+    height: 40px;
+    width: auto;
+}
+.clone{
+    position: static;
+    height: 60px;
 }
 .content{
     background-image: url('images/back.png');
@@ -59,7 +88,10 @@ section{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.4px);
     -webkit-backdrop-filter: blur(3.4px);
-    margin-bottom: 20px;
+    margin: calc(10px + 3vw) 0;
+}
+.content-all-tests{
+    margin-top: calc(10px + 2vw);
 }
 .block-statistics-in{
     padding: 1.43vw 3.57vw;
@@ -96,7 +128,26 @@ section{
 .button-back-main:hover{background-color: #E74949;}
 .button-back-main:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 
-
+.h2-name-test{
+    font-size: 17px;
+    color: white;
+}
+.p-info{
+    font-size: 14px;
+    color: white;
+}
+.result-item{
+    width: 30%;
+    margin-bottom: calc(8px + 1vw);
+}
+.block-for-result{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+}
+.a-for-button-back{
+    padding-right: 40px;
+}
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -133,6 +184,9 @@ section{
     .top-block-statistics span{
         display: none;
     }
+    .result-item {
+        width: 45%;
+    }
 }
 @media screen and (max-width: 750px){
     .button-back-main{
@@ -154,5 +208,21 @@ section{
     }
     .button-back-main{
         font-size: calc(8px + 1vw);
+    }
+    .result-item {
+        width: 100%;
+    }
+    .conteiner-header{
+        height: 50px;
+    }
+    .right-header img{
+        width: 90px;
+        height: auto;
+    }
+    .right-header{
+        padding: 11px 10px;
+    }
+    .clone {
+        height: 0;
     }
 }
