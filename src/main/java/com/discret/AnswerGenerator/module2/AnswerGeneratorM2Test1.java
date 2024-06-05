@@ -9,7 +9,7 @@ import java.lang.foreign.MemorySegment;
 import java.util.List;
 
 @Service
-public class AnswerGeneratorM1Test1  {
+public class AnswerGeneratorM2Test1  {
 
 
     public String generateAnswer(Question question, List<Integer> numbers){
@@ -80,7 +80,7 @@ public class AnswerGeneratorM1Test1  {
     }
 
     public String answerThirteenthQuestion(List<Integer> numbers){
-        // (one*(one-1)*(one-2)*two*(two-1)*(two-2)*three*(three-1)*(three-2)
+       // (one*(one-1)*(one-2)*two*(two-1)*(two-2)*three*(three-1)*(three-2)
         return String.valueOf(numbers.get(0)*(numbers.get(0)-1)*(numbers.get(0)-2)*numbers.get(1)*(numbers.get(1)-1)*(numbers.get(1)-2)*numbers.get(2)*(numbers.get(2)-1)*(numbers.get(2)-2));
     }
 }
