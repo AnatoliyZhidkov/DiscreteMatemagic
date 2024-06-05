@@ -36,6 +36,7 @@ public class TestController {
     private final TestResultService testResultService;
 
 
+
     @GetMapping("/{module}/{testnumber}")
     public String startTest(@PathVariable("testnumber") int testnumber,
                            @PathVariable ("module") int module, Model model) {
@@ -53,8 +54,10 @@ public class TestController {
 
     @PostMapping("/submitTest")
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student) authentication.getPrincipal();
         model.addAttribute("results", this.testResultService.endTest(testResultId,testSubmissionDTO));
+        this.testResultService.checkAndAssignAchievements(student);;
         return "tests/resultPage"; // Вернуть страницу с результатами
 
 

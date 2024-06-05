@@ -3,20 +3,24 @@ package com.discret.service.test;
 import com.discret.DTO.AnswerDTO;
 import com.discret.DTO.TestSubmissionDTO;
 import com.discret.controllers.test.TestResultController;
+import com.discret.entity.Achievement;
 import com.discret.entity.Student;
 import com.discret.entity.test.QuestionSession;
 import com.discret.entity.test.Test;
 import com.discret.entity.test.TestResult;
+import com.discret.repository.AchievementRepository;
 import com.discret.repository.StudentsRepository;
 import com.discret.repository.test.TestRepository;
 import com.discret.repository.test.TestResultRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,9 +31,9 @@ public class TestResultService {
    private final StudentsRepository studentsRepository;
    private final QuestionService questionService;
    private final TestResultRepository testResultRepository;
+   private final AchievementRepository achievementRepository;
 
-
-
+   @Transactional
     public TestResult startTest(int Module,int testNumber, Student student) {
 
         Test test = testRepository.findByModuleAndAndNumber( Module, testNumber);
@@ -45,7 +49,7 @@ public class TestResultService {
 
         return testResultRepository.save(testResult);
     }
-
+@Transactional
     public List<Boolean> endTest(Long idTestResult, TestSubmissionDTO testSubmissionDTO) {
 
         TestResult testResult = testResultRepository.findById(idTestResult).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
@@ -69,11 +73,11 @@ public class TestResultService {
         return results;
     }
 
-
+@Transactional
     public List<TestResult> findAllByStudentId(Long studentId) {
         return testResultRepository.findAllByStudentId(studentId);
     }
-
+@Transactional
     public boolean deleteTestResult(Long testResultId) {
        return this.testResultRepository.findById(testResultId).map(testResult -> {
            this.testResultRepository.delete(testResult);
@@ -88,7 +92,7 @@ public class TestResultService {
               .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
 
     }
-
+@Transactional
     public List<Integer> findLatestTestResultsByModule(Student student, int moduleNumber) {
 
         List<Integer> results = new ArrayList<>();
@@ -96,7 +100,10 @@ public class TestResultService {
         for (Test test : tests) {
             TestResult result = testResultRepository.findLastByTestIdAndStudentId(test.getId(),student.getId());
             if (result != null) {
-                results.add(result.getScore());
+                int totalQuestions = test.getQuestion().size();
+                int correctAnswers = result.getScore();
+                int percentage = (correctAnswers * 100) / totalQuestions;
+                results.add(percentage);
             }
             else {
                 results.add(0);
@@ -105,6 +112,41 @@ public class TestResultService {
         return results;
 
 
+    }
+    @Transactional
+    public List<Achievement> getAchievementsByStudent(Student student) {
+        return student.getAchievements().stream().toList();
+    }
+
+@Transactional
+    public void checkAndAssignAchievements(Student student) {
+        // Проверка на завершение первого модуля
+        boolean firstModuleCompleted = testRepository.findAllByModule(1).stream()
+                .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
+
+        if (firstModuleCompleted) {
+            assignAchievement(student, "Комбинаторный Пионер","/images/achieve2.svg");
+        }
+
+
+    }
+
+    private void assignAchievement(Student student, String name, String image) {
+        Optional<Achievement> optionalAchievement = Optional.ofNullable(achievementRepository.findByName(name));
+        Achievement achievement;
+        if (optionalAchievement.isPresent()) {
+            achievement = optionalAchievement.get();
+        } else {
+            achievement = new Achievement();
+            achievement.setName(name);
+            achievement.setImage(image);
+            achievement = achievementRepository.save(achievement);
+        }
+
+        if (!student.getAchievements().contains(achievement)) {
+            student.getAchievements().add(achievement);
+            studentsRepository.save(student);
+        }
     }
 
 }
