@@ -19,10 +19,10 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class AnswerGenerator implements AnswerGeneratorInterface {
 
-    public String generateAnswer(QuestionSession question, List<Integer> numbers){
+    public String generateAnswer(List<QuestionSession> questionSessionList,QuestionSession question, List<Integer> numbers){
         switch(question.getQuestion().getTest().getModule()){
             case 1:
-                return generateAnswerModule1(question,numbers);
+                return generateAnswerModule1(questionSessionList,question,numbers);
             case 2:
                 return generateAnswerModule2(question,numbers);
             case 3:
@@ -35,10 +35,10 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
     private final AnswerGeneratorM1Test1 answerGeneratorM1Test1;
     private final AnswerGeneratorM1Test2 answerGeneratorM1Test2;
     private final AnswerGeneratorM1Test3 answerGeneratorM1Test3;
-    public String generateAnswerModule1(QuestionSession question, List<Integer> numbers){
+    public String generateAnswerModule1(List<QuestionSession> questionSessionList,QuestionSession question, List<Integer> numbers){
         switch (question.getQuestion().getTest().getNumber()){
             case 1:
-                return answerGeneratorM1Test1.generateAnswer(question,numbers);
+                return answerGeneratorM1Test1.generateAnswer(questionSessionList,question,numbers);
             case 2:
                 return answerGeneratorM1Test2.generateAnswer(question,numbers);
             case 3:

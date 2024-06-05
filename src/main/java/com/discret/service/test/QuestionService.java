@@ -30,16 +30,27 @@ public class QuestionService {
 
         Test test = testService.findTestByModuleAndNumber(module,testNumber);
         Long testId = test.getId();
-        List<QuestionSession> questions = questionRepository.findAllByTestIdOrderByQuestionNumber(testId).stream().map(question -> generateQuestion(question, testResult)).collect(Collectors.toList());
+//        List<QuestionSession> questions = questionRepository.findAllByTestIdOrderByQuestionNumber(testId)
+//                .stream()
+//                .map(question -> generateQuestion(question, testResult))
+//                .collect(Collectors.toList());
 
+        List<Question> questionsList = questionRepository.findAllByTestIdOrderByQuestionNumber(testId);
 
-        return questions;
+        List<QuestionSession> questionSessions = new ArrayList<>();
+
+        for (Question question : questionsList) {
+            QuestionSession questionSession = generateQuestion(questionSessions,question, testResult);
+            questionSessions.add(questionSession);
+        }
+
+        return questionSessions;
 
     }
 
 
 
-    private QuestionSession generateQuestion(Question question, TestResult testResult) {
+    private QuestionSession generateQuestion(List<QuestionSession> questionSessionList,Question question, TestResult testResult) {
         String text = question.getQuestionText();
         String[] params = question.getParameters().split(",");
         List<Integer> numbers = new ArrayList<>();
@@ -55,13 +66,14 @@ public class QuestionService {
             }
         }
 
-        QuestionSession questionSession = new QuestionSession();
 
+
+        QuestionSession questionSession = new QuestionSession();
         questionSession.setQuestion(question);
         questionSession.setGeneratedText(text);
         questionSession.setGeneratedData(numbers.stream().map(Objects::toString).collect(Collectors.joining(",")));
         questionSession.setTestResult(testResult);
-        questionSession.setCorrectAnswer(answerGenerator.generateAnswer(questionSession,numbers));
+        questionSession.setCorrectAnswer(answerGenerator.generateAnswer(questionSessionList,questionSession,numbers));
         return questionSession;
     }
 
