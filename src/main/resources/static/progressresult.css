@@ -3,6 +3,9 @@ body {
     font-family: "mt-bold";
     margin: 0;
 }
+h2, td, th{
+    color: white;
+}
 header{
     display:block;
     position: fixed;
@@ -126,7 +129,7 @@ header{
     font-family: 'mt-bold';
 }
 .button-back-main:hover{background-color: #E74949;}
-.button-back-main:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
+.button-back-main:active, .btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 
 .h2-name-test{
     font-size: 17px;
@@ -161,6 +164,18 @@ header{
 .block-info-progress, .block-img-progress img, .top-block-statistics{
     animation: fadeIn 0.5s ease forwards;
 }
+.btn{
+    border-radius: 11px;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    -webkit-tap-highlight-color: transparent;
+    min-width: auto;
+    font-size: 16px;
+}
+#special{
+    margin-top: 0;
+}
 @media screen and (max-width: 900px){
     .block-info-progress h2 {
         font-size:calc(8px + 1vw);
@@ -187,6 +202,13 @@ header{
     .result-item {
         width: 45%;
     }
+    .h2-name-test, .p-info{
+        font-size: calc(8px + 0.5vw);
+    }
+    .p-info{
+        margin: 0;
+        margin-bottom: 5px;
+    }
 }
 @media screen and (max-width: 750px){
     .button-back-main{
@@ -206,7 +228,7 @@ header{
         width: 100%;
         margin-top: 10%;
     }
-    .button-back-main{
+    .button-back-main, .btn{
         font-size: calc(8px + 1vw);
     }
     .result-item {

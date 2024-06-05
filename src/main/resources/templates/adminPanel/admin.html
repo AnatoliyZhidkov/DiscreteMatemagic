@@ -5,93 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1>Группы</h1>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Название</th>
-            <th>Курс</th>
-            <th>Удалить</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="groups : ${groups}">
-            <td th:text="${groups.groupname}"></td>
-            <td th:text="${groups.groupNumber}"></td>
-            <td>
-                <form method="post" th:action="@{/admin/delete/group}">
-                    <input type="hidden" name="groupname" data-th-value="${groups.groupname}"/>
-                    <input type="hidden" name="groupNumber" data-th-value="${groups.groupNumber}"/>
-                    <input type="hidden" name="action" data-th-value="delete"/>
-                    <button class="btn btn-danger" >Delete</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/admin/create/group}">
-        <button class="btn btn-success" >Добавить группу</button>
-    </a>
-</div>
-<div class="container">
-    <h2>Студенты</h2>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Login</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Отчество</th>
-            <th>Группа</th>
-            <th>Курс</th>
-            <th>Удалить</th>
-            <th>Изменить данные</th>
-            <th>Тесты</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="student : ${student}">
-            <td th:text="${student.id}"></td>
-            <td th:text="${student.login}"></td>
-            <td th:text="${student.firstName}"></td>
-            <td th:text="${student.middleName}"></td>
-            <td th:text="${student.lastName}"></td>
-            <td th:text="${student.getStudent_groups().getGroupname()}"></td>
-            <td th:text="${student.getStudent_groups().getGroupNumber()}"></td>
-            <td>
-                <form method="post" th:action="@{/admin/delete}">
-                    <input type="hidden" name="studentId" data-th-value="${student.id}"/>
-                    <input type="hidden" name="action" data-th-value="delete"/>
-                <button class="btn btn-danger" >Удалить</button>
-                </form>
-            </td>
-            <td>
-                <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
-                    <button class="btn btn-primary" >Изменить</button>
-                </form>
-            </td>
-            <td>
-                <form method="get" th:action="@{/testResult/{studentId}(studentId = ${student.id})}">
-                    <button class="btn btn-primary" >Результаты</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div>
-    <a th:href="@{/admin/create}">
-        <button class="btn btn-success" >Добавить студента</button>
-    </a>
-    <a th:href="@{/main}">
-    <button class="btn btn-secondary ml-auto" >Вернуться</button>
-    </a>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
     </div>
-</div>
-
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <div class="top-block-statistics">
+                    <h1>Группы</h1>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="p-info">Название</th>
+                        <th class="p-info">Курс</th>
+                        <th class="p-info">Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="p-info" th:each="groups : ${groups}">
+                        <td class="p-info" th:text="${groups.groupname}"></td>
+                        <td  class="p-info" th:text="${groups.groupNumber}"></td>
+                        <td class="p-info">
+                            <form method="post" th:action="@{/admin/delete/group}">
+                                <input type="hidden" name="groupname" data-th-value="${groups.groupname}"/>
+                                <input type="hidden" name="groupNumber" data-th-value="${groups.groupNumber}"/>
+                                <input type="hidden" name="action" data-th-value="delete"/>
+                                <button class="btn btn-danger" >Удалить группу</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a th:href="@{/admin/create/group}">
+                    <button class="btn btn-success" >Добавить группу</button>
+                </a>
+            </div>
+        </div>
+        <div class="block-statistics" id="special">
+            <div class="block-statistics-in">
+                <div class="top-block-statistics">
+                    <h1>Студенты</h1>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="p-info">ID</th>
+                        <th class="p-info">Login</th>
+                        <th class="p-info">Имя</th>
+                        <th class="p-info">Фамилия</th>
+                        <th class="p-info">Отчество</th>
+                        <th class="p-info">Группа</th>
+                        <th class="p-info">Курс</th>
+                        <th class="p-info">Удалить</th>
+                        <th class="p-info">Изменить данные</th>
+                        <th class="p-info">Тесты</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student : ${student}">
+                        <td class="p-info" th:text="${student.id}"></td>
+                        <td class="p-info" th:text="${student.login}"></td>
+                        <td class="p-info" th:text="${student.firstName}"></td>
+                        <td class="p-info" th:text="${student.middleName}"></td>
+                        <td class="p-info" th:text="${student.lastName}"></td>
+                        <td class="p-info" th:text="${student.getStudent_groups().getGroupname()}"></td>
+                        <td class="p-info" th:text="${student.getStudent_groups().getGroupNumber()}"></td>
+                        <td>
+                            <form method="post" th:action="@{/admin/delete}">
+                                <input type="hidden" name="studentId" data-th-value="${student.id}"/>
+                                <input type="hidden" name="action" data-th-value="delete"/>
+                            <button class="btn btn-danger" >Удалить</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
+                                <button class="btn btn-primary" >Изменить</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="get" th:action="@{/testResult/{studentId}(studentId = ${student.id})}">
+                                <button class="btn btn-primary" >Результаты</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                <a th:href="@{/admin/create}">
+                    <button class="btn btn-success" >Добавить студента</button>
+                </a>
+                <a th:href="@{/main}">
+                <button class="btn btn-secondary ml-auto" >Вернуться</button>
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
