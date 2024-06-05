@@ -4,6 +4,8 @@ package com.discret.AnswerGenerator;
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test2;
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test3;
+import com.discret.AnswerGenerator.module2.AnswerGeneratorM2Test1;
+import com.discret.AnswerGenerator.module2.AnswerGeneratorM2Test2;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test2;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test1;
@@ -46,12 +48,14 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
+    private final AnswerGeneratorM2Test1 answerGeneratorM2Test1;
+    private final AnswerGeneratorM2Test2 answerGeneratorM2Test2;
     public String generateAnswerModule2(QuestionSession question, List<Integer> numbers){
         switch (question.getQuestion().getTest().getNumber()){
             case 1:
-                return "";
+                return answerGeneratorM2Test1.generateAnswer(question,numbers);
             case 2:
-                return "";
+                return answerGeneratorM2Test2.generateAnswer(question,numbers);
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
