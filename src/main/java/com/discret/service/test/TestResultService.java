@@ -2,6 +2,7 @@ package com.discret.service.test;
 
 import com.discret.DTO.AnswerDTO;
 import com.discret.DTO.TestSubmissionDTO;
+import com.discret.controllers.test.TestResultController;
 import com.discret.entity.Student;
 import com.discret.entity.test.QuestionSession;
 import com.discret.entity.test.Test;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +27,7 @@ public class TestResultService {
    private final StudentsRepository studentsRepository;
    private final QuestionService questionService;
    private final TestResultRepository testResultRepository;
+
 
 
     public TestResult startTest(int Module,int testNumber, Student student) {
@@ -60,7 +63,7 @@ public class TestResultService {
             results.add(isCorrect);
         }
 
-
+        testResult.setEndTime(LocalDateTime.now());
         this.testResultRepository.save(testResult);
 
         return results;
@@ -76,6 +79,32 @@ public class TestResultService {
            this.testResultRepository.delete(testResult);
            return true;
        }).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
+    }
+
+    public TestResult getLastScoreByTestModuleAndTestNumber(int module, int number, Long studentId) {
+
+      return  this.testResultRepository
+
+              .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
+
+    }
+
+    public List<Integer> findLatestTestResultsByModule(Student student, int moduleNumber) {
+
+        List<Integer> results = new ArrayList<>();
+        List<Test> tests = testRepository.findAllByModule(moduleNumber);
+        for (Test test : tests) {
+            TestResult result = testResultRepository.findLastByTestIdAndStudentId(test.getId(),student.getId());
+            if (result != null) {
+                results.add(result.getScore());
+            }
+            else {
+                results.add(0);
+            }
+        }
+        return results;
+
+
     }
 
 }

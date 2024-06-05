@@ -23,9 +23,12 @@ public class MainController {
     @GetMapping("/main")
     public String main(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student)authentication.getPrincipal();
         boolean hasAdminRole = authentication.getAuthorities().stream()
                 .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
         model.addAttribute("hasAdminRole", hasAdminRole);
+
+        model.addAttribute("loginName", student.getLogin());
         return "main";
     }
 
@@ -34,10 +37,7 @@ public class MainController {
         return "redirect:/main";
     }
 
-//    @PostMapping("/admin")
-//    public String adminPage(Model model){
-//ret
-//    }
+
 
 
 
