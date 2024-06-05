@@ -1,36 +1,33 @@
-package com.discret.AnswerGenerator.module1;
+package com.discret.AnswerGenerator.module2;
 
 import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.entity.test.Question;
-import com.discret.entity.test.QuestionSession;
 import org.springframework.stereotype.Service;
 
 import java.lang.foreign.MemorySegment;
 import java.util.List;
 
 @Service
-public class AnswerGeneratorM1Test1  {
+public class AnswerGeneratorM2Test1  {
 
 
-    public String generateAnswer(QuestionSession question, List<Integer> numbers){
-        switch (question.getQuestion().getQuestionNumber()){
+    public String generateAnswer(Question question, List<Integer> numbers){
+        switch (question.getQuestionNumber()){
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);
             case 3: return answerThirdQuestion(numbers);
             case 4: return answerFourthQuestion(numbers);
-            case 5: return answerFifthQuestion(numbers);
-            case 6: return answerSixthQuestion(numbers);
+            case 5: return answerEighthQuestion(numbers);
+            case 6: return answerFifthQuestion(numbers);
             case 7: return answerSeventhQuestion(numbers);
             case 8: return answerEighthQuestion(numbers);
-            case 9: return "";
+            case 9: return answerNinthQuestion(numbers);
             case 10: return answerTenthQuestion(numbers);
-            case 11: return "28561";
-            case 12: return "17160";
-            case 13: return answerThirteenthQuestion(numbers);
 
 
-            default: throw new IllegalArgumentException("Unknown question" + question.getQuestion().getQuestionNumber());
+
+            default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());
         }
     }
     public String answerFirstQuestion( List<Integer> numbers){
@@ -61,11 +58,11 @@ public class AnswerGeneratorM1Test1  {
     }
     public String answerEighthQuestion(List<Integer> numbers){
 
-        var num = numbers;
+
         return String.valueOf(factorial(numbers.get(1))/factorial(numbers.get(1)-numbers.get(0)));
     }
 
-    public Long factorial(Integer n) {
+    public Long factorial(int n) {
         if (n == 0) {
             return 1L;
         }
@@ -81,7 +78,7 @@ public class AnswerGeneratorM1Test1  {
     }
 
     public String answerThirteenthQuestion(List<Integer> numbers){
-        // (one*(one-1)*(one-2)*two*(two-1)*(two-2)*three*(three-1)*(three-2)
+       // (one*(one-1)*(one-2)*two*(two-1)*(two-2)*three*(three-1)*(three-2)
         return String.valueOf(numbers.get(0)*(numbers.get(0)-1)*(numbers.get(0)-2)*numbers.get(1)*(numbers.get(1)-1)*(numbers.get(1)-2)*numbers.get(2)*(numbers.get(2)-1)*(numbers.get(2)-2));
     }
 }

@@ -1,38 +1,36 @@
-package com.discret.AnswerGenerator.module3;
+package com.discret.AnswerGenerator.module2;
 
 import com.discret.AnswerGenerator.AnswerGenerator;
-import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
-import com.discret.entity.test.Answer;
+import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.entity.test.Question;
-import com.discret.entity.test.QuestionSession;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
-public class AnswerGeneratorM3Test1  {
+public class AnswerGeneratorM2Test2  {
 
 
-
-
-    public String generateAnswer(QuestionSession question, List<Integer> numbers){
-        switch (question.getQuestion().getQuestionNumber()){
+    public String generateAnswer(Question question, List<Integer> numbers){
+        switch (question.getQuestionNumber()){
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);
             case 3: return answerThirdQuestion(numbers);
             case 4: return answerFourthQuestion(numbers);
             case 5: return "нет";
-            case 6: return "13";
-            case 7: return "23";
-            case 8: return "12";
-            default: throw new IllegalArgumentException("Unknown question" + question.getQuestion().getQuestionNumber());
+            case 6: return "23";
+            case 7: return "13";
+            case 8: return "24";
+            case 9: return "24";
+            case 10: return "24";
+            case 11: return "24";
+            case 12: return "24";
+            case 13: return "24";
+            default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());
         }
     }
     public String answerFirstQuestion( List<Integer> numbers){
-         return String.valueOf(numbers.get(0)*(numbers.get(0)-1)/2);
+        return String.valueOf(numbers.get(0)*(numbers.get(0)-1)/2);
     }
 
     public String answerSecondQuestion(List<Integer> numbers){
