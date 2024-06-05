@@ -3,6 +3,7 @@ package com.discret.AnswerGenerator.module1;
 import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.entity.test.Question;
+import com.discret.entity.test.QuestionSession;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +12,8 @@ import java.util.List;
 public class AnswerGeneratorM1Test2  {
 
 
-    public String generateAnswer(Question question, List<Integer> numbers){
-        switch (question.getQuestionNumber()){
+    public String generateAnswer(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getQuestionNumber()){
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);
             case 3: return answerThirdQuestion(numbers);
@@ -26,7 +27,7 @@ public class AnswerGeneratorM1Test2  {
             case 11: return "24";
             case 12: return "24";
             case 13: return "24";
-            default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());
+            default: throw new IllegalArgumentException("Unknown question" + question.getQuestion().getQuestionNumber());
         }
     }
     public String answerFirstQuestion( List<Integer> numbers){

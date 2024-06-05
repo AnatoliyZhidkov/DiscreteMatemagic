@@ -1,11 +1,15 @@
 package com.discret.AnswerGenerator;
 
+
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
+import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test2;
+import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test3;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test2;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test1;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test2;
 import com.discret.entity.test.Question;
+import com.discret.entity.test.QuestionSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +19,8 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class AnswerGenerator implements AnswerGeneratorInterface {
 
-    public String generateAnswer(Question question, List<Integer> numbers){
-        switch(question.getTest().getModule()){
+    public String generateAnswer(QuestionSession question, List<Integer> numbers){
+        switch(question.getQuestion().getTest().getModule()){
             case 1:
                 return generateAnswerModule1(question,numbers);
             case 2:
@@ -25,51 +29,53 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
                 return generateAnswerModule3(question,numbers);
             case 4:
                  return generateAnswerModule4(question,numbers);
-            default: throw new IllegalArgumentException("Unknown module: " + question.getTest().getModule());
+            default: throw new IllegalArgumentException("Unknown module: " + question.getQuestion().getTest().getModule());
         }
     }
     private final AnswerGeneratorM1Test1 answerGeneratorM1Test1;
-    public String generateAnswerModule1(Question question, List<Integer> numbers){
-        switch (question.getTest().getNumber()){
+    private final AnswerGeneratorM1Test2 answerGeneratorM1Test2;
+    private final AnswerGeneratorM1Test3 answerGeneratorM1Test3;
+    public String generateAnswerModule1(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getTest().getNumber()){
             case 1:
                 return answerGeneratorM1Test1.generateAnswer(question,numbers);
             case 2:
-                return "";
+                return answerGeneratorM1Test2.generateAnswer(question,numbers);
             case 3:
-                return "";
-            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
+                return answerGeneratorM1Test3.generateAnswer(question,numbers);
+            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
-    public String generateAnswerModule2(Question question, List<Integer> numbers){
-        switch (question.getTest().getNumber()){
+    public String generateAnswerModule2(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getTest().getNumber()){
             case 1:
                 return "";
             case 2:
                 return "";
-            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
+            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
     private final AnswerGeneratorM3Test1 answerGeneratorM3Test1;
     private final AnswerGeneratorM3Test2 answerGeneratorM3Test2;
 
-    public String generateAnswerModule3(Question question, List<Integer> numbers){
-        switch (question.getTest().getNumber()){
+    public String generateAnswerModule3(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getTest().getNumber()){
             case 1:
                 return answerGeneratorM3Test1.generateAnswer(question,numbers);
             case 2:
                 return answerGeneratorM3Test2.generateAnswer(question,numbers);
-            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
+            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
     private final AnswerGeneratorM4Test1 answerGeneratorM4Test1;
     private final AnswerGeneratorM4Test2 answerGeneratorM4Test2;
-    public String generateAnswerModule4(Question question, List<Integer> numbers){
-        switch (question.getTest().getNumber()){
+    public String generateAnswerModule4(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getTest().getNumber()){
             case 1:
                 return answerGeneratorM4Test1.generateAnswer(question,numbers);
             case 2:
                 return answerGeneratorM4Test2.generateAnswer(question,numbers);
-            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getTest().getModule() + " test-" +question.getTest().getNumber());
+            default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }
 

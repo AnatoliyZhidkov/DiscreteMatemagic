@@ -5,17 +5,25 @@ insert into image (url, question_id) VALUES -- задача 9
 ('/images/tests/module4/test1/count11.png', 115);
 
 --модуль 4 тест 2
+--модуль 4 тест 2
 insert into image (url, question_id) values
-('images/tests/module4/test2/Chart1.png', 116),--1
-('images/tests/module4/test2/Chart2.png', 117),--2
-('images/tests/module4/test2/Chart3.png', 118),--3
-('images/tests/module4/test2/Plan.png', 119),--4
-('images/tests/module4/test2/PlanChart.png', 119),--5
-('images/tests/module4/test2/graph14.png', 122),--7
-('images/tests/module4/test2/graph15.png', 123),--8
-('images/tests/module4/test2/graph16.png', 124);--9
-
-
+ ('/images/tests/module4/test2/Chart1.png', 144),--1
+ ('/images/tests/module4/test2/Chart2.png', 145),--2
+('/images/tests/module4/test2/Chart3.png', 146),--3
+ ('/images/tests/module4/test2/Plan.png', 147),--4
+ ('/images/tests/module4/test2/PlanChart.png', 148),--5
+('/images/tests/module4/test2/chartfigure1.png',149),--6
+ ('/images/tests/module4/test2/chartfigure2.png',149),
+('/images/tests/module4/test2/chartfigure3.png',149),
+('/images/tests/module4/test2/chartfigure4.png',149),
+('/images/tests/module4/test2/chartfigure5.png',149),
+('/images/tests/module4/test2/chartfigure6.png',149),
+('/images/tests/module4/test2/chartfigure7.png',149),
+('/images/tests/module4/test2/chartfigure8.png',149),
+('/images/tests/module4/test2/chartfigure9.png',149),
+('/images/tests/module4/test2/graph14.png', 150),--7
+('/images/tests/module4/test2/graph15.png', 151),--8
+('/images/tests/module4/test2/graph16.png', 152);--9
 
 insert into image (url, question_id) VALUES --задача 10
 ('/images/tests/module4/test1/count7.png', 133),

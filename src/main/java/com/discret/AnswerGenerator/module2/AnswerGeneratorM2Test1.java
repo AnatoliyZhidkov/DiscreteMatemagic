@@ -24,9 +24,7 @@ public class AnswerGeneratorM2Test1  {
             case 8: return answerEighthQuestion(numbers);
             case 9: return answerNinthQuestion(numbers);
             case 10: return answerTenthQuestion(numbers);
-            case 11: return "28561";
-            case 12: return "17160";
-            case 13: return answerThirteenthQuestion(numbers);
+
 
 
             default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());

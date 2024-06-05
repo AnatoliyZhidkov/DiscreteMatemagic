@@ -4,6 +4,7 @@ import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
 import com.discret.entity.test.Answer;
 import com.discret.entity.test.Question;
+import com.discret.entity.test.QuestionSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,8 @@ public class AnswerGeneratorM4Test1  {
 
 
 
-    public String generateAnswer(Question question, List<Integer> numbers){
-        switch (question.getQuestionNumber()){
+    public String generateAnswer(QuestionSession question, List<Integer> numbers){
+        switch (question.getQuestion().getQuestionNumber()){
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);
             case 3: return answerThirdQuestion(numbers);
@@ -29,7 +30,7 @@ public class AnswerGeneratorM4Test1  {
             case 8: return "да";
             case 9: return "12";
             case 10: return "1";
-            default: throw new IllegalArgumentException("Unknown question" + question.getQuestionNumber());
+            default: throw new IllegalArgumentException("Unknown question" + question.getQuestion().getQuestionNumber());
         }
     }
     public String answerFirstQuestion( List<Integer> numbers){
