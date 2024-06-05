@@ -6,6 +6,9 @@ a{
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
 }
+body{
+    min-height: 100%;
+}
 header{
     display:block;
     position: fixed;
@@ -57,6 +60,7 @@ header{
     gap: calc(10px + 2vw);
     background-color: white;
     align-items: center;
+    min-height: 86vh;
 }
 .task{
     width: 70%;
@@ -80,7 +84,13 @@ header{
     width: 70%;
     justify-content: flex-end;
 }
-.container-for-button button{
+.p-in-div-result{
+    font-size: 17px;
+}
+.h1-result{
+    font-size: 24px;
+}
+.container-for-button button, .button-back-main{
     background-color: #ff6666;
     border-radius: 11px;
     padding: calc(2px + 0.5vw) calc(25px + 1vw);
@@ -94,8 +104,8 @@ header{
     font-size: 17px;
     font-family: 'mt-bold';
 }
-.container-for-button button:hover{background-color: #E74949;}
-.container-for-button button:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
+.container-for-button button:hover, .button-back-main:hover{background-color: #E74949;}
+.container-for-button button:active, .button-back-main:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 .reply{
     padding: calc(5px + 0.5vw) calc(5px + 1vw);
     background-color: rgba(255, 102, 102, 0.1);
@@ -104,6 +114,7 @@ header{
     font-size: 17px;
     font-family: 'mt-regular';
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -137,7 +148,7 @@ header{
     .sec-content{
         background-color: white;
     }
-    .container-for-button button{
+    .container-for-button button, .button-back-main{
         min-width: auto;
         padding: calc(9px + 0.5vw) calc(25px + 1vw);
     }
@@ -156,8 +167,11 @@ header{
     .right-header{
         padding: 11px 10px;
     }
-    .container-for-button button, .reply{
+    .container-for-button button, .reply, .button-back-main, .p-in-div-result{
         font-size: calc(8px + 1vw);
+    }
+    .h1-result{
+        font-size: calc(10px + 1vw);
     }
     .img-in-test{
         width: 150px;

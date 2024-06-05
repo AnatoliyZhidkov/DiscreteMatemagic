@@ -53,7 +53,8 @@ public class TestController {
 
     @PostMapping("/submitTest")
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student) authentication.getPrincipal();
         model.addAttribute("results", this.testResultService.endTest(testResultId,testSubmissionDTO));
         return "tests/resultPage"; // Вернуть страницу с результатами
 
