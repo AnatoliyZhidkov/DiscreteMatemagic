@@ -106,6 +106,15 @@
                     <h1>Достижения</h1>
                 </div>
                 <div class="block-for-items-acheive">
+                    <div th:each="achievement : ${achievements}" class="item-achieve">
+                        <img th:src="@{${achievement.image}}" alt="">
+                        <div class="description-item-achieve">
+                            <h3 th:text="${achievement.name}"></h3>
+                            <h4 th:text="${achievement.description}"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-for-items-acheive">
                     <div class="item-achieve">
                         <img src="images\achieve1.svg" alt="">
                         <div class="description-item-achieve">

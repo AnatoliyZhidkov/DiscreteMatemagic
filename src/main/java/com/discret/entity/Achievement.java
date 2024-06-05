@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,7 +15,11 @@ public class Achievement {
     private Long id;
 
     private String name;
+    private String description;
 
+    @Column(name = "image_url")
+    private String image;
+    @Transient
     @ManyToMany(mappedBy = "achievements")
-    private List<Student> students;
+    private Set<Student> students;
 }

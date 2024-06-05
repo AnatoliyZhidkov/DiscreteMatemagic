@@ -2,6 +2,7 @@ package com.discret.entity;
 
 import com.discret.entity.test.TestResult;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
+@Data
 @Entity(name = "student")
 public class Student implements UserDetails {
     @Id
@@ -42,8 +43,13 @@ public class Student implements UserDetails {
     private List<TestResult> testResults;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Achievement> achievements;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "student_achievements",
+            joinColumns = @JoinColumn(name = "students_id"),
+            inverseJoinColumns = @JoinColumn(name = "achievements_id")
+    )
+    private Set<Achievement> achievements;
 
     public Student() {
     }
