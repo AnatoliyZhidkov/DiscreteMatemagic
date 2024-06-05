@@ -21,8 +21,8 @@
         <div class="content">
             <div th:each="question, stat : ${questions}" class="task">
                 <h1 th:text="${question.generatedText}">Question text here</h1>
-                <div th:if="${question.question != null}">
-                    <div th:each="image : ${question.question.images}" class="div-for-img">
+                <div th:if="${question.question != null}" class="div-for-img">
+                    <div th:each="image : ${question.question.images}" >
                         <img th:src="@{${image.url}}" class="img-in-test" alt="картинка графа">
                     </div>
                 </div>
