@@ -5,6 +5,7 @@ import com.discret.repository.StudentsRepository;
 import com.discret.repository.test.TestRepository;
 import com.discret.repository.test.TestResultRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class TestService implements TestServiceInt {
         return testRepository.findById(testid).orElseThrow(() -> new EntityNotFoundException("Test not found"));
 
     }
-
+    @Transactional
     public Test findTestByModuleAndNumber(int Module,int Number){
         return testRepository.findByModuleAndAndNumber( Module, Number);
     }

@@ -29,13 +29,7 @@ import java.util.List;
 @RequestMapping("/tests")
 public class TestController {
 
-    private final TestService testService;
-    private final QuestionService questionService;
-
-    private final TestResultRepository testResultRepository;
     private final TestResultService testResultService;
-
-
 
     @GetMapping("/{module}/{testnumber}")
     public String startTest(@PathVariable("testnumber") int testnumber,
@@ -43,14 +37,10 @@ public class TestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student) authentication.getPrincipal();
         TestResult testResult = testResultService.startTest(module,testnumber,student);
-
         List<QuestionSession> questions = testResult.getQuestionSessions();
         model.addAttribute("questions", questions);
-
-
         return String.format("/tests/module%d/test%d-%d", module, module, testnumber);
     }
-
 
     @PostMapping("/submitTest")
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
@@ -58,7 +48,7 @@ public class TestController {
         Student student = (Student) authentication.getPrincipal();
         model.addAttribute("results", this.testResultService.endTest(testResultId,testSubmissionDTO));
         this.testResultService.checkAndAssignAchievements(student);;
-        return "tests/resultPage"; // Вернуть страницу с результатами
+        return "tests/resultPage";
 
 
     }

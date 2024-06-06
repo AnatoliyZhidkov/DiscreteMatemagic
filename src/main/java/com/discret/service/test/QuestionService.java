@@ -7,6 +7,7 @@ import com.discret.repository.test.QuestionRepository;
 import com.discret.repository.test.QuestionSessionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +27,12 @@ public class QuestionService {
 
 
     private static final Random random = new Random();
+    @Transactional
     public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
 
         Test test = testService.findTestByModuleAndNumber(module,testNumber);
         Long testId = test.getId();
-//        List<QuestionSession> questions = questionRepository.findAllByTestIdOrderByQuestionNumber(testId)
-//                .stream()
-//                .map(question -> generateQuestion(question, testResult))
-//                .collect(Collectors.toList());
-
         List<Question> questionsList = questionRepository.findAllByTestIdOrderByQuestionNumber(testId);
-
         List<QuestionSession> questionSessions = new ArrayList<>();
 
         for (Question question : questionsList) {
@@ -77,7 +73,7 @@ public class QuestionService {
         return questionSession;
     }
 
-
+    @Transactional
     public QuestionSession findQuestionSessionById(Long id) {
         return questionSessionRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("No QuestionSession found with id " + id));
