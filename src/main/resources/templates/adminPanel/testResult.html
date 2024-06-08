@@ -26,6 +26,19 @@
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Модуль 1 <span>— Элементарная комбинаторика</span></h1>
+                    <form th:action="@{/testResult/deleteResults/module{module}(module=1)}" method="post">
+                        <div class="button-delete-data">
+                            <select name="delete-mod-1"  class="button-back-main" id="button-select">
+                                <option th:value="lesson1">Урок 1</option>
+                                <option th:value="lesson2">Урок 2</option>
+                                <option th:value="lesson3">Урок 3</option>
+                                <option th:value="lesson4">Урок 4</option>
+                            </select>
+                            <input type="hidden" th:name="testnumber" th:value="${testResult.id}" />
+                            <input type="hidden" th:name="studentId" th:value="${testResult.student.id}" />
+                            <button type="submit" class="button-back-main" id="delete-lesson-data">Удалить результаты</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="block-for-items-acheive">
                     <canvas id="mod1" th:data-results-json="${module1Results}"></canvas>
