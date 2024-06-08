@@ -6,6 +6,12 @@ body {
 h2, td, th{
     color: white;
 }
+.scrollable-container {
+    overflow-x: auto; /* Включает горизонтальную прокрутку, если таблица шире контейнера */
+    width: 100%; /* Определяет ширину контейнера, чтобы он соответствовал родительскому элементу */
+    max-width: 100%; /* Запрещает контейнеру быть шире, чем родительский элемент */
+    margin-bottom: 20px; /* Добавляет отступ снизу для визуального разделения */
+}
 header{
     display:block;
     position: fixed;
@@ -42,6 +48,7 @@ header{
     background-image: url('images/back.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     width: 100%;
