@@ -61,21 +61,6 @@ public class StudentService implements UserDetailsService {
 
 
     @Transactional
-    public boolean saveStudent(String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
-
-        Student studentFromDb = studentsRepository.findByLogin(login);
-
-        if (studentFromDb != null){
-
-            return false;
-        }
-
-        Student student = new Student();
-       student = setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
-        studentsRepository.save(student);
-        return true;
-
-    }@Transactional
     public boolean updateStudent(Long Id,String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
 
         this.studentsRepository.findById(Id)
@@ -94,6 +79,24 @@ public class StudentService implements UserDetailsService {
                         }  ,() -> {throw new NoSuchElementException();}
                         );
 
+        return true;
+
+    }
+
+
+    @Transactional
+    public boolean saveStudent(String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
+
+        Student studentFromDb = studentsRepository.findByLogin(login);
+
+        if (studentFromDb != null){
+
+            return false;
+        }
+
+        Student student = new Student();
+        student = setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
+        studentsRepository.save(student);
         return true;
 
     }

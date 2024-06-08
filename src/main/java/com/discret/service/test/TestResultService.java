@@ -124,14 +124,27 @@ public class TestResultService {
         boolean firstModuleCompleted = testRepository.findAllByModule(1).stream()
                 .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
 
+        boolean thirdModuleCompleted = testRepository.findAllByModule(3).stream()
+                .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
+        boolean FourthModuleCompleted = testRepository.findAllByModule(4).stream()
+                .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
+
+
         if (firstModuleCompleted) {
-            assignAchievement(student, "Комбинаторный Пионер","/images/achieve2.svg");
+            assignAchievement(student, "Комбинаторный Пионер","/images/achieve2.svg", "За успешное завершение всех тестов модуля 1");
         }
+
+    if (thirdModuleCompleted) {
+        assignAchievement(student, "Исследователь Графов","/images/achieve4.svg","За успешное завершение всех тестов модуля 3");
+    }
+    if (FourthModuleCompleted) {
+        assignAchievement(student, "Мастер Графов","/images/achieve4.1.svg","За успешное завершение всех тестов модуля 4");
+    }
 
 
     }
 
-    private void assignAchievement(Student student, String name, String image) {
+    private void assignAchievement(Student student, String name, String image, String description) {
         Optional<Achievement> optionalAchievement = Optional.ofNullable(achievementRepository.findByName(name));
         Achievement achievement;
         if (optionalAchievement.isPresent()) {
@@ -140,6 +153,7 @@ public class TestResultService {
             achievement = new Achievement();
             achievement.setName(name);
             achievement.setImage(image);
+            achievement.setDescription(description);
             achievement = achievementRepository.save(achievement);
         }
 
