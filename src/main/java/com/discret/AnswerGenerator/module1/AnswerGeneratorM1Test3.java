@@ -31,7 +31,10 @@ public class AnswerGeneratorM1Test3 extends AbstractAnswerGenerator {
 
 
     public String answerSecondQuestion(List<Integer> numbers){
-        return String.valueOf(factorial(numbers.get(0))/(factorial(numbers.get(0)-numbers.get(1))*factorial(numbers.get(1))));
+        return String.valueOf(
+                factorial(numbers.get(0))
+                /(factorial(numbers.get(0)-numbers.get(1))
+                *factorial(numbers.get(1))));
     }
 
     public String answerFifthQuestion(List<Integer> numbers){
@@ -53,8 +56,10 @@ public class AnswerGeneratorM1Test3 extends AbstractAnswerGenerator {
     public String answerSeventhQuestion(List<Integer> numbers){
         return String.valueOf(
                 factorial(numbers.get(0))
-                /
+                         /
                         (factorial(numbers.get(0)-5) * 120)
+
+
         )
         ;
     }

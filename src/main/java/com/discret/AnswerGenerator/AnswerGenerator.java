@@ -30,7 +30,7 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
             case 3:
                 return generateAnswerModule3(question,numbers);
             case 4:
-                 return generateAnswerModule4(question,numbers);
+                 return generateAnswerModule4(questionSessionList,question,numbers);
             default: throw new IllegalArgumentException("Unknown module: " + question.getQuestion().getTest().getModule());
         }
     }
@@ -73,10 +73,10 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
     }
     private final AnswerGeneratorM4Test1 answerGeneratorM4Test1;
     private final AnswerGeneratorM4Test2 answerGeneratorM4Test2;
-    public String generateAnswerModule4(QuestionSession question, List<Integer> numbers){
+    public String generateAnswerModule4(List<QuestionSession> questionSessionList,QuestionSession question, List<Integer> numbers){
         switch (question.getQuestion().getTest().getNumber()){
             case 1:
-                return answerGeneratorM4Test1.generateAnswer(question,numbers);
+                return answerGeneratorM4Test1.generateAnswer(questionSessionList,question,numbers);
             case 2:
                 return answerGeneratorM4Test2.generateAnswer(question,numbers);
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());

@@ -18,7 +18,7 @@ public class AnswerGeneratorM4Test1  {
 
 
 
-    public String generateAnswer(QuestionSession question, List<Integer> numbers){
+    public String generateAnswer(List<QuestionSession> questionSessionList,QuestionSession question, List<Integer> numbers){
         switch (question.getQuestion().getQuestionNumber()){
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);

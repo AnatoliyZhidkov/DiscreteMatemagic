@@ -25,7 +25,6 @@ public class QuestionService {
 
     private final AnswerGenerator answerGenerator;
 
-
     private static final Random random = new Random();
     @Transactional
     public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
@@ -44,8 +43,6 @@ public class QuestionService {
 
     }
 
-
-
     private QuestionSession generateQuestion(List<QuestionSession> questionSessionList,Question question, TestResult testResult) {
         String text = question.getQuestionText();
         String[] params = question.getParameters().split(",");
@@ -61,9 +58,6 @@ public class QuestionService {
                 text = text.replaceFirst("\\{\\}", String.valueOf(randomValue));
             }
         }
-
-
-
         QuestionSession questionSession = new QuestionSession();
         questionSession.setQuestion(question);
         questionSession.setGeneratedText(text);

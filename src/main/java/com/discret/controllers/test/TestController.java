@@ -26,12 +26,12 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/tests")
+
 public class TestController {
 
     private final TestResultService testResultService;
 
-    @GetMapping("/{module}/{testnumber}")
+    @GetMapping("/tests/{module}/{testnumber}")
     public String startTest(@PathVariable("testnumber") int testnumber,
                            @PathVariable ("module") int module, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,10 +39,10 @@ public class TestController {
         TestResult testResult = testResultService.startTest(module,testnumber,student);
         List<QuestionSession> questions = testResult.getQuestionSessions();
         model.addAttribute("questions", questions);
-        return String.format("/tests/module%d/test%d-%d", module, module, testnumber);
+        return String.format("tests/module%d/test%d-%d", module, module, testnumber);
     }
 
-    @PostMapping("/submitTest")
+    @PostMapping("/tests/submitTest")
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student) authentication.getPrincipal();
