@@ -36,6 +36,12 @@ public class TestController {
                            @PathVariable ("module") int module, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student) authentication.getPrincipal();
+
+        if (this.testResultService.countTestResult(module, testnumber,student.getId()) >2) {
+            return "redirect:/main";
+        }
+
+
         TestResult testResult = testResultService.startTest(module,testnumber,student);
         List<QuestionSession> questions = testResult.getQuestionSessions();
         model.addAttribute("questions", questions);
@@ -46,6 +52,11 @@ public class TestController {
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student) authentication.getPrincipal();
+
+        if (this.testResultService.existsByTestResultIdAndStudentId(testResultId,student.getId()) && this.testResultService.findLastByTestResultIdAndStudentId(testResultId,student.getId()).getEndTime() != null) {
+            return "redirect:/main";
+        }
+
         model.addAttribute("results", this.testResultService.endTest(testResultId,testSubmissionDTO));
         this.testResultService.checkAndAssignAchievements(student);;
         return "tests/resultPage";

@@ -16,4 +16,11 @@ public interface TestResultRepository extends JpaRepository<TestResult,Long> {
     TestResult findLastByTestIdAndStudentId(Long testId,Long studentId);
 
     boolean existsByTestIdAndStudentId(Long testId,Long studentId);
+    boolean existsByIdAndStudentId(Long Id,Long studentId);
+
+    int countByTestIdAndStudentId(Long testId,Long studentId);
+
+    TestResult findByTestIdAndStudentId(Long testId, Long studentId);
+
+    TestResult findLastByIdAndStudentId(Long testResultId,Long studentId);
 }

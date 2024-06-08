@@ -37,8 +37,11 @@ public class TestResultService {
     public TestResult startTest(int Module,int testNumber, Student student) {
 
         Test test = testRepository.findByModuleAndAndNumber( Module, testNumber);
-        //Student student = studentsRepository.findByLogin(studentLogin);
 
+        if (this.testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId())
+                && testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId()).getEndTime() == null) {
+                return this.testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId());
+        }
         TestResult testResult = new TestResult();
         testResultRepository.save(testResult);
         testResult.setTest(test);
@@ -54,30 +57,37 @@ public class TestResultService {
 
         TestResult testResult = testResultRepository.findById(idTestResult).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
 
+
+
         List<AnswerDTO> answers = testSubmissionDTO.getAnswers();
         List<Boolean> results = new ArrayList<>();
-
+        int score = 0;
         for (AnswerDTO answer : answers) {
             QuestionSession questionSession = questionService.findQuestionSessionById(answer.getQuestionId());
             questionSession.setStudentAnswer(answer.getAnswer());
             boolean isCorrect = questionSession.getStudentAnswer().equals(questionSession.getCorrectAnswer());
             if (isCorrect) {
-                testResult.setScore(testResult.getScore() + 1);
+                score++;
             }
             results.add(isCorrect);
         }
 
+        testResult.setScore(score);
         testResult.setEndTime(LocalDateTime.now());
         this.testResultRepository.save(testResult);
 
         return results;
     }
 
-@Transactional
+    public boolean existsByTestResultIdAndStudentId(Long testResultId,Long studentId) {
+        return testResultRepository.existsByIdAndStudentId(testResultId,studentId);
+    }
+
+    @Transactional
     public List<TestResult> findAllByStudentId(Long studentId) {
         return testResultRepository.findAllByStudentId(studentId);
     }
-@Transactional
+    @Transactional
     public boolean deleteTestResult(Long testResultId) {
        return this.testResultRepository.findById(testResultId).map(testResult -> {
            this.testResultRepository.delete(testResult);
@@ -86,13 +96,17 @@ public class TestResultService {
     }
 
     public TestResult getLastScoreByTestModuleAndTestNumber(int module, int number, Long studentId) {
-
       return  this.testResultRepository
-
               .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
-
     }
-@Transactional
+
+    @Transactional
+    public int countTestResult(int module, int number, Long studentId) {
+        return this.testResultRepository
+                .countByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
+    }
+
+    @Transactional
     public List<Integer> findLatestTestResultsByModule(Student student, int moduleNumber) {
 
         List<Integer> results = new ArrayList<>();
@@ -110,20 +124,23 @@ public class TestResultService {
             }
         }
         return results;
-
-
     }
+   public TestResult findLastByTestResultIdAndStudentId (Long testResultId, Long studentId) {
+       return testResultRepository.findLastByIdAndStudentId(testResultId,studentId);
+   }
+
     @Transactional
     public List<Achievement> getAchievementsByStudent(Student student) {
         return student.getAchievements().stream().toList();
     }
 
-@Transactional
+    @Transactional
     public void checkAndAssignAchievements(Student student) {
         // Проверка на завершение первого модуля
         boolean firstModuleCompleted = testRepository.findAllByModule(1).stream()
                 .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
-
+        boolean secondModuleCompleted = testRepository.findAllByModule(2).stream()
+            .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
         boolean thirdModuleCompleted = testRepository.findAllByModule(3).stream()
                 .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
         boolean FourthModuleCompleted = testRepository.findAllByModule(4).stream()
@@ -139,6 +156,9 @@ public class TestResultService {
     }
     if (FourthModuleCompleted) {
         assignAchievement(student, "Мастер Графов","/images/achieve4.1.svg","За успешное завершение всех тестов модуля 4");
+    }
+    if (secondModuleCompleted) {
+        assignAchievement(student, "Комбинаторный Эксперт","/images/achieve3.svg","За успешное завершение всех тестов модуля 2");
     }
 
 
