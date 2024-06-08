@@ -182,5 +182,9 @@ public class TestResultService {
             studentsRepository.save(student);
         }
     }
+    @Transactional
+    public void deleteTestResultsByModuleAddTest(int moduleNumber, int testNumber, Long studentId) {
 
+        testResultRepository.deleteByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(moduleNumber, testNumber).getId(),studentId);
+    }
 }

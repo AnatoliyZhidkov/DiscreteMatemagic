@@ -23,4 +23,9 @@ public interface TestResultRepository extends JpaRepository<TestResult,Long> {
     TestResult findByTestIdAndStudentId(Long testId, Long studentId);
 
     TestResult findLastByIdAndStudentId(Long testResultId,Long studentId);
+
+
+    void deleteByTestIdAndStudentId(Long id, Long studentId);
 }
+
+

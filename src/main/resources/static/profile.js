@@ -1,7 +1,7 @@
 // Функция для проверки валидности пароля
 function isPasswordValid(password) {
     // Регулярное выражение для проверки пароля: минимум 8 символов, заглавная и строчная буквы, цифра и спецсимвол
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]{8,}$/;
     return passwordRegex.test(password);
 }
 
@@ -129,6 +129,7 @@ document.getElementById('safe-password-btn').addEventListener('click', function(
 
     // Если все проверки пройдены
     alert('Пароль успешно изменен');
+    document.querySelector('.form-for-change-password').submit();
     // Здесь можно добавить действия для смены пароля (например, отправка данных на сервер)
 
     // Восстанавливаем видимость элементов
@@ -160,3 +161,4 @@ $(document).ready(function() {
         return false;
     });
 });
+

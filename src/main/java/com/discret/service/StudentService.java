@@ -136,10 +136,16 @@ public class StudentService implements UserDetailsService {
     }
 
     @Transactional
-    public boolean changePassword(Long studentId, String oldPassword, String newPassword){
+    public boolean changePassword(Student student, String newPassword){
 
-
+        student.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        studentsRepository.save(student);
         return true;
+    }
+
+
+    public boolean checkPassword(Student student, String passwordFromDB) {
+        return bCryptPasswordEncoder.matches(passwordFromDB,student.getPassword());
     }
 
 

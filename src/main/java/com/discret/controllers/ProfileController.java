@@ -3,6 +3,7 @@ package com.discret.controllers;
 import com.discret.entity.Achievement;
 import com.discret.entity.Student;
 import com.discret.entity.test.TestResult;
+import com.discret.service.StudentService;
 import com.discret.service.test.TestResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 public class ProfileController {
     private final TestResultService testResultService;
+    private final StudentService studentService;
 
     @GetMapping("/profile")
     public String profile(Model model){
@@ -40,7 +42,13 @@ public class ProfileController {
     public String changePassword(String oldPassword, String newPassword, String newPasswordConfirm){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student)authentication.getPrincipal();
+        boolean a = studentService.checkPassword(student, oldPassword);
+        if (!studentService.checkPassword(student, oldPassword) || !newPassword.equals(newPasswordConfirm)) {
+            return "redirect:/profile";
+        }
 
+        studentService.changePassword(student, newPassword);
         return "redirect:/profile";
 
     }

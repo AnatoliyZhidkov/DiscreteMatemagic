@@ -48,6 +48,14 @@ public class TestResultController {
         return "redirect:/testResult/%d".formatted(studentId); // Перенаправление на страницу с результатами
     }
 
+    @PostMapping("/testResult/deleteResults/module{moduleNumber}")
+    public String deleteResultsByModuleAndTest(@PathVariable("moduleNumber") int moduleNumber,int testNumber ,@RequestParam Long studentId, Model model) {
+        testResultService.deleteTestResultsByModuleAddTest(moduleNumber,testNumber ,studentId);
+        model.addAttribute(studentId);
+        return "redirect:/testResult/%d".formatted(studentId);
+
+    }
+
 
 
 
