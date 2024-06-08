@@ -33,3 +33,15 @@ window.addEventListener('popstate', function (e) {
         history.pushState(null, null, window.location.href);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var inputs = document.querySelectorAll('.reply');
+    inputs.forEach(function(input) {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Отменяет стандартное поведение
+                return false; // Предотвращает дальнейшее распространение события
+            }
+        });
+    });
+});
