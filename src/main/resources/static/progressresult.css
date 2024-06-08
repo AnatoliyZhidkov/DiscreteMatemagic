@@ -102,6 +102,18 @@ header{
 .top-block-statistics{
     border-bottom: 2px solid white;
     margin-bottom: 1.29vw;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+.button-delete-data{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+#button-select{
+    background-color: #9657EE;
 }
 .top-block-statistics h1{
     font-size: 20px;
@@ -127,6 +139,7 @@ header{
     color: white;
     font-size: 17px;
     font-family: 'mt-bold';
+    height: fit-content;
 }
 .button-back-main:hover{background-color: #E74949;}
 .button-back-main:active, .btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
