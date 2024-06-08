@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
     <link rel="stylesheet" th:href="@{/commontests/commontest.css}"/>
     <title>Теория</title>
+    <script th:src="@{/commontests/commontest.js}" defer></script>
 </head>
 <body>
 <header>
@@ -16,7 +17,7 @@
     </div>
 </header>
 <div class="clone"></div>
-<form th:action="@{/tests/submitTest}" method="post">
+<form th:action="@{/tests/submitTest}" method="post" onsubmit="disableUnloadWarning()">
     <section class="sec-content">
         <div class="content">
             <div th:each="question, stat : ${questions}" class="task">
