@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +34,7 @@ public class TestResultService {
    private final TestResultRepository testResultRepository;
    private final AchievementRepository achievementRepository;
 
+   Logger logger = Logger.getLogger(TestResultController.class.getName());
    @Transactional
     public TestResult startTest(int Module,int testNumber, Student student) {
 
@@ -87,6 +89,13 @@ public class TestResultService {
     public List<TestResult> findAllByStudentId(Long studentId) {
         return testResultRepository.findAllByStudentId(studentId);
     }
+
+    @Transactional
+    public List<TestResult> findAllByStudentIdAndModuleTest(Long studentId, int module, int number){
+
+        return testResultRepository.findAllByStudentIdAndTestId(studentId,testRepository.findByModuleAndAndNumber(module, number).getId());
+    }
+
     @Transactional
     public boolean deleteTestResult(Long testResultId) {
        return this.testResultRepository.findById(testResultId).map(testResult -> {

@@ -56,6 +56,15 @@ public class TestResultController {
 
     }
 
+//    @PostMapping("/testResult/deleteResults/module{moduleNumber}")
+//    public String findResultsByModuleAndTest(@PathVariable("moduleNumber") int moduleNumber,int testNumber ,@RequestParam Long studentId, Model model) {
+//        List<TestResult> testResults = testResultService.findAllByStudentIdAndModuleTest(studentId,moduleNumber,testNumber);
+//        model.addAttribute("testResults", testResults);
+//        model.addAttribute(studentId);
+//        return "redirect:/testResult/%d".formatted(studentId);
+//
+//    }
+
 
 
 

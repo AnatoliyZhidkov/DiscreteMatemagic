@@ -8,8 +8,9 @@ import com.discret.AnswerGenerator.module2.AnswerGeneratorM2Test1;
 import com.discret.AnswerGenerator.module2.AnswerGeneratorM2Test2;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test1;
 import com.discret.AnswerGenerator.module3.AnswerGeneratorM3Test2;
-import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test1;
-import com.discret.AnswerGenerator.module3.AnswerGeneratorM4Test2;
+import com.discret.AnswerGenerator.module4.AnswerGeneratorM4Test1;
+import com.discret.AnswerGenerator.module4.AnswerGeneratorM4Test2;
+import com.discret.AnswerGenerator.module4.AnswerGeneratorM4Test3;
 import com.discret.entity.test.Question;
 import com.discret.entity.test.QuestionSession;
 import lombok.RequiredArgsConstructor;
@@ -73,12 +74,15 @@ public class AnswerGenerator implements AnswerGeneratorInterface {
     }
     private final AnswerGeneratorM4Test1 answerGeneratorM4Test1;
     private final AnswerGeneratorM4Test2 answerGeneratorM4Test2;
+    private final AnswerGeneratorM4Test3 answerGeneratorM4Test3;
     public String generateAnswerModule4(List<QuestionSession> questionSessionList,QuestionSession question, List<Integer> numbers){
         switch (question.getQuestion().getTest().getNumber()){
             case 1:
                 return answerGeneratorM4Test1.generateAnswer(questionSessionList,question,numbers);
             case 2:
                 return answerGeneratorM4Test2.generateAnswer(question,numbers);
+            case 3:
+                return answerGeneratorM4Test3.generateAnswer(question,numbers);
             default: throw new IllegalArgumentException("Unknown  test: module-" + question.getQuestion().getTest().getModule() + " test-" +question.getQuestion().getTest().getNumber());
         }
     }

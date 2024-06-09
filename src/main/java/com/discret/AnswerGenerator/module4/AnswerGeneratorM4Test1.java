@@ -1,4 +1,4 @@
-package com.discret.AnswerGenerator.module3;
+package com.discret.AnswerGenerator.module4;
 
 import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.AnswerGenerator.module1.AnswerGeneratorM1Test1;
