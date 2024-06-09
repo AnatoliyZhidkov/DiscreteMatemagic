@@ -61,6 +61,7 @@ public class QuestionService {
         QuestionSession questionSession = new QuestionSession();
         questionSession.setQuestion(question);
         questionSession.setGeneratedText(text);
+
         questionSession.setGeneratedData(numbers.stream().map(Objects::toString).collect(Collectors.joining(",")));
         questionSession.setTestResult(testResult);
         questionSession.setCorrectAnswer(answerGenerator.generateAnswer(questionSessionList,questionSession,numbers));
