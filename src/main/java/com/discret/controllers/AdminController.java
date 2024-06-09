@@ -31,6 +31,11 @@ public class AdminController {
     @PostMapping("/admin/delete")
     public String deleteStudent(@RequestParam(required = true, defaultValue = "") Long studentId,
                                 @RequestParam(required = true, defaultValue = "") String action, Model model){
+
+        if(studentService.findStudentById(studentId).getRoles().stream().anyMatch(s -> s.getAuthority().equals("ROLE_ADMIN"))){
+            return "redirect:/admin";
+        }
+
         if(action.equals("delete")){
         studentService.deleteStudent(studentId);
         }
@@ -68,6 +73,10 @@ public class AdminController {
     public String deleteGroup(@RequestParam(required = true, defaultValue = "") String groupname,
                               @RequestParam(required = true, defaultValue = "") int groupNumber,
                               @RequestParam(required = true, defaultValue = "") String action, Model model){
+
+        if(groupname == "admin"){
+            return "redirect:/admin";
+        }
 
         if(action.equals("delete")){
             studentGroupsService.deleteGroup(groupname,groupNumber);
