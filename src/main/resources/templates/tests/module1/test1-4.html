@@ -24,7 +24,7 @@
                 <h1 th:text="${question.generatedText}">Question text here</h1>
                 <div th:if="${question.question != null}">
                     <div th:each="image : ${question.question.images}" class="div-for-img">
-                        <img th:src="@{${image.url}}" class="img-in-test" alt="картинка графа">
+                        <img th:src="@{${image.url}}" class="img-in-test" alt="картинка графа" id="special">
                     </div>
                 </div>
                 <div class="container-for-input-reply">

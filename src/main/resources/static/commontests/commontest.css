@@ -137,6 +137,9 @@ header{
 .img-in-test{
     width: 220px;
 }
+#special{
+    width: 100%;
+}
 
 @media screen and (max-width: 750px){
     .task h1{
