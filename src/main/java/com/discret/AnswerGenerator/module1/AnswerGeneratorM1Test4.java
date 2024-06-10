@@ -26,7 +26,7 @@ public class AnswerGeneratorM1Test4 extends AbstractAnswerGenerator {
             case 1: return answerFirstQuestion(numbers);
             case 2: return answerSecondQuestion(numbers);
             case 3: return answerThirdQuestion(numbers);
-            case 4: return "sdcetir";
+            case 4: return "SDCTEIRE";
             case 5: return answerFifthQuestion(numbers);
             case 6: return answerSixthQuestion(numbers);
             case 7: return answerSeventhQuestion(numbers);
@@ -55,7 +55,7 @@ public class AnswerGeneratorM1Test4 extends AbstractAnswerGenerator {
 
 
     public String answerFifthQuestion(List<Integer> numbers){
-        return String.valueOf(factorial(7)/factorial(7-numbers.get(0)));
+        return String.valueOf(factorial(7)/(factorial(numbers.get(0))*factorial(7-numbers.get(0))));
     }
 
     public String answerSixthQuestion(List<Integer> numbers){

@@ -67,7 +67,7 @@ public class TestResultService {
         for (AnswerDTO answer : answers) {
             QuestionSession questionSession = questionService.findQuestionSessionById(answer.getQuestionId());
             questionSession.setStudentAnswer(answer.getAnswer());
-            boolean isCorrect = questionSession.getStudentAnswer().toLowerCase().equals(questionSession.getCorrectAnswer());
+            boolean isCorrect = questionSession.getStudentAnswer().toLowerCase().replaceAll(" ","").equals(questionSession.getCorrectAnswer().toLowerCase());
             if (isCorrect) {
                 score++;
             }
