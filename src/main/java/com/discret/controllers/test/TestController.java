@@ -38,9 +38,10 @@ public class TestController {
         Student student = (Student) authentication.getPrincipal();
 
         if (this.testResultService.countTestResult(module, testnumber,student.getId()) >2) {
-            return "redirect:/main";
+            if(student.getRoles().stream().anyMatch(s -> s.getAuthority().equals("ROLE_STUDENT"))){
+                return "redirect:/main";
+            }
         }
-
 
         TestResult testResult = testResultService.startTest(module,testnumber,student);
         List<QuestionSession> questions = testResult.getQuestionSessions();

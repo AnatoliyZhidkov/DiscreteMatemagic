@@ -63,7 +63,7 @@ public class StudentGenetateService {
             String encodedPassword = bCryptPasswordEncoder.encode(rawPassword);
 
             studentService.saveStudent(login, encodedPassword, lastName, firstName, null,"ROLE_STUDENT", groupId);
-            result = result + login + " " + rawPassword + "\n";
+            result = lastName + " "+ firstName + " " + result + login + " " + rawPassword + "\r\n";
         }
 
         return result;
