@@ -1,8 +1,9 @@
 package com.discret.controllers;
 
 import com.discret.entity.Student;
-import com.discret.service.StudentGroupsService;
-import com.discret.service.StudentService;
+import com.discret.service.student.StudentGenetateService;
+import com.discret.service.student.StudentGroupsService;
+import com.discret.service.student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ public class AdminController {
     private final StudentService studentService;
 
     private final StudentGroupsService studentGroupsService;
+    private final StudentGenetateService studentGenetateService;
 
     @GetMapping("/admin")
     public String studentList(Model model){
@@ -98,6 +100,27 @@ public class AdminController {
 
         studentService.updateStudent(studentId,login, password, lastName, firstName, middleName, role,groupId);
         return "redirect:/admin";
+    }
+
+    @GetMapping("/admin/addStudents/{groupId}")
+    public String getAddStudentsPage(@PathVariable("groupId") Long groupId, Model model){
+        model.addAttribute("groupId",groupId);
+
+        return "adminPanel/addStudents";
+    }
+
+
+    @PostMapping("/admin/addStudents/{groupId}")
+    public String addStudents(String studentsList,@PathVariable("groupId") Long groupId, Model model){ {
+
+        model.addAttribute("studentsList",studentsList);
+        model.addAttribute("students",studentGenetateService.addStudents(studentsList,groupId));
+        return "adminPanel/addStudents";
+    }
+
+
+
+
     }
 
 

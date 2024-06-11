@@ -1,4 +1,4 @@
-package com.discret.service;
+package com.discret.service.student;
 
 import com.discret.entity.Student_Groups;
 import com.discret.repository.StudentsGroupsRepository;
@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -16,4 +16,5 @@ public interface StudentsRepository extends JpaRepository<Student, Long> {
 
     List<Student> findAll();
 
+    boolean existsByLogin(String login);
 }

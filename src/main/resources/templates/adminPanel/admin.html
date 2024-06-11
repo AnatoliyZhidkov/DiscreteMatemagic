@@ -32,6 +32,8 @@
                             <th class="p-info">Название</th>
                             <th class="p-info">Курс</th>
                             <th class="p-info">Удалить</th>
+                            <th class="p-info">Добавить студентов</th>
+                            <th class="p-info">Список студентов</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,6 +46,11 @@
                                     <input type="hidden" name="groupNumber" data-th-value="${groups.groupNumber}"/>
                                     <input type="hidden" name="action" data-th-value="delete"/>
                                     <button class="btn btn-danger" >Удалить группу</button>
+                                </form>
+                            </td>
+                            <td class="p-info">
+                                <form method="get" th:action="@{/admin/addStudents/{groupId}(groupId = ${groups.id})}">
+                                    <button class="btn btn-primary" >Добавить студентов</button>
                                 </form>
                             </td>
                         </tr>

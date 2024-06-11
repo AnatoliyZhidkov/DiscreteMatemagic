@@ -1,4 +1,4 @@
-package com.discret.service;
+package com.discret.service.student;
 
 import com.discret.entity.Role;
 import com.discret.entity.Student;

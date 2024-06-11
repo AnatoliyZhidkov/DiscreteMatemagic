@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Add Students</h1>
+    <form action="#" th:action="@{/admin/addStudents/{groupId}(groupId=${groupId})}" method="post">
+        <div class="form-group">
+            <label for="studentsList">Enter students (each on a new line, format: Firstname Lastname):</label>
+            <textarea id="studentsList" name="studentsList" class="form-control" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Students</button>
+
+    </form>
+    <a th:href="@{/admin}">
+        <button class="btn btn-success ml-auto" >Назад</button>
+    </a>
+
+    <div th:if="${students != null}">
+        <h2>Generated Logins and Passwords</h2>
+            <div
+             th:text="${students}">
+
+            </div>
+    </div>
+</div>
+</body>
+</html>
