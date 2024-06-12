@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics" id="special">
+            <div class="block-statistics-in">
+                <div class="top-block-statistics">
+                    <h1>Студенты</h1>
+                </div>
+                <div class="scrollable-container">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="p-info">ID</th>
+                            <th class="p-info">Login</th>
+                            <th class="p-info">Фамилия</th>
+                            <th class="p-info">Имя</th>
+                            <th class="p-info">Отчество</th>
+                            <th class="p-info">Группа</th>
+                            <th class="p-info">Курс</th>
+                            <th class="p-info">Удалить</th>
+                            <th class="p-info">Изменить данные</th>
+                            <th class="p-info">Тесты</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="student : ${student}">
+                            <td class="p-info" th:text="${student.id}"></td>
+                            <td class="p-info" th:text="${student.login}"></td>
+                            <td class="p-info" th:text="${student.lastName}"></td>
+                            <td class="p-info" th:text="${student.firstName}"></td>
+                            <td class="p-info" th:text="${student.middleName}"></td>
+                            <td class="p-info" th:text="${student.getStudent_groups().getGroupname()}"></td>
+                            <td class="p-info" th:text="${student.getStudent_groups().getGroupNumber()}"></td>
+                            <td>
+                                <form method="post" th:action="@{/admin/delete}">
+                                    <input type="hidden" name="studentId" data-th-value="${student.id}"/>
+                                    <input type="hidden" name="action" data-th-value="delete"/>
+                                    <button class="btn btn-danger" >Удалить</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="get" th:action="@{/admin/update/{studentId}(studentId = ${student.id})}">
+                                    <button class="btn btn-primary" >Изменить</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="get" th:action="@{/testResult/{studentId}(studentId = ${student.id})}">
+                                    <button class="btn btn-primary" >Результаты</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <a th:href="@{/admin/create}">
+                        <button class="btn btn-success" >Добавить студента</button>
+                    </a>
+                    <a th:href="@{/admin}">
+                        <button class="btn btn-secondary ml-auto" >Вернуться</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

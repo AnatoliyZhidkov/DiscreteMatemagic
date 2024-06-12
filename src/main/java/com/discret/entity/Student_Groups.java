@@ -1,8 +1,10 @@
 package com.discret.entity;
 
+import com.discret.entity.test.Test;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "student_group")
 public class Student_Groups {
@@ -18,6 +20,14 @@ public class Student_Groups {
 
     @OneToMany(mappedBy = "student_groups", cascade = CascadeType.ALL)
     private List<Student> students;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_group_test",
+            joinColumns = @JoinColumn(name = "student_group_id"),
+            inverseJoinColumns = @JoinColumn(name = "test_id")
+    )
+    private Set<Test> test;
 
 
     public Student_Groups() {

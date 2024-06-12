@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class TestResultService {
    @Transactional
     public TestResult startTest(int Module,int testNumber, Student student) {
 
-        Test test = testRepository.findByModuleAndAndNumber( Module, testNumber);
+        Test test = testRepository.findByModuleAndAndNumber( Module, testNumber).orElseThrow(() -> new EntityNotFoundException("Test not found"));
 
         if (this.testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId())
                 && testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId()).getEndTime() == null) {
@@ -93,7 +94,8 @@ public class TestResultService {
     @Transactional
     public List<TestResult> findAllByStudentIdAndModuleTest(Long studentId, int module, int number){
 
-        return testResultRepository.findAllByStudentIdAndTestId(studentId,testRepository.findByModuleAndAndNumber(module, number).getId());
+        return testResultRepository.findAllByStudentIdAndTestId(studentId,testRepository.findByModuleAndAndNumber(module, number)
+                .orElseThrow(() -> new EntityNotFoundException("Test not found")).getId());
     }
 
     @Transactional
@@ -106,13 +108,13 @@ public class TestResultService {
 
     public TestResult getLastScoreByTestModuleAndTestNumber(int module, int number, Long studentId) {
       return  this.testResultRepository
-              .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
+              .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).orElseThrow(() -> new EntityNotFoundException("Test not found")).getId(),studentId);
     }
 
     @Transactional
     public int countTestResult(int module, int number, Long studentId) {
         return this.testResultRepository
-                .countByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).getId(),studentId);
+                .countByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).orElseThrow(() -> new EntityNotFoundException("Test not found")).getId(),studentId);
     }
 
     @Transactional
@@ -215,6 +217,6 @@ public class TestResultService {
     @Transactional
     public void deleteTestResultsByModuleAddTest(int moduleNumber, int testNumber, Long studentId) {
 
-        testResultRepository.deleteByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(moduleNumber, testNumber).getId(),studentId);
+        testResultRepository.deleteByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(moduleNumber, testNumber).orElseThrow(() -> new NoSuchElementException("No Test found with id " + testNumber)).getId(),studentId);
     }
 }

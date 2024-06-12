@@ -75,4 +75,24 @@ public class QuestionService {
     }
 
 
+
+    public boolean addQuestionsToTest(String questions, Long testId , int questionNumber) {
+
+        Test test = testService.findById(testId);
+
+        for(String question : questions.split("\r\n")){
+
+            String[] parts = question.split(",");
+            if(parts.length < 2) continue; // Пропускаем строки с некорректным форматом
+
+            String questionText = parts[0];
+            String questionAnswer = parts[1];
+
+            Question newQuestion = new Question(questionText, questionAnswer,questionNumber, test);
+            questionRepository.save(newQuestion);
+
+        }
+        return true;
+
+    }
 }

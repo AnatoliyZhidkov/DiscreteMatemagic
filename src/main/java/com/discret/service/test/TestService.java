@@ -9,6 +9,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 @RequiredArgsConstructor
 public class TestService implements TestServiceInt {
@@ -20,11 +22,27 @@ public class TestService implements TestServiceInt {
 
     public Test findById(Long testid){
 
-        return testRepository.findById(testid).orElseThrow(() -> new EntityNotFoundException("Test not found"));
+        return testRepository.findById(testid)
+                .orElseThrow(() -> new EntityNotFoundException("Test not found"));
 
     }
     @Transactional
     public Test findTestByModuleAndNumber(int Module,int Number){
-        return testRepository.findByModuleAndAndNumber( Module, Number);
+        return testRepository.findByModuleAndAndNumber( Module, Number)
+                .orElseThrow(() -> new EntityNotFoundException("Test not found"));
     }
+
+    public boolean createTest(String name, int section, int testNumber){
+        this.testRepository.findByModuleAndAndNumber(section, testNumber)
+                .ifPresentOrElse
+                        (test -> {
+                                test.setName(name);
+                                test.setNumber(testNumber);
+                                test.setModule(section);
+        },() -> {throw new NoSuchElementException();});
+
+        return true;
+    }
+
+
 }

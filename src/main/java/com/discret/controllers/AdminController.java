@@ -59,7 +59,7 @@ public class AdminController {
     public String getStudent(@PathVariable("groupId") Long groupId, Model model){
         List<Student> students = studentService.studentGetListByGroup(groupId);
         model.addAttribute("student", studentService.studentGetListByGroup(groupId));
-        return "adminPanel/admin";
+        return "adminPanel/studentsList";
     }
     @GetMapping("/admin/create/group")
     public String getNewGroupPage(){
