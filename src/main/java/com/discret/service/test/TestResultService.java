@@ -116,6 +116,27 @@ public class TestResultService {
     }
 
     @Transactional
+    public List<Integer> findTopScoreByTestModuleAndTestNumber(Student student, int moduleNumber) {
+
+        List<Integer> results = new ArrayList<>();
+        List<Test> tests = testRepository.findAllByModule(moduleNumber);
+        for (Test test : tests) {
+            TestResult result = testResultRepository.findTopByIdAndStudentId(test.getId(),student.getId());
+            if (result != null) {
+                int totalQuestions = test.getQuestion().size();
+                int correctAnswers = result.getScore();
+                int percentage = (correctAnswers * 100) / totalQuestions;
+                results.add(percentage);
+            }
+            else {
+                results.add(0);
+            }
+        }
+        return results;
+    }
+
+
+    @Transactional
     public List<Integer> findLatestTestResultsByModule(Student student, int moduleNumber) {
 
         List<Integer> results = new ArrayList<>();

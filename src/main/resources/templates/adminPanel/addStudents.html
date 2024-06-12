@@ -22,9 +22,10 @@
 
     <div th:if="${students != null}">
         <h2>Generated Logins and Passwords</h2>
-            <h3 th:text="${students}">
+        <div th:each="student : ${students}">
+            <h2 th:text="${student}"></h2>
 
-            </h3>
+        </div>
     </div>
 </div>
 </body>

@@ -48,7 +48,7 @@ public class StudentGenetateService {
         return login;
     }
 
-    public String addStudents(String students, Long groupId) {
+    public String[] addStudents(String students, Long groupId) {
 
 
         String result = "";
@@ -63,10 +63,10 @@ public class StudentGenetateService {
             String encodedPassword = bCryptPasswordEncoder.encode(rawPassword);
 
             studentService.saveStudent(login, encodedPassword, lastName, firstName, null,"ROLE_STUDENT", groupId);
-            result = lastName + " "+ firstName + " " + result + login + " " + rawPassword + "\r\n";
+            result = result + lastName + " " + firstName + " " +  login + " " + rawPassword + "\r\n";
         }
 
-        return result;
+        return result.split("\r\n");
     }
 
 

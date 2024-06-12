@@ -25,7 +25,7 @@ public class TestResultController {
     public String testResult(@PathVariable("studentId") Long studentId, Model model){
         Student student = studentService.findStudentById(studentId);
         for (int moduleNumber = 1; moduleNumber <= 4; moduleNumber++) {
-            List<Integer> testResults = testResultService.findLatestTestResultsByModule(student, moduleNumber);
+            List<Integer> testResults = testResultService.findTopScoreByTestModuleAndTestNumber(student, moduleNumber);
             model.addAttribute("module" + moduleNumber + "Results", testResults);
         }
         List<TestResult> testResults = testResultService.findAllByStudentId(studentId);
