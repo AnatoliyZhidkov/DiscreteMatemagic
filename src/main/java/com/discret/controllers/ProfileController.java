@@ -27,7 +27,9 @@ public class ProfileController {
         Student student = (Student)authentication.getPrincipal();
         String groupFullName = student.getStudent_groups().getGroupname() +"-"+ String.valueOf(student.getStudent_groups().getGroupNumber());
         String studenFullName = student.getLastName() +" " +student.getFirstName()+" "+student.getMiddleName();
-
+        boolean hasAdminRole = authentication.getAuthorities().stream()
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        model.addAttribute("hasAdminRole", hasAdminRole);
         List<Achievement> achievements = testResultService.getAchievementsByStudent(student);
         model.addAttribute("achievements", achievements);
         model.addAttribute("fullName", studenFullName);

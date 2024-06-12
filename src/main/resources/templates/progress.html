@@ -41,6 +41,14 @@
                     </div>
                 </a>
             </li>
+            <li th:if = "${hasAdminRole}==true">
+                <a th:href="@{/admin}">
+                    <div class="item-list" id="item3">
+                        <img class="four-item-img" src="images\admin.svg" alt="">
+                        <h1>АДМИН</h1>
+                    </div>
+                </a>
+            </li>
             <li>
                 <form name="logoutForm" th:action="@{/logout}" method="post">
                     <button id="loginButton" type="submit" class="btn">

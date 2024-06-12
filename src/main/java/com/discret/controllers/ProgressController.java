@@ -23,7 +23,10 @@ public class ProgressController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student)authentication.getPrincipal();
+        boolean hasAdminRole = authentication.getAuthorities().stream()
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
 
+        model.addAttribute("hasAdminRole", hasAdminRole);
         for (int moduleNumber = 1; moduleNumber <= 4; moduleNumber++) {
             List<Integer> testResults = testResultService.findLatestTestResultsByModule(student, moduleNumber);
             model.addAttribute("module" + moduleNumber + "Results", testResults);
