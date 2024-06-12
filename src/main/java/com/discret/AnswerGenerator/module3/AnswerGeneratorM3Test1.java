@@ -25,9 +25,9 @@ public class AnswerGeneratorM3Test1  {
             case 3: return answerThirdQuestion(numbers);
             case 4: return answerFourthQuestion(numbers);
             case 5: return "нет";
-            case 6: return "13";
+            case 6: return "123";
             case 7: return "23";
-            case 8: return "12";
+            case 8: return "24";
             default: throw new IllegalArgumentException("Unknown question" + question.getQuestion().getQuestionNumber());
         }
     }
