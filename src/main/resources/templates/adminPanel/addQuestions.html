@@ -64,7 +64,7 @@
         <textarea id="questionsJson" class="form-control" rows="10"></textarea>
     </div>
     <button id="submitQuestions" class="btn btn-success">Добавить вопросы</button>
-    <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}">
+    <a th:href="@{/tests/{testId}/questionList(testId = ${testId})}">
         <button class="btn btn-primary">Назад</button>
     </a>
 </div>

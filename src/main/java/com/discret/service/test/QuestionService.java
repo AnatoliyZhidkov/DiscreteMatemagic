@@ -4,6 +4,7 @@ import com.discret.AnswerGenerator.AnswerGenerator;
 import com.discret.DTO.QuestionDTO;
 import com.discret.entity.Student;
 import com.discret.entity.test.*;
+import com.discret.repository.test.AnswerRepository;
 import com.discret.repository.test.QuestionRepository;
 import com.discret.repository.test.QuestionSessionRepository;
 import jakarta.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final TestService testService;
     private final QuestionSessionRepository questionSessionRepository;
-
+    private final AnswerRepository answerRepository;
     private final AnswerGenerator answerGenerator;
 
     private static final Random random = new Random();
@@ -90,5 +91,43 @@ public class QuestionService {
         }
         return true;
 
+    }
+
+    public List<Question> getQuestionsByTest(Long testId) {
+
+        List<Question> questions = this.questionRepository.findAllByTestId(testId).orElseThrow(() -> new NoSuchElementException("No Question found with id " + testId));
+        return questionRepository.findAllByTestId(testId).orElseThrow(() -> new NoSuchElementException("No Question found with id " + testId));
+    }
+
+
+    public Question findQuestionById(Long questionId) {
+        return questionRepository.findById(questionId).orElseThrow(() -> new NoSuchElementException("No Question found with id " + questionId));
+    }
+
+    public boolean updateQuestion(QuestionDTO questionDTO, Long questionId) {
+
+        this.questionRepository.findById(questionId)
+                .ifPresentOrElse(
+                        question ->{
+                            question.setQuestionText(questionDTO.getQuestionText());
+                            question.setQuestionNumber(questionDTO.getQuestionNumber());
+
+                            List<Answer> existingAnswers = this.answerRepository.findAllByQuestionId(questionId)
+                                    .orElseThrow(() -> new NoSuchElementException("No Answer found with id " + questionId));
+
+                            for (Answer existingAnswer : existingAnswers) {
+                                existingAnswer.setAnswerText(questionDTO.getAnswerText());
+                            }
+                            this.questionRepository.save(question);
+                        }
+                        ,() -> {throw new NoSuchElementException();}
+                            );
+
+        return true;
+    }
+
+    public boolean deleteQuestion(Long questionId) {
+        this.questionRepository.deleteById(questionId);
+        return true;
     }
 }

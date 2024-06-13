@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Questions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Add Question</h1>
+    <form id="questionForm" method="post" th:action="@{/tests/{testId}/updateQuestion/{questionId}(testId = ${testId}, questionId = ${question.id})}">
+        <input type="hidden" id="testId">
+        <div class="form-group">
+            <label for="questionNumber">Question Number:</label>
+            <input type="number" id="questionNumber" data-th-value="${question.questionNumber}" name="questionNumber" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="questionText">Question Text:</label>
+            <textarea id="questionText" class="form-control" data-th-text="${question.questionText}" name="questionText" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="answerText">Answer:</label>
+            <input type="text" id="answerText" data-th-value="${question.answers.get(0).answerText}" name="answerText" class="form-control" required>
+        </div>
+        <button id="submitQuestion" class="btn btn-success">Submit Question</button>
+    </form>
+    <a th:href="@{/tests/{testId}/questionList(testId = ${testId})}">
+        <button class="btn btn-primary">Назад</button>
+    </a>
+</div>
+</body>
+</html>

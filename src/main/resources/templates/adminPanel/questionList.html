@@ -25,40 +25,33 @@
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Тесты</h1>
-                    <a th:href="@{/tests/{partitionId}/addTest(partitionId = ${partitionId})}">
-                        <button class="btn btn-success" >Добавить тест</button>
+                    <a th:href="@{/tests/{testId}/addQuestion(testId = ${testId})}">
+                        <button class="btn btn-success" >Добавить вопрос</button>
                     </a>
                 </div>
                 <div class="scrollable-container">
                     <table class="table table-bordered" >
                         <thead>
                         <tr>
-                            <th class="p-info">Название</th>
-                            <th class="p-info">Номер</th>
-                            <th class="p-info">Добавить вопросы</th>
-                            <th class="p-info">Посмотреть вопросы</th>
+                            <th class="p-info">Номер вопроса</th>
+                            <th class="p-info">Текст вопроса</th>
+                            <th class="p-info">Ответ</th>
+                            <th class="p-info">Редактировать</th>
                             <th class="p-info">Удалить</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="p-info" th:each="customTests : ${customTests}">
-                            <td class="p-info" th:text="${customTests.testName}"></td>
-                            <td  class="p-info" th:text="${customTests.number}"></td>
+                        <tr class="p-info" th:each="question : ${questions}">
+                            <td class="p-info" th:text="${question.questionNumber}"></td>
+                            <td  class="p-info" th:text="${question.questionText}"></td>
+                            <td  class="p-info" th:text="${question.answers.get(0).answerText}"></td>
                             <td class="p-info">
-                                <form method="get" th:action="@{/tests/addQuestions/{testId}(testId=${customTests.id})}">
-                                    <button class="btn btn-primary" >Добавить вопросы</button>
+                                <form method="get" th:action="@{/tests/{testId}/updateQuestion/{questionId}(testId=${testId}, questionId=${question.id})}">
+                                    <button class="btn btn-primary" >Редактировать</button>
                                 </form>
                             </td>
                             <td class="p-info">
-                                <a th:href="@{/tests/{testId}/questionList(testId = ${customTests.id})}">
-                                <button class="btn btn-primary" >Список вопросов</button>
-                                </a>
-                            </td>
-                            <td class="p-info">
-                                <form method="post" th:action="@{/tests/delete}">
-                                    <input type="hidden" name="partitionId" data-th-value="${partitionId}"/>
-                                    <input type="hidden" name="testId" data-th-value="${customTests.id}"/>
-                                    <input type="hidden" name="action" data-th-value="delete"/>
+                                <form method="post" th:action="@{/tests/{testId}/deleteQuestion/{questionId}(testId=${testId}, questionId=${question.id})}">
                                     <button class="btn btn-danger" >Удалить тест</button>
                                 </form>
                             </td>
