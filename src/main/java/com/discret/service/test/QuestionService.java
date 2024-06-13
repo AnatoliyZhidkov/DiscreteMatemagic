@@ -1,6 +1,7 @@
 package com.discret.service.test;
 
 import com.discret.AnswerGenerator.AnswerGenerator;
+import com.discret.DTO.QuestionDTO;
 import com.discret.entity.Student;
 import com.discret.entity.test.*;
 import com.discret.repository.test.QuestionRepository;
@@ -76,21 +77,16 @@ public class QuestionService {
 
 
 
-    public boolean addQuestionsToTest(String questions, Long testId , int questionNumber) {
+    public boolean addQuestionsToTest(List<QuestionDTO> questions, Long testId) {
 
         Test test = testService.findById(testId);
 
-        for(String question : questions.split("\r\n")){
-
-            String[] parts = question.split(",");
-            if(parts.length < 2) continue; // Пропускаем строки с некорректным форматом
-
-            String questionText = parts[0];
-            String questionAnswer = parts[1];
-
-            Question newQuestion = new Question(questionText, questionAnswer,questionNumber, test);
+        for (QuestionDTO questionDTO : questions) {
+            String questionText = questionDTO.getQuestionText();
+            String answerText = questionDTO.getAnswerText();
+            int questionNumber = questionDTO.getQuestionNumber();
+            Question newQuestion = new Question(questionText, answerText, questionNumber, test);
             questionRepository.save(newQuestion);
-
         }
         return true;
 

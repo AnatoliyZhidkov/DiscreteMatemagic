@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -17,6 +18,7 @@ public class TestService implements TestServiceInt {
 
     private final TestResultRepository testResultRepository;
     private final TestRepository testRepository;
+    private final PatitionService patitionService;
 
     private final StudentsRepository studentsRepository;
 
@@ -32,17 +34,33 @@ public class TestService implements TestServiceInt {
                 .orElseThrow(() -> new EntityNotFoundException("Test not found"));
     }
 
-    public boolean createTest(String name, int section, int testNumber){
-        this.testRepository.findByModuleAndAndNumber(section, testNumber)
-                .ifPresentOrElse
-                        (test -> {
-                                test.setName(name);
-                                test.setNumber(testNumber);
-                                test.setModule(section);
-        },() -> {throw new NoSuchElementException();});
+    public List<Test> findAllCustomTest(){
 
+        return testRepository.findAllCustumTest();
+    }
+
+
+    public boolean addTest(String name, int number, Long partitionId) {
+
+        Test test = new Test();
+        test.setTestName(name);
+        test.setNumber(number);
+        test.setPartition(patitionService.findById(partitionId));
+        testRepository.save(test);
         return true;
     }
 
 
+    public List<Test> findAllTestsByPartitionId(Long partitonId) {
+        return testRepository.findAllByPartitionId(partitonId);
+    }
+
+    public boolean deleteTest(Long testId) {
+
+        this.testRepository.findById(testId)
+                .orElseThrow(() -> new NoSuchElementException("Test not found"));
+        this.testRepository.deleteById(testId);
+        return true;
+
+    }
 }

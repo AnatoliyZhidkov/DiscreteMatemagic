@@ -4,6 +4,8 @@ import com.discret.entity.Student;
 import com.discret.service.student.StudentGenetateService;
 import com.discret.service.student.StudentGroupsService;
 import com.discret.service.student.StudentService;
+import com.discret.service.test.PatitionService;
+import com.discret.service.test.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,14 @@ import java.util.List;
 public class AdminController {
 
     private final StudentService studentService;
-
+    private final TestService testService;
     private final StudentGroupsService studentGroupsService;
     private final StudentGenetateService studentGenetateService;
+    private final PatitionService patitionService;
 
     @GetMapping("/admin")
-    public String studentList(Model model){
-        model.addAttribute("student",studentService.allStudents());
+    public String adminPanel(Model model){
+        model.addAttribute("partitions", patitionService.findAll());
         model.addAttribute("groups", studentGroupsService.findAllGroups());
         return "adminPanel/admin";
     }
@@ -111,18 +114,22 @@ public class AdminController {
 
 
     @PostMapping("/admin/addStudents/{groupId}")
-    public String addStudents(String studentsList,@PathVariable("groupId") Long groupId, Model model){ {
+    public String addStudents(String studentsList,@PathVariable("groupId") Long groupId, Model model){
 
         model.addAttribute("studentsList",studentsList);
         model.addAttribute("students",studentGenetateService.addStudents(studentsList,groupId));
         return "adminPanel/addStudents";
-    }
-
-
-
 
     }
 
+    @PostMapping("/admin/delete/partition")
+    public String deletePartition( Long partitionId,
+                                  @RequestParam(required = true, defaultValue = "") String action, Model model){
+        if(action.equals("delete")){
+            patitionService.deletePartition(partitionId);
+        }
+        return "redirect:/admin";
+    }
 
 
 

@@ -70,6 +70,48 @@
                 <button class="btn btn-secondary ml-auto" >Вернуться</button>
             </a>
         </div>
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <div class="top-block-statistics">
+                    <h1>Разделы</h1>
+                    <a th:href="@{/tests/addPartition}">
+                        <button class="btn btn-success" >Добавить раздел</button>
+                    </a>
+                </div>
+                <div class="scrollable-container">
+                    <table class="table table-bordered" >
+                        <thead>
+                        <tr>
+                            <th class="p-info">Название</th>
+                            <th class="p-info">Посмотреть тесты</th>
+                            <th class="p-info">Удалить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="p-info" th:each="partitions : ${partitions}">
+                            <td class="p-info" th:text="${partitions.partitionName}"></td>
+                            <td class="p-info">
+                            <form method="get" th:action="@{/tests/{partitonId}(partitonId = ${partitions.id})}">
+                                <button class="btn btn-primary" >Список тестов</button>
+                            </form>
+                            </td>
+                            <td class="p-info">
+                                <form method="post" th:action="@{/admin/delete/partition}">
+                                    <input type="hidden" name="partitionId" data-th-value="${partitions.id}"/>
+                                    <input type="hidden" name="action" data-th-value="delete"/>
+                                    <button class="btn btn-danger" >Удалить раздел</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <a th:href="@{/main}">
+                <button class="btn btn-secondary ml-auto" >Вернуться</button>
+            </a>
+        </div>
     </div>
 </section>
 </body>

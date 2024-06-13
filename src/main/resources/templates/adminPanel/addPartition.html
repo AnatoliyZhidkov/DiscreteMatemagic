@@ -12,16 +12,14 @@
 <body>
 
 <div>
-    <h1>Тест</h1>
-    <form th:action="@{/tests/{partitionId}/addTest(partitionId = ${partitionId})}" method="post">
-    <h2>Название</h2>
-        <input type="text" name ="name">
-    <h2>Номер теста</h2>
-        <input type="text" name ="number">
+    <h1>Раздел</h1>
+    <h2>Название раздела</h2>
+    <form th:action="@{/tests/addPartition}" method="post">
+    <input type="text" name="partition">
     <button class="btn btn-primary">Сохранить</button>
     </form>
-    <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}">
-        <button class="btn btn-primary">Назад</button>
+    <a th:href="@{/admin}">
+    <button class="btn btn-primary">Назад</button>
     </a>
 
 </div>
