@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
     <link rel="stylesheet" th:href="@{main.css}"/>
     <title>DiscreteMathemagic</title>
+    <link rel="icon" href="images\favicon.ico" type="image/x-icon">
     <script th:src="@{/utilities/navigation.js}" defer></script>
     <script th:src="@{main.js}" defer></script>
 </head>
@@ -52,8 +53,8 @@
             <li th:if = "${hasAdminRole}==true">
                 <a th:href="@{/admin}">
                     <div class="item-list" id="item3">
-                        <img class="four-item-img" src="images\profile.svg" alt="">
-                        <h1>Admin</h1>
+                        <img class="four-item-img" src="images\admin.svg" alt="">
+                        <h1>АДМИН</h1>
                     </div>
                 </a>
             </li>
