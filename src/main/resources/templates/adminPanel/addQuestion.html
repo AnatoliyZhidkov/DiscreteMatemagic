@@ -3,31 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Questions</title>
+    <title>Add Question</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
 </head>
 <body>
-<div class="container">
-    <h1>Add Question</h1>
-    <form id="questionForm" method="post" th:action="@{/tests/{testId}/addQuestion(testId = ${testId})}">
-        <input type="hidden" id="testId">
-        <div class="form-group">
-            <label for="questionNumber">Question Number:</label>
-            <input type="number" id="questionNumber" name="questionNumber" class="form-control" required>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
         </div>
-        <div class="form-group">
-            <label for="questionText">Question Text:</label>
-            <textarea id="questionText" class="form-control" name="questionText" rows="3" required></textarea>
+        <a th:href="@{/tests/{testId}/questionList(testId = ${testId})}" class="a-for-button-back">
+            <button class="btn btn-primary ml-auto">Вернуться к списку вопрос</button>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <form id="questionForm" method="post" th:action="@{/tests/{testId}/addQuestion(testId = ${testId})}">
+                    <div class="top-block-statistics">
+                        <h1>Добавление вопроса</h1>
+                        <a class="a-btn-add">
+                            <button id="submitQuestion" class="btn btn-success">Добавить вопрос</button>
+                        </a>
+                    </div>
+                    <div class="div-for-add-question">
+                        <input type="hidden" id="testId">
+                        <div class="form-group-1">
+                            <label for="questionNumber" class="p-info black padding-black">Номер вопроса:</label>
+                            <input type="number" id="questionNumber" name="questionNumber" class="form-control" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="questionText" class="p-info black padding-black">Текст вопроса:</label>
+                            <textarea id="questionText" class="form-control" name="questionText" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="answerText" class="p-info black padding-black">Ответ:</label>
+                            <input type="text" id="answerText" name="answerText" class="form-control" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="answerText">Answer:</label>
-            <input type="text" id="answerText" name="answerText" class="form-control" required>
-        </div>
-        <button id="submitQuestion" class="btn btn-success">Submit Question</button>
-    </form>
-    <a th:href="@{/tests/{testId}/questionList(testId = ${testId})}">
-        <button class="btn btn-primary">Назад</button>
-    </a>
+    </div>
+</section>
 </div>
 </body>
 </html>

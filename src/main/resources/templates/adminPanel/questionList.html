@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
+    <title>Question</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/progressresult.css}"/>
     <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
@@ -15,18 +15,20 @@
         <div class="right-header">
             <img src="/images/login.png" alt="">
         </div>
+        <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}" class="a-for-button-back">
+            <button class="btn btn-secondary ml-auto" >Вернуться к списку тестов</button>
+        </a>
     </div>
 </header>
 <div class="clone"></div>
 <section class="learning-html">
     <div class="content">
-
         <div class="block-statistics">
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Вопросы</h1>
-                    <a th:href="@{/tests/{testId}/addQuestion(testId = ${testId})}">
-                        <button class="btn btn-success" >Добавить вопрос</button>
+                    <a th:href="@{/tests/{testId}/addQuestion(testId = ${testId})}" class="a-btn-add">
+                        <button class="btn btn-success">Добавить вопрос</button>
                     </a>
                 </div>
                 <div class="scrollable-container">
@@ -59,11 +61,7 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
-            <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}">
-                <button class="btn btn-secondary ml-auto" >Вернуться</button>
-            </a>
         </div>
     </div>
 </section>

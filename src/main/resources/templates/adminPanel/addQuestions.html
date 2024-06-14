@@ -6,27 +6,22 @@
     <title>Add Questions</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
     <script>
         $(document).ready(function () {
-
-
-
             $("#submitQuestions").click(function () {
                 var testId = [[${testId}]];
                 var questionsJson = $("#questionsJson").val();
-
                 try {
                     JSON.parse(questionsJson); // Проверка на корректность JSON
                 } catch (e) {
                     alert("Invalid JSON format");
                     return;
                 }
-
                 console.log("Submitting JSON: ", questionsJson);
-
                 var csrfToken = $("meta[name='_csrf']").attr("content");
                 var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-
                 $.ajax({
                     type: "POST",
                     url: "/tests/addQuestions",
@@ -52,6 +47,16 @@
     </script>
 </head>
 <body>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+        <a th:href="@{/tests/{testId}/questionList(testId = ${testId})}" class="a-for-button-back">
+            <button class="btn btn-primary ml-auto">Вернуться к списку тестов</button>
+        </a>
+    </div>
+</header>
 <meta name="_csrf" th:content="${_csrf.token}"/>
 <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <div class="container">

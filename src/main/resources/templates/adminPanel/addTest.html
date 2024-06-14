@@ -10,22 +10,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
-<div>
-    <h1>Тест</h1>
-    <form th:action="@{/tests/{partitionId}/addTest(partitionId = ${partitionId})}" method="post">
-    <h2>Название</h2>
-        <input type="text" name ="name">
-    <h2>Номер теста</h2>
-        <input type="text" name ="number">
-    <button class="btn btn-primary">Сохранить</button>
-    </form>
-    <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}">
-        <button class="btn btn-primary">Назад</button>
-    </a>
-
-</div>
-
-
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
+        </div>
+        <a th:href="@{/tests/{partitionId}(partitionId = ${partitionId})}" class="a-for-button-back">
+            <button class="btn btn-primary ml-auto">Вернуться на список тестов</button>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <form th:action="@{/tests/{partitionId}/addTest(partitionId = ${partitionId})}" method="post">
+                    <div class="top-block-statistics">
+                        <h1>Добавление теста</h1>
+                        <a class="a-btn-add">
+                            <button type="submit" class="btn btn-primary">Добавить тест</button>
+                        </a>
+                    </div>
+                    <div class="description-h2">
+                        <h2 class="p-info">Пожалуйста, введите название теста и его номер в текстовое поле ниже.</h2>
+                        <h2 class="p-info">Номер - это порядковый номер теста внутри раздела</h2>
+                    </div>
+                    <div class="div-for-input-partition">
+                        <h2 class="p-info">Название</h2>
+                        <input type="text" name ="name" class="input-test">
+                        <h2 class="p-info">Номер теста</h2>
+                        <input type="text" name ="number" class="input-test">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

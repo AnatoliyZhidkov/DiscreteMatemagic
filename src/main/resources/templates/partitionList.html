@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
+    <link rel="stylesheet" th:href="@{/utilities/navigation.css}" />
+    <link rel="stylesheet" th:href="@{/progress.css}" />
+    <title>DiscreteMathemagic</title>
+    <script th:src="@{/utilities/navigation.js}" defer></script>
+</head>
+<body>
+<header>
+    <div class="sidebar">
+        <div class="block-for-logo">
+            <img class="img-logo" src="images/login.png" alt="">
+        </div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/main}">
+                    <div class="item-list">
+                        <img class="first-item-img" src="images/learning.svg" alt="">
+                        <h1>ОБУЧЕНИЕ</h1>
+                    </div>
+                </a>
+            </li>
+            <li class="active">
+                <a>
+                    <div class="item-list">
+                        <img class="second-item-img" src="images/progress.svg" alt="">
+                        <h1>СТАТИСТИКА</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/profile}">
+                    <div class="item-list">
+                        <img class="four-item-img" src="images/profile.svg" alt="">
+                        <h1>ПРОФИЛЬ</h1>
+                    </div>
+                </a>
+            </li>
+            <li th:if = "${hasAdminRole}==true">
+                <a th:href="@{/admin}">
+                    <div class="item-list" id="item3">
+                        <img class="four-item-img" src="images\admin.svg" alt="">
+                        <h1>АДМИН</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <form name="logoutForm" th:action="@{/logout}" method="post">
+                    <button id="loginButton" type="submit" class="btn">
+                        <div class="item-list" id="item4">
+                            <img class="five-item-img" src="images/settings.svg" alt="">
+                            <h1>ВЫХОД</h1>
+                        </div>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</header>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+<!--                 в div ниже  th:each-->
+                <div>
+                    <div class="top-block-statistics">
+                        <h1>Раздел — <span>сюда название раздела</span></h1>
+                    </div>
+                    <!--                 в div ниже  th:each-->
+                    <div class="block-for-items-acheive">
+                        <div>
+                            <h1>сюда название теста</h1>
+                            <button>Начать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

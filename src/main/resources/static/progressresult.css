@@ -218,6 +218,32 @@ textarea.form-control{
 .black{
     color: #495057;
 }
+.input-partition{
+    width: 100%;
+    height: 90%;
+    border-radius: 5px;
+}
+.input-test{
+    width: 100%;
+    height: 35%;
+    border-radius: 5px;
+}
+.form-group-1{
+    width: 100%;
+    border-radius: 3px;
+    background-color: white;
+}
+.padding-black{
+    padding-left: 8px;
+}
+.div-for-input-partition{
+    height: 20vw;
+}
+.div-for-add-question{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 @media screen and (max-width: 900px){
     .block-info-progress h2 {
         font-size:calc(8px + 1vw);
