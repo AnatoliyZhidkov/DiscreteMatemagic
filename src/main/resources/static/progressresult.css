@@ -133,7 +133,7 @@ header{
 .block-for-items-acheive:last-child{
     margin-bottom: 25px;
 }
-.button-back-main{
+.ml-auto{
     background-color: #ff6666;
     border-radius: 11px;
     padding: calc(2px + 0.5vw) calc(25px + 1vw);
@@ -148,8 +148,8 @@ header{
     font-family: 'mt-bold';
     height: fit-content;
 }
-.button-back-main:hover{background-color: #E74949;}
-.button-back-main:active, .btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
+.ml-auto:hover{background-color: #E74949;}
+.ml-auto:active, .btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 
 .h2-name-test{
     font-size: 17px;
@@ -170,6 +170,9 @@ header{
 }
 .a-for-button-back{
     padding-right: 40px;
+}
+.a-btn-add{
+    padding-bottom: 10px;
 }
 @keyframes fadeIn {
     from {
@@ -195,6 +198,25 @@ header{
 }
 #special{
     margin-top: 0;
+}
+textarea.form-control{
+    height: 60vh;
+}
+.form-group{
+    width: 49%;
+    border-radius: 3px;
+    background-color: white;
+}
+.students-list {
+    height: 444px;
+    overflow-y: auto;
+}
+.div-for-form-group{
+    display: flex;
+    justify-content: space-between;
+}
+.black{
+    color: #495057;
 }
 @media screen and (max-width: 900px){
     .block-info-progress h2 {
@@ -231,7 +253,7 @@ header{
     }
 }
 @media screen and (max-width: 750px){
-    .button-back-main{
+    .ml-auto{
         min-width: auto;
         padding: calc(9px + 0.5vw) calc(25px + 1vw);
     }
@@ -248,7 +270,7 @@ header{
         width: 100%;
         margin-top: 10%;
     }
-    .button-back-main, .btn{
+    .ml-auto, .btn{
         font-size: calc(8px + 1vw);
     }
     .result-item {

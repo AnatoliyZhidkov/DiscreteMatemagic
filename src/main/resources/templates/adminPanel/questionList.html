@@ -24,7 +24,7 @@
         <div class="block-statistics">
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
-                    <h1>Тесты</h1>
+                    <h1>Вопросы</h1>
                     <a th:href="@{/tests/{testId}/addQuestion(testId = ${testId})}">
                         <button class="btn btn-success" >Добавить вопрос</button>
                     </a>
@@ -52,7 +52,7 @@
                             </td>
                             <td class="p-info">
                                 <form method="post" th:action="@{/tests/{testId}/deleteQuestion/{questionId}(testId=${testId}, questionId=${question.id})}">
-                                    <button class="btn btn-danger" >Удалить тест</button>
+                                    <button class="btn btn-danger" >Удалить вопрос</button>
                                 </form>
                             </td>
                         </tr>

@@ -2,31 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Students</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}" />
 </head>
 <body>
-<div class="container">
-    <h1>Add Students</h1>
-    <form action="#" th:action="@{/admin/addStudents/{groupId}(groupId=${groupId})}" method="post">
-        <div class="form-group">
-            <label for="studentsList">Enter students (each on a new line, format: Firstname Lastname):</label>
-            <textarea id="studentsList" name="studentsList" class="form-control" rows="10"></textarea>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
         </div>
-        <button type="submit" class="btn btn-primary">Add Students</button>
+        <a th:href="@{/admin}" class="a-for-button-back">
+            <button class="btn btn-success ml-auto" >Вернуться на страницу студентов</button>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <form action="#" th:action="@{/admin/addStudents/{groupId}(groupId=${groupId})}" method="post">
+                    <div class="top-block-statistics">
+                        <h1>Добавление студентов</h1>
+                        <a class="a-btn-add">
+                            <button type="submit" class="btn btn-primary">Добавить студентов</button>
+                        </a>
+                    </div>
+                    <div class="description-h2">
+                        <h2 class="p-info">Для добавления нескольких студентов введите в левое текстовое поле Фамилию и Имя студента через пробел. Новый студент - новая строчка.</h2>
+                        <h2 class="p-info">Логин и пароль для созданных учеников отобразится в правом текстовом поле в формате: 'Фамилия' 'Имя' 'Логин' 'Пароль'</h2>
+                    </div>
+                    <div class="div-for-form-group">
+                        <div class="form-group">
+                            <textarea id="studentsList" name="studentsList" class="form-control" rows="10"></textarea>
+                        </div>
+                        <div class="form-group result-students">
+                            <div th:if="${students != null}" class="students-list">
+                                <div th:each="student : ${students}">
+                                    <h2 th:text="${student}" class="p-info black"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
-    </form>
-    <a th:href="@{/admin}">
-        <button class="btn btn-success ml-auto" >Назад</button>
-    </a>
-
-    <div th:if="${students != null}">
-        <h2>Generated Logins and Passwords</h2>
-        <div th:each="student : ${students}">
-            <h2 th:text="${student}"></h2>
-
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 </html>

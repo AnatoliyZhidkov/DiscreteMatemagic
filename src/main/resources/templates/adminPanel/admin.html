@@ -15,6 +15,9 @@
         <div class="right-header">
             <img src="/images/login.png" alt="">
         </div>
+        <a th:href="@{/main}" class="a-for-button-back">
+            <button class="btn btn-secondary ml-auto button-back-main">Вернуться на главную</button>
+        </a>
     </div>
 </header>
 <div class="clone"></div>
@@ -24,6 +27,9 @@
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Группы</h1>
+                    <a th:href="@{/admin/create/group}" class="a-btn-add">
+                        <button class="btn btn-success" >Добавить группу</button>
+                    </a>
                 </div>
                 <div class="scrollable-container">
                     <table class="table table-bordered" >
@@ -62,19 +68,13 @@
                         </tbody>
                     </table>
                 </div>
-                <a th:href="@{/admin/create/group}">
-                    <button class="btn btn-success" >Добавить группу</button>
-                </a>
             </div>
-            <a th:href="@{/main}">
-                <button class="btn btn-secondary ml-auto" >Вернуться</button>
-            </a>
         </div>
         <div class="block-statistics">
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Разделы</h1>
-                    <a th:href="@{/tests/addPartition}">
+                    <a th:href="@{/tests/addPartition}" class="a-btn-add">
                         <button class="btn btn-success" >Добавить раздел</button>
                     </a>
                 </div>
@@ -106,11 +106,7 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
-            <a th:href="@{/main}">
-                <button class="btn btn-secondary ml-auto" >Вернуться</button>
-            </a>
         </div>
     </div>
 </section>

@@ -60,9 +60,8 @@ public class StudentGenetateService {
             String lastName = parts[0];
             String login =generateLogin(firstName,lastName);
             String rawPassword = generateRandomPassword();
-            String encodedPassword = bCryptPasswordEncoder.encode(rawPassword);
 
-            studentService.saveStudent(login, encodedPassword, lastName, firstName, null,"ROLE_STUDENT", groupId);
+            studentService.saveStudent(login, rawPassword, lastName, firstName, null,"ROLE_STUDENT", groupId);
             result = result + lastName + " " + firstName + " " +  login + " " + rawPassword + "\r\n";
         }
 

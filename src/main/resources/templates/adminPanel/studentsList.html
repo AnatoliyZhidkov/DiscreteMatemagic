@@ -15,15 +15,21 @@
         <div class="right-header">
             <img src="/images/login.png" alt="">
         </div>
+        <a th:href="@{/admin}" class="a-for-button-back">
+            <button class="btn btn-secondary ml-auto" >Вернуться на панель админа</button>
+        </a>
     </div>
 </header>
 <div class="clone"></div>
 <section class="learning-html">
     <div class="content">
-        <div class="block-statistics" id="special">
+        <div class="block-statistics">
             <div class="block-statistics-in">
                 <div class="top-block-statistics">
                     <h1>Студенты</h1>
+                    <a th:href="@{/admin/create}" class="a-btn-add">
+                        <button class="btn btn-success" >Добавить студента</button>
+                    </a>
                 </div>
                 <div class="scrollable-container">
                     <table class="table table-bordered">
@@ -70,14 +76,6 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
-                <div>
-                    <a th:href="@{/admin/create}">
-                        <button class="btn btn-success" >Добавить студента</button>
-                    </a>
-                    <a th:href="@{/admin}">
-                        <button class="btn btn-secondary ml-auto" >Вернуться</button>
-                    </a>
                 </div>
             </div>
         </div>
