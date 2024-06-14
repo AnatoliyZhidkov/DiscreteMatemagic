@@ -27,9 +27,17 @@
                 </a>
             </li>
             <li>
+                <a th:href="@{/partitions}">
+                    <div class="item-list">
+                        <img class="second-item-img" src="images\tests.svg" alt="">
+                        <h1>ТЕСТЫ</h1>
+                    </div>
+                </a>
+            </li>
+            <li>
                 <a th:href="@{/progress}">
                     <div class="item-list">
-                        <img class="second-item-img" src="images\progress.svg" alt="">
+                        <img class="four-item-img" src="images\progress.svg" alt="">
                         <h1>СТАТИСТИКА</h1>
                     </div>
                 </a>
@@ -44,7 +52,7 @@
             </li>
             <li th:if = "${hasAdminRole}==true">
                 <a th:href="@{/admin}">
-                    <div class="item-list" id="item3">
+                    <div class="item-list">
                         <img class="four-item-img" src="images\admin.svg" alt="">
                         <h1>АДМИН</h1>
                     </div>
@@ -53,7 +61,7 @@
             <li>
                 <form name = "logoutForm" th:action="@{/logout}" method="post" >
                     <button id="loginButton" type="submit"  class="btn">
-                        <div class="item-list" id="item4">
+                        <div class="item-list">
                             <img class="five-item-img" src="images\settings.svg" alt="">
                             <h1>ВЫХОД</h1>
                         </div>
