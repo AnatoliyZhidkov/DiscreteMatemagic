@@ -32,8 +32,8 @@ public class TestResultController {
         if (testResults.isEmpty()) {
             return "redirect:/admin";
         }
+        model.addAttribute("groupId", student.getStudent_groups().getId());
         model.addAttribute("testResults", testResults);
-        testResults.get(0).getQuestionSessions().size();
         return "adminPanel/testResult";
     }
 
