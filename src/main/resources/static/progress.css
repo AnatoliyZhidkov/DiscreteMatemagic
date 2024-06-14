@@ -94,7 +94,7 @@ section{
     justify-content: space-between;
     align-items: center;
     border-radius: 1vw;
-    background-color: rgba(30, 38, 52, 0.3);
+    background-color: rgba(30, 38, 52, 0.5);
 }
 .testName{
     font-size: 18px;
