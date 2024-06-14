@@ -56,4 +56,24 @@ public class Student_Groups {
     public void setGroupNumber(int groupNumber) {
         this.groupNumber = groupNumber;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public Set<Test> getTest() {
+        return test;
+    }
+
+    public void setTest(Set<Test> test) {
+        this.test = test;
+    }
 }

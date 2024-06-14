@@ -55,6 +55,29 @@ public class TestResultService {
 
         return testResultRepository.save(testResult);
     }
+
+    @Transactional
+    public TestResult startCustomTest(Long testId, Student student) {
+
+        Test test = testRepository.findById(testId).orElseThrow(() -> new EntityNotFoundException("Test not found"));
+
+        if (this.testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()) // Проверка на то, что тест начат, но не закончен
+                && testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId()).getEndTime() == null) {
+            return this.testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId());
+        }
+
+        TestResult testResult = new TestResult();
+        testResultRepository.save(testResult);
+        testResult.setTest(test);
+        testResult.setStudent(student);
+        testResult.setStartTime(LocalDateTime.now());
+        testResult.setQuestionSessions(questionService.getRandomQuestionsByTestResult(testResult));
+        return testResultRepository.save(testResult);
+
+
+
+    }
+
 @Transactional
     public List<Boolean> endTest(Long idTestResult, TestSubmissionDTO testSubmissionDTO) {
 
@@ -81,6 +104,8 @@ public class TestResultService {
 
         return results;
     }
+
+
 
     public boolean existsByTestResultIdAndStudentId(Long testResultId,Long studentId) {
         return testResultRepository.existsByIdAndStudentId(testResultId,studentId);
@@ -218,5 +243,14 @@ public class TestResultService {
     public void deleteTestResultsByModuleAddTest(int moduleNumber, int testNumber, Long studentId) {
 
         testResultRepository.deleteByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(moduleNumber, testNumber).orElseThrow(() -> new NoSuchElementException("No Test found with id " + testNumber)).getId(),studentId);
+    }
+
+    public int countTestResultByTestId(Long testId, Long studentId) {
+
+        return testResultRepository.countByTestIdAndStudentId(testId,studentId);
+    }
+
+    public TestResult findTestResultById(Long testResultId) {
+        return testResultRepository.findById(testResultId).orElseThrow(() -> new NoSuchElementException("No TestResult found with id " + testResultId));
     }
 }

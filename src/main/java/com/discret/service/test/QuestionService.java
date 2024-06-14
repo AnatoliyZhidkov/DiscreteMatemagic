@@ -27,6 +27,7 @@ public class QuestionService {
     private final AnswerRepository answerRepository;
     private final AnswerGenerator answerGenerator;
 
+
     private static final Random random = new Random();
     @Transactional
     public List<QuestionSession> getGeneratedQuestions(int module, int testNumber, TestResult testResult) {
@@ -95,9 +96,46 @@ public class QuestionService {
 
     public List<Question> getQuestionsByTest(Long testId) {
 
-        List<Question> questions = this.questionRepository.findAllByTestId(testId).orElseThrow(() -> new NoSuchElementException("No Question found with id " + testId));
+        List<Question> questions = questionRepository.findAllByTestId(testId)
+                .orElseThrow(() -> new NoSuchElementException("No Question found with id " + testId));
         return questionRepository.findAllByTestId(testId).orElseThrow(() -> new NoSuchElementException("No Question found with id " + testId));
     }
+
+    public List<QuestionSession> getRandomQuestionsByTestResult(TestResult testResult) {
+
+
+        Long testId = testResult.getTest().getId();
+
+        int maxQuestionNumber = questionRepository.maxQuestionNumberByTestId(testId)
+                .orElseThrow(() -> new NoSuchElementException("No Question found in test with id " + testId));
+
+        List<QuestionSession> questionSessions = new ArrayList<>();
+
+        for (int i = 1; i <= maxQuestionNumber; i++) {
+            QuestionSession questionSession = randomQuestionByTestIdAndQuestionNumber(testResult,testId, i);
+            if (questionSession == null) {
+                continue;
+            }
+            questionSessions.add(questionSession);
+        }
+        return questionSessions;
+    }
+
+    private QuestionSession randomQuestionByTestIdAndQuestionNumber(TestResult testResult, Long testId, int questionNumber) {
+
+        QuestionSession questionSession = new QuestionSession();
+        questionRepository
+                .findByTestIdAndQuestionNumberOrderByRandom(testId,questionNumber)
+                .ifPresent(question -> {
+                    questionSession.setQuestion(question);
+                    questionSession.setGeneratedText(question.getQuestionText());
+                    questionSession.setTestResult(testResult);
+                    questionSession.setCorrectAnswer(question.getAnswers().get(0).getAnswerText());
+                });
+        return questionSession;
+
+    }
+
 
 
     public Question findQuestionById(Long questionId) {
@@ -130,4 +168,7 @@ public class QuestionService {
         this.questionRepository.deleteById(questionId);
         return true;
     }
+
+
+
 }

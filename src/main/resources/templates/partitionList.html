@@ -66,15 +66,19 @@
         <div class="block-statistics">
             <div class="block-statistics-in">
 <!--                 в div ниже  th:each-->
-                <div>
+                <div th:each="partition : ${partitions}">
                     <div class="top-block-statistics">
-                        <h1>Раздел — <span>сюда название раздела</span></h1>
+                        <h1>Раздел — <span th:text="${partition.partitionName}"></span></h1>
                     </div>
                     <!--                 в div ниже  th:each-->
-                    <div class="block-for-items-acheive">
+                    <div class="block-for-items-acheive"  th:each="test : ${partition.test}">
                         <div>
-                            <h1>сюда название теста</h1>
-                            <button>Начать</button>
+                            <h1 th:text="${test.testName}"></h1>
+                        </div >
+                        <div th:if="${test.getQuestion() != null}">
+                        <form  th:action="@{/test/{id}(id=${test.id})}" method="get">
+                            <button >Начать</button>
+                            </form>
                         </div>
                     </div>
                 </div>

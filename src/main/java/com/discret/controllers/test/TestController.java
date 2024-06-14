@@ -55,6 +55,8 @@ public class TestController {
         return String.format("tests/module%d/test%d-%d", module, module, testnumber);
     }
 
+
+
     @PostMapping("/tests/submitTest")
     public String submitTest(TestSubmissionDTO testSubmissionDTO,Long testResultId ,Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -69,6 +71,29 @@ public class TestController {
         return "tests/resultPage";
 
     }
+
+    @GetMapping("/test/{testId}")
+    public String startCustomTest(@PathVariable("testId") Long testId, Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Student student = (Student) authentication.getPrincipal();
+
+        if (this.testResultService.countTestResultByTestId(testId,student.getId()) >2) {
+            if(student.getRoles().stream().anyMatch(s -> s.getAuthority().equals("ROLE_STUDENT"))){
+                return "redirect:/main";
+            }
+        }
+
+
+        TestResult testResult = this.testResultService.startCustomTest(testId,student);
+        List<QuestionSession> questions = testResult.getQuestionSessions();
+        model.addAttribute("questions", questions);
+        model.addAttribute("testResultId", testResult.getId());
+        return "tests/customTest";
+    }
+
+
+
 
 
     @GetMapping("/tests/{partitonId}")

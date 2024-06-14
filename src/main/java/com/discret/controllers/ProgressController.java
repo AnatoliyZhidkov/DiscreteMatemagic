@@ -28,7 +28,7 @@ public class ProgressController {
 
         model.addAttribute("hasAdminRole", hasAdminRole);
         for (int moduleNumber = 1; moduleNumber <= 4; moduleNumber++) {
-            List<Integer> testResults = testResultService.findLatestTestResultsByModule(student, moduleNumber);
+            List<Integer> testResults = testResultService.findTopScoreByTestModuleAndTestNumber(student, moduleNumber);
             model.addAttribute("module" + moduleNumber + "Results", testResults);
         }
 

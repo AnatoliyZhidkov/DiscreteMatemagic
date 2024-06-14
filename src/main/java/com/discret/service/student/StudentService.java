@@ -3,6 +3,7 @@ package com.discret.service.student;
 import com.discret.entity.Role;
 import com.discret.entity.Student;
 import com.discret.entity.Student_Groups;
+import com.discret.entity.test.Test;
 import com.discret.repository.RoleRepository;
 import com.discret.repository.StudentsGroupsRepository;
 import com.discret.repository.StudentsRepository;
@@ -149,4 +150,11 @@ public class StudentService implements UserDetailsService {
     }
 
 
+
+    @Transactional(readOnly = true)
+    public Set<Test> getAvailableTestsForStudent(Long studentId) {
+        return studentsRepository.findById(studentId)
+                .map(student -> student.getStudent_groups().getTest())
+                .orElseThrow(() -> new NoSuchElementException("Student or group not found"));
+    }
 }
