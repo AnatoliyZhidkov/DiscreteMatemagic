@@ -77,6 +77,47 @@ section{
 .block-for-items-acheive:last-child{
     margin-bottom: 25px;
 }
+.class-for-margin{
+    margin: 50px 0;
+}
+.class-for-flex-flow{
+    display: flex;
+    flex-flow: row;
+}
+.block-for-items-test{
+    margin-bottom:  1.29vw;
+    padding-left: calc(10px + 2vw);
+    padding-right: 8px;
+    display: flex;
+    flex-flow: row;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1vw;
+    background-color: rgba(30, 38, 52, 0.3);
+}
+.testName{
+    font-size: 18px;
+    color: white;
+    margin: calc(10px + 0.5vw) 0;
+}
+.ml-auto{
+    background-color: #51c5a9;
+    border-radius: 11px;
+    padding: calc(2px + 0.5vw) calc(15px + 1vw);
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 195px;
+    color: white;
+    font-size: 17px;
+    font-family: 'mt-bold';
+    height: fit-content;
+}
+.ml-auto:hover{background-color: #1dcea0;}
+.ml-auto:active, .btn:active{transform: scale(0.98); box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); }
 
 @keyframes fadeIn {
     from {
@@ -88,7 +129,7 @@ section{
         transform: translateY(0); /* Завершим анимацию смещением вниз */
     }
 }
-.block-info-progress, .block-img-progress img, .top-block-statistics{
+.block-info-progress, .block-img-progress img, .top-block-statistics, .block-for-items-test{
     animation: fadeIn 0.5s ease forwards;
 }
 @media screen and (max-width: 900px){
@@ -114,17 +155,29 @@ section{
     .top-block-statistics span{
         display: none;
     }
+    .testName{
+        font-size: calc(9px + 1vw);
+    }
+}
+@media screen and (max-width: 750px){
+    .ml-auto{
+        min-width: auto;
+        padding: calc(9px + 0.5vw) calc(15px + 1vw);
+    }
 }
 @media screen and (max-width: 560px) {
     .block-progress, .block-statistics{
         border-radius: 11px;
         width: 90%;
     }
-    .block-progress{
+    .block-progress, .class-for-margin{
         margin: 20px 0;
     }
     .content{
         width: 100%;
         margin-top: 10%;
+    }
+    .ml-auto{
+        font-size: calc(8px + 1vw);
     }
 }

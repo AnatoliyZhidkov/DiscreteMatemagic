@@ -48,7 +48,7 @@
                     </div>
                 </a>
             </li>
-            <li th:if = "${hasAdminRole}==true">
+            <li th:if="${hasAdminRole}==true">
                 <a th:href="@{/admin}">
                     <div class="item-list">
                         <img class="four-item-img" src="images\admin.svg" alt="">
@@ -71,21 +71,19 @@
 </header>
 <section class="learning-html">
     <div class="content">
-        <div class="block-statistics">
+        <div class="block-statistics class-for-margin">
             <div class="block-statistics-in">
-<!--                 в div ниже  th:each-->
                 <div th:each="partition : ${partitions}">
-                    <div class="top-block-statistics">
-                        <h1>Раздел — <span th:text="${partition.partitionName}"></span></h1>
+                    <div class="top-block-statistics class-for-flex-flow">
+                        <h1>Раздел —&#160</h1><h1 th:text="${partition.partitionName}"></h1>
                     </div>
-                    <!--                 в div ниже  th:each-->
-                    <div class="block-for-items-acheive"  th:each="test : ${partition.test}">
+                    <div class="block-for-items-test"  th:each="test : ${partition.test}">
                         <div>
-                            <h1 th:text="${test.testName}"></h1>
-                        </div >
+                            <h1 th:text="${test.testName}" class="testName"></h1>
+                        </div>
                         <div th:if="${test.getQuestion() != null}">
-                        <form  th:action="@{/test/{id}(id=${test.id})}" method="get">
-                            <button >Начать</button>
+                            <form  th:action="@{/test/{id}(id=${test.id})}" method="get">
+                                <button class="ml-auto">Начать</button>
                             </form>
                         </div>
                     </div>
