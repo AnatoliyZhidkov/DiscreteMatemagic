@@ -3,27 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Student</title>
+  <title>Add Group</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+  <link rel="stylesheet" th:href="@{/utilities/fonts.css}"/>
 </head>
 <body>
-<div class="container mt-5">
-  <h2>Добавление новой группы</h2>
-  <form th:action="@{/admin/create/group}" method="post">
-    <div class="form-group">
-      <label for="groupname">Название</label>
-      <input type="text" class="form-control" id="groupname" name="groupname" required>
+<header>
+  <div class="conteiner-header">
+    <div class="right-header">
+      <img src="/images/login.png" alt="">
     </div>
-    <div class="form-group">
-      <label for="groupNumber">Курс</label>
-      <input type="number" class="form-control" id="groupNumber" name="groupNumber" required>
+    <a th:href="@{/admin}" class="a-for-button-back">
+      <button class="btn btn-primary ml-auto">Вернуться на панель админа</button>
+    </a>
+  </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+  <div class="content">
+    <div class="block-statistics">
+      <div class="block-statistics-in">
+        <form th:action="@{/admin/create/group}" method="post">
+          <div class="top-block-statistics">
+            <h1>Добавление группы</h1>
+            <a class="a-btn-add">
+              <button type="submit" class="btn btn-primary">Добавить группу</button>
+            </a>
+          </div>
+          <div class="description-h2">
+            <h2 class="p-info">Пожалуйста, введите название группы и курс в текстовых полях ниже.</h2>
+            <h2 class="p-info">Примеры назания групп:</h2>
+            <ul type="disc">
+              <li class="p-info">ИБ</li>
+              <li class="p-info">МКН</li>
+              <li class="p-info">ПМИ</li>
+            </ul>
+          </div>
+          <div class="div-for-add-question">
+            <div class="form-group-1">
+              <label for="groupname" class="p-info black padding-black">Название:</label>
+              <input type="text" class="form-control" id="groupname" name="groupname" required>
+            </div>
+            <div class="form-group-1">
+              <label for="groupNumber" class="p-info black padding-black">Курс:</label>
+              <input type="number" class="form-control" id="groupNumber" name="groupNumber" required>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Создать группу</button>
-  </form>
-  <br><br>
-  <a th:href="@{/admin}">
-    <button class="btn btn-success ml-auto" >Назад</button>
-  </a>
-</div>
+  </div>
+</section>
 </body>
 </html>
