@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -42,7 +43,6 @@ public class PartitionController {
     public String getPartitions(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student)authentication.getPrincipal();
-
 
         model.addAttribute("partitions", patitionService.findAll());
         return "partitionList";

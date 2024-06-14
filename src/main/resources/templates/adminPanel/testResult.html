@@ -14,7 +14,7 @@
         <div class="right-header">
             <img src="/images/login.png" alt="">
         </div>
-        <a th:href="@{/admin}" class="a-for-button-back">
+        <a th:href="@{/admin/get/{groupId}(groupId=${groupId})}" class="a-for-button-back">
             <button class="btn btn-success ml-auto button-back-main" id="button-admin-back" >Вернуться к списку студентов</button>
         </a>
     </div>
@@ -106,6 +106,7 @@
                 </div>
                 <div class="block-for-result">
                     <div th:each="testResult : ${testResults}" class="result-item">
+                        <h2 th:if=" ${testResult.test.partition != null}" th:text="'Раздел: ' + ${testResult.test.partition.partitionName}" class="h2-name-test"></h2>
                         <h2 th:text="'Тест: ' + ${testResult.test.module} + ' - ' + ${testResult.test.number}" class="h2-name-test"></h2>
                         <p th:text="'Дата прохождения: ' + ${#temporals.format(testResult.startTime, 'yyyy-MM-dd HH:mm')}" class="p-info"></p>
                         <p th:text="'Результат: ' + ${testResult.score} + ' из ' + ${testResult.questionSessions.size()}" class="p-info"></p>

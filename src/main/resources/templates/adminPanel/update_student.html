@@ -14,7 +14,7 @@
         <div class="right-header">
             <img src="/images/login.png" alt="">
         </div>
-        <a th:href="@{/admin}" class="a-for-button-back">
+        <a th:href="@{/admin/get/{groupId}(groupId=${student.getStudent_groups().getId()})}" class="a-for-button-back">
             <button class="btn btn-primary ml-auto">Вернуться к списку студентов</button>
         </a>
     </div>
