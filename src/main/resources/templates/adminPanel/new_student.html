@@ -3,57 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Student</title>
+    <title>Add Student</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/progressresult.css}"/>
+    <link rel="stylesheet" th:href="@{/utilities/fonts.css}"/>
 </head>
 <body>
-<div class="container mt-5">
-    <h2>Добавление нового студента</h2>
-    <form th:action="@{/admin/create}" method="post">
-        <div class="form-group">
-            <label for="login">Login</label>
-            <input type="text" class="form-control" id="login" name="login" required>
+<header>
+    <div class="conteiner-header">
+        <div class="right-header">
+            <img src="/images/login.png" alt="">
         </div>
-        <div class="form-group">
-            <label for="password">Пароль</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+        <a th:href="@{/admin}" class="a-for-button-back">
+            <button class="btn btn-primary ml-auto">Вернуться к списку студентов</button>
+        </a>
+    </div>
+</header>
+<div class="clone"></div>
+<section class="learning-html">
+    <div class="content">
+        <div class="block-statistics">
+            <div class="block-statistics-in">
+                <form th:action="@{/admin/create}" method="post">
+                    <div class="top-block-statistics">
+                        <h1>Добавление студента</h1>
+                        <a class="a-btn-add">
+                            <button type="submit" class="btn btn-primary">Добавить студента</button>
+                        </a>
+                    </div>
+                    <div class="div-for-add-question">
+                        <div class="form-group-1">
+                            <label for="login" class="p-info black padding-black">Логин:</label>
+                            <input type="text" class="form-control" id="login" name="login" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="password" class="p-info black padding-black">Пароль:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="passwordConfirm" class="p-info black padding-black">Подтвердите пароль:</label>
+                            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="lastName" class="p-info black padding-black">Фамилия:</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="firstName" class="p-info black padding-black">Имя:</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="middleName" class="p-info black padding-black">Отчество:</label>
+                            <input type="text" class="form-control" id="middleName" name="middleName">
+                        </div>
+                        <div class="form-group-1">
+                            <label for="role" class="p-info black padding-black">Роль:</label>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="ROLE_STUDENT">Student</option>
+                                <option value="ROLE_ADMIN">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group-1">
+                            <label for="groupId" class="p-info black padding-black">Группа:</label>
+                            <select class="form-control" id="groupId" name="groupId" required>
+                                <option  th:each="groups : ${groups}" th:value="${groups.id}" th:text="${groups.groupname + '-' + groups.groupNumber}"> </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="passwordConfirm">Подтвердите пароль</label>
-            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
-        </div>
-        <div class="form-group">
-            <label for="lastName">Фамилия</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" required>
-        </div>
-        <div class="form-group">
-            <label for="firstName">Имя</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" required>
-        </div>
-        <div class="form-group">
-            <label for="middleName">Отчество</label>
-            <input type="text" class="form-control" id="middleName" name="middleName">
-        </div>
-        <div class="form-group">
-            <label for="role">Роль</label>
-            <select class="form-control" id="role" name="role" required>
-                <option value="ROLE_STUDENT">Student</option>
-                <option value="ROLE_ADMIN">Admin</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="groupId">Группа</label>
-            <select class="form-control" id="groupId" name="groupId" required>
-                <option  th:each="groups : ${groups}" th:value="${groups.id}" th:text="${groups.groupname + '-' + groups.groupNumber}" > </option>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Добавить</button>
-
-    </form>
-    <a th:href="@{/admin}">
-        <button class="btn btn-success ml-auto" >Назад</button>
-    </a>
-</div>
+    </div>
+</section>
 </body>
 </html>
