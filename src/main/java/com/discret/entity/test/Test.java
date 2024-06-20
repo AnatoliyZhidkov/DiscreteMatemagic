@@ -14,8 +14,6 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-
-    private String moduleName;
     private String testName;
     private int number;
     private int module;
@@ -25,6 +23,9 @@ public class Test {
     @ManyToOne( )
     @JoinColumn(name = "partition_id")
     private Partition partition;
+
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TestResult> testResults;
 
 
     @Transient

@@ -10,10 +10,6 @@ import java.util.List;
 @Repository
 public interface StudentsRepository extends JpaRepository<Student, Long> {
     Student findByLogin(String login);
-
-
-
-
     List<Student> findAll();
 
     boolean existsByLogin(String login);

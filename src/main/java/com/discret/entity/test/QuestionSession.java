@@ -20,7 +20,7 @@ public class QuestionSession {
     @JoinColumn(name = "test_result_id")
     private TestResult testResult;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
     private Question question;
 

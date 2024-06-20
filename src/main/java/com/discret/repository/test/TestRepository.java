@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface TestRepository extends JpaRepository<Test,Long> {
 
-   // Test findByModuleAndAndNumber(int Module,int Number);
+
     Optional<Test> findByModuleAndAndNumber(int Module, int Number);
 
     List<Test> findAllByModule(int Module);

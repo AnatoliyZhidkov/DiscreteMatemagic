@@ -18,12 +18,10 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-
 public class QuestionController {
 
     private final QuestionService questionService;
     private final TestService testService;
-
     @GetMapping("/tests/{testId}/questionList")
     public String getQuestionList(@PathVariable("testId") Long testId, Model model) {
         model.addAttribute("partitionId", this.testService.findById(testId).getPartition().getId());
@@ -31,13 +29,11 @@ public class QuestionController {
 
         return "adminPanel/questionList";
     }
-
     @GetMapping("/tests/{testId}/addQuestion")
     public String showAddQuestionForm(@PathVariable("testId") Long testId, Model model) {
         model.addAttribute("testId", testId);
         return "adminPanel/addQuestion";
     }
-
     @PostMapping("/tests/{testId}/addQuestion")
     public String addQuestion(@PathVariable("testId") Long testId,@ModelAttribute QuestionDTO questionData) {
 
@@ -47,7 +43,6 @@ public class QuestionController {
 
         return "redirect:/tests/%d/questionList".formatted(testId);
     }
-
     @GetMapping("/tests/{testId}/updateQuestion/{questionId}")
     public String showUpdateForm(@PathVariable("testId") Long testId, @PathVariable("questionId") Long questionId, Model model) {
         Question question = questionService.findQuestionById(questionId);
@@ -55,20 +50,15 @@ public class QuestionController {
         model.addAttribute("testId", testId);
         return "adminPanel/updateQuestion";
     }
-
     @PostMapping("/tests/{testId}/updateQuestion/{questionId}")
     public String updateQuestion(@PathVariable("testId") Long testId, @PathVariable("questionId") Long questionId, @ModelAttribute QuestionDTO question) {
 
         questionService.updateQuestion(question, questionId);
         return "redirect:/tests/%d/questionList".formatted(testId);
     }
-
-
     @PostMapping("/tests/{testId}/deleteQuestion/{questionId}")
     public String deleteQuestion(@PathVariable("testId") Long testId, @PathVariable("questionId") Long questionId) {
         questionService.deleteQuestion(questionId);
         return "redirect:/tests/%d/questionList".formatted(testId);
     }
-
-
 }

@@ -42,9 +42,7 @@ public class StudentService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-
         Student student = studentsRepository.findByLogin(login);
-
         if(student == null){
             throw new UsernameNotFoundException("Student not found");
         }
@@ -87,23 +85,17 @@ public class StudentService implements UserDetailsService {
 
     @Transactional
     public boolean saveStudent(String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
-
         Student studentFromDb = studentsRepository.findByLogin(login);
-
         if (studentFromDb != null){
-
             return false;
         }
-
         Student student = new Student();
         student = setStudent(student, login, password, lastName, firstName, middleName, roleName, groupId);
         studentsRepository.save(student);
         return true;
-
     }
 
     private Student setStudent(Student student,String login, String password, String lastName, String firstName, String middleName, String roleName , Long groupId){
-
         Student_Groups studentGroup = studentsGroupsRepository.findById(groupId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid group ID: " + groupId));
         Role role = roleRepository.findByName(roleName);
@@ -157,4 +149,6 @@ public class StudentService implements UserDetailsService {
                 .map(student -> student.getStudent_groups().getTest())
                 .orElseThrow(() -> new NoSuchElementException("Student or group not found"));
     }
+
+
 }

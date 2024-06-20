@@ -64,7 +64,6 @@ public class QuestionService {
         QuestionSession questionSession = new QuestionSession();
         questionSession.setQuestion(question);
         questionSession.setGeneratedText(text);
-
         questionSession.setGeneratedData(numbers.stream().map(Objects::toString).collect(Collectors.joining(",")));
         questionSession.setTestResult(testResult);
         questionSession.setCorrectAnswer(answerGenerator.generateAnswer(questionSessionList,questionSession,numbers));
@@ -102,13 +101,9 @@ public class QuestionService {
     }
 
     public List<QuestionSession> getRandomQuestionsByTestResult(TestResult testResult) {
-
-
         Long testId = testResult.getTest().getId();
-
         int maxQuestionNumber = questionRepository.maxQuestionNumberByTestId(testId)
                 .orElseThrow(() -> new NoSuchElementException("No Question found in test with id " + testId));
-
         List<QuestionSession> questionSessions = new ArrayList<>();
 
         for (int i = 1; i <= maxQuestionNumber; i++) {

@@ -62,7 +62,8 @@ public class TestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Student student = (Student) authentication.getPrincipal();
 
-        if (this.testResultService.existsByTestResultIdAndStudentId(testResultId,student.getId()) && this.testResultService.findLastByTestResultIdAndStudentId(testResultId,student.getId()).getEndTime() != null) {
+        if (this.testResultService.existsByTestResultIdAndStudentId(testResultId,student.getId())
+                && this.testResultService.findLastByTestResultIdAndStudentId(testResultId,student.getId()).getEndTime() != null){
             return "redirect:/main";
         }
 
@@ -83,8 +84,6 @@ public class TestController {
                 return "redirect:/main";
             }
         }
-
-
         TestResult testResult = this.testResultService.startCustomTest(testId,student);
         List<QuestionSession> questions = testResult.getQuestionSessions();
         model.addAttribute("questions", questions);

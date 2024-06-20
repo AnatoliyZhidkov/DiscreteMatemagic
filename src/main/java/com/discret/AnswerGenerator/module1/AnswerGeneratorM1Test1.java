@@ -73,8 +73,6 @@ public class AnswerGeneratorM1Test1 extends AbstractAnswerGenerator {
         return String.valueOf(factorial(numbers.get(1))/factorial(numbers.get(1)-numbers.get(0)));
     }
 
-
-
     public String answerNinthQuestion(List<QuestionSession> questionSessionList){
         List<Integer> numbers = Arrays.asList(questionSessionList.get(7).getGeneratedData().split(","))
                                       .stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());

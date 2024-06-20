@@ -17,9 +17,7 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     @Query("select q.questionNumber from Question q where q.test.Id = ?1 order by q.questionNumber desc LIMIT 1")
     Optional<Integer> maxQuestionNumberByTestId(Long testId);
 
-
     Optional<Integer> countByTestIdAndQuestionNumber(Long testId, int questionNumber);
-
 
     @Query("select q from Question q where q.test.Id = ?1 and q.questionNumber = ?2 order by random() LIMIT 1")
     Optional<Question> findByTestIdAndQuestionNumberOrderByRandom(Long testId, int questionNumber);

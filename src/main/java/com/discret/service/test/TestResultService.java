@@ -40,7 +40,6 @@ public class TestResultService {
     public TestResult startTest(int Module,int testNumber, Student student) {
 
         Test test = testRepository.findByModuleAndAndNumber( Module, testNumber).orElseThrow(() -> new EntityNotFoundException("Test not found"));
-
         if (this.testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId())
                 && testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId()).getEndTime() == null) {
                 return this.testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId());
@@ -51,21 +50,15 @@ public class TestResultService {
         testResult.setStudent(student);
         testResult.setStartTime(LocalDateTime.now());
         testResult.setQuestionSessions(questionService.getGeneratedQuestions(Module,testNumber,testResult));
-
-
         return testResultRepository.save(testResult);
     }
-
     @Transactional
     public TestResult startCustomTest(Long testId, Student student) {
-
         Test test = testRepository.findById(testId).orElseThrow(() -> new EntityNotFoundException("Test not found"));
-
         if (this.testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()) // Проверка на то, что тест начат, но не закончен
                 && testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId()).getEndTime() == null) {
             return this.testResultRepository.findLastByTestIdAndStudentId(test.getId(), student.getId());
         }
-
         TestResult testResult = new TestResult();
         testResultRepository.save(testResult);
         testResult.setTest(test);
@@ -73,18 +66,10 @@ public class TestResultService {
         testResult.setStartTime(LocalDateTime.now());
         testResult.setQuestionSessions(questionService.getRandomQuestionsByTestResult(testResult));
         return testResultRepository.save(testResult);
-
-
-
     }
-
 @Transactional
     public List<Boolean> endTest(Long idTestResult, TestSubmissionDTO testSubmissionDTO) {
-
         TestResult testResult = testResultRepository.findById(idTestResult).orElseThrow(() -> new EntityNotFoundException("TestResult not found"));
-
-
-
         List<AnswerDTO> answers = testSubmissionDTO.getAnswers();
         List<Boolean> results = new ArrayList<>();
         int score = 0;
@@ -97,32 +82,23 @@ public class TestResultService {
             }
             results.add(isCorrect);
         }
-
         testResult.setScore(score);
         testResult.setEndTime(LocalDateTime.now());
         this.testResultRepository.save(testResult);
-
         return results;
     }
-
-
-
     public boolean existsByTestResultIdAndStudentId(Long testResultId,Long studentId) {
         return testResultRepository.existsByIdAndStudentId(testResultId,studentId);
     }
-
     @Transactional
     public List<TestResult> findAllByStudentId(Long studentId) {
         return testResultRepository.findAllByStudentId(studentId);
     }
-
     @Transactional
     public List<TestResult> findAllByStudentIdAndModuleTest(Long studentId, int module, int number){
-
         return testResultRepository.findAllByStudentIdAndTestId(studentId,testRepository.findByModuleAndAndNumber(module, number)
                 .orElseThrow(() -> new EntityNotFoundException("Test not found")).getId());
     }
-
     @Transactional
     public boolean deleteTestResult(Long testResultId) {
        return this.testResultRepository.findById(testResultId).map(testResult -> {
@@ -135,16 +111,13 @@ public class TestResultService {
       return  this.testResultRepository
               .findLastByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).orElseThrow(() -> new EntityNotFoundException("Test not found")).getId(),studentId);
     }
-
     @Transactional
     public int countTestResult(int module, int number, Long studentId) {
         return this.testResultRepository
                 .countByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(module, number).orElseThrow(() -> new EntityNotFoundException("Test not found")).getId(),studentId);
     }
-
     @Transactional
     public List<Integer> findTopScoreByTestModuleAndTestNumber(Student student, int moduleNumber) {
-
         List<Integer> results = new ArrayList<>();
         List<Test> tests = testRepository.findAllByModule(moduleNumber);
         for (Test test : tests) {
@@ -165,7 +138,6 @@ public class TestResultService {
 
     @Transactional
     public List<Integer> findLatestTestResultsByModule(Student student, int moduleNumber) {
-
         List<Integer> results = new ArrayList<>();
         List<Test> tests = testRepository.findAllByModule(moduleNumber);
         for (Test test : tests) {
@@ -185,12 +157,10 @@ public class TestResultService {
    public TestResult findLastByTestResultIdAndStudentId (Long testResultId, Long studentId) {
        return testResultRepository.findLastByIdAndStudentId(testResultId,studentId);
    }
-
     @Transactional
     public List<Achievement> getAchievementsByStudent(Student student) {
         return student.getAchievements().stream().toList();
     }
-
     @Transactional
     public void checkAndAssignAchievements(Student student) {
         // Проверка на завершение первого модуля
@@ -202,12 +172,9 @@ public class TestResultService {
                 .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
         boolean FourthModuleCompleted = testRepository.findAllByModule(4).stream()
                 .allMatch(test -> testResultRepository.existsByTestIdAndStudentId(test.getId(), student.getId()));
-
-
         if (firstModuleCompleted) {
             assignAchievement(student, "Комбинаторный Пионер","/images/achieve2.svg", "За успешное завершение всех тестов модуля 1");
         }
-
     if (thirdModuleCompleted) {
         assignAchievement(student, "Исследователь Графов","/images/achieve4.svg","За успешное завершение всех тестов модуля 3");
     }
@@ -217,10 +184,7 @@ public class TestResultService {
     if (secondModuleCompleted) {
         assignAchievement(student, "Комбинаторный Эксперт","/images/achieve3.svg","За успешное завершение всех тестов модуля 2");
     }
-
-
     }
-
     private void assignAchievement(Student student, String name, String image, String description) {
         Optional<Achievement> optionalAchievement = Optional.ofNullable(achievementRepository.findByName(name));
         Achievement achievement;
@@ -233,7 +197,6 @@ public class TestResultService {
             achievement.setDescription(description);
             achievement = achievementRepository.save(achievement);
         }
-
         if (!student.getAchievements().contains(achievement)) {
             student.getAchievements().add(achievement);
             studentsRepository.save(student);
@@ -241,7 +204,6 @@ public class TestResultService {
     }
     @Transactional
     public void deleteTestResultsByModuleAddTest(int moduleNumber, int testNumber, Long studentId) {
-
         testResultRepository.deleteByTestIdAndStudentId(testRepository.findByModuleAndAndNumber(moduleNumber, testNumber).orElseThrow(() -> new NoSuchElementException("No Test found with id " + testNumber)).getId(),studentId);
     }
 
@@ -249,7 +211,6 @@ public class TestResultService {
 
         return testResultRepository.countByTestIdAndStudentId(testId,studentId);
     }
-
     public TestResult findTestResultById(Long testResultId) {
         return testResultRepository.findById(testResultId).orElseThrow(() -> new NoSuchElementException("No TestResult found with id " + testResultId));
     }

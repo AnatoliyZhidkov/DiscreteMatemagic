@@ -24,10 +24,15 @@ public class Question {
 
     private int questionNumber;
 
-    @ManyToOne
+    @ManyToOne()
     @ToString.Exclude
     @JoinColumn(name = "test_id")
     private Test test;
+
+    @OneToMany()
+    @ToString.Exclude
+    @JoinColumn(name = "question_id")
+    private List<QuestionSession> questionSessions;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
